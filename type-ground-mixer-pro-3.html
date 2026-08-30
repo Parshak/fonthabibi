@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FontHabibi · The Mixer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@400;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&family=Sora:wght@400;600;700&family=Figtree:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Franklin:wght@400;500;600;700;800&family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Unbounded:wght@400;600;800&family=Zilla+Slab:wght@400;500;600;700&family=Anton&family=Bebas+Neue&family=Abril+Fatface&family=Alfa+Slab+One&family=Syne:wght@400;600;700;800&family=Righteous&family=Work+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&family=Jost:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Public+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&family=Merriweather:wght@400;700;900&family=Chivo:wght@400;500;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Bitter:wght@400;500;600;700&family=Overpass:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Yeseva+One&family=Prata&family=Marcellus&family=Italiana&family=Gilda+Display&family=Poiret+One&family=Michroma&family=Oswald:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Albert+Sans:wght@400;500;600;700&family=Onest:wght@400;500;600;700&family=Familjen+Grotesk:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;600;700;800&family=Cabin:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --shell-bg:#14161B; --shell-panel:#1B1E25; --shell-panel-2:#20242D;
+    --shell-ink:#ECEDEF; --shell-muted:#8C919C; --shell-faint:#5A5F6A;
+    --shell-line:#2B3039; --shell-accent:#5B7CFF; --shell-accent-ink:#0C1020;
+    --shell-ok:#5BD6A0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{color-scheme:dark}
+  body{background:var(--shell-bg);color:var(--shell-ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  .mono{font-family:'Space Mono',monospace}
+  .wrap{max-width:1500px;margin:0 auto;padding:34px clamp(16px,3vw,44px) 80px}
+
+  header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px}
+  .kicker{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--shell-muted)}
+  h1{font-weight:800;font-size:clamp(26px,3.2vw,40px);line-height:1.03;letter-spacing:-.01em;margin-top:8px}
+  h1 em{font-style:normal;color:var(--shell-accent)}
+  .lede{margin-top:10px;max-width:62ch;font-size:14.5px;line-height:1.6;color:var(--shell-muted)}
+  .ghost-btn{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.05em;padding:9px 14px;border:1px solid var(--shell-line);border-radius:8px;color:var(--shell-muted);transition:border-color .15s,color .15s}
+  .ghost-btn:hover{border-color:var(--shell-accent);color:var(--shell-ink)}
+
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--shell-line);padding-bottom:14px;margin-bottom:14px}
+  .tab{display:flex;align-items:baseline;gap:8px;padding:9px 15px;border-radius:9px;border:1px solid transparent;color:var(--shell-muted);font-weight:600;font-size:14px;transition:background .15s,color .15s}
+  .tab .n{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--shell-faint)}
+  .tab:hover{color:var(--shell-ink);background:var(--shell-panel)}
+  .tab.on{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
+  .tab.on .n{color:var(--shell-accent-ink);opacity:.65}
+  .cat-note{font-size:13px;color:var(--shell-muted);margin:0 0 20px;max-width:82ch;line-height:1.55}
+
+  /* Stage */
+  /* Side-by-side: sticky preview left, picker rail right — select and see at once */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:22px;align-items:start}
+  @media(max-width:1160px){.layout{grid-template-columns:minmax(0,1fr) 340px}}
+  .stage{display:flex;flex-direction:column;gap:12px;position:sticky;top:14px}
+  .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
+  @media(max-width:940px){
+    .layout{grid-template-columns:1fr}
+    .stage{position:sticky;top:0;z-index:30;background:var(--shell-bg);padding:8px 0 10px;border-bottom:1px solid var(--shell-line)}
+    .preview{max-height:44vh;overflow:auto}
+    .tokens,.fonts-line{display:none}
+    .stage .combo .nm{font-size:15px}
+  }
+  .stage-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .combo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .combo .id{font-family:'Space Mono',monospace;font-size:12px;color:var(--shell-accent)}
+  .combo .nm{font-weight:800;font-size:19px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .a-btn{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.04em;padding:10px 15px;border-radius:9px;border:1px solid var(--shell-line);color:var(--shell-muted);transition:border-color .15s,color .15s,background .15s;font-weight:700}
+  .a-btn:hover{border-color:var(--shell-accent);color:var(--shell-ink)}
+  .a-btn.primary{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
+  .a-btn.primary:hover{filter:brightness(1.1)}
+  .a-btn.ok{background:var(--shell-ok);color:#082018;border-color:var(--shell-ok)}
+  .a-btn:focus-visible,.tab:focus-visible,.ghost-btn:focus-visible,.card:focus-visible,.chip:focus-visible{outline:2px solid var(--shell-accent);outline-offset:2px}
+
+  .preview-shell{border:1px solid var(--shell-line);border-radius:16px;overflow:hidden;background:var(--shell-panel)}
+  .preview{min-height:520px;transition:opacity .16s}
+  .preview.fade{opacity:0}
+  @media(prefers-reduced-motion:reduce){.preview{transition:none}}
+
+  .tokens{display:flex;flex-wrap:wrap;gap:8px}
+  .tk{display:flex;align-items:center;gap:7px;padding:6px 10px 6px 7px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--shell-muted)}
+  .tk i{width:15px;height:15px;border-radius:4px;border:1px solid rgba(255,255,255,.18);flex:none}
+  .tk b{color:var(--shell-ink);font-weight:400}
+  .fonts-line{font-size:12.5px;color:var(--shell-muted);line-height:1.7}
+  .fonts-line b{color:var(--shell-ink);font-weight:600}
+
+  /* Pickers — compact rows in a side rail, always next to the preview */
+  .panel{background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:10px}
+  .panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .panel-head h3{font-size:15px;font-weight:800}
+  .panel-head .count{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--shell-faint)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.04em;padding:5px 11px;border:1px solid var(--shell-line);border-radius:99px;color:var(--shell-muted)}
+  .chip.on{background:var(--shell-ink);color:var(--shell-bg);border-color:var(--shell-ink)}
+  .grid{display:flex;flex-direction:column;gap:6px;max-height:min(37vh,380px);overflow:auto;padding:2px;scrollbar-width:thin;overscroll-behavior:contain}
+  @media(max-width:940px){.grid{max-height:300px}}
+
+  .card{text-align:left;background:var(--shell-panel-2);border:1px solid var(--shell-line);border-radius:10px;transition:border-color .12s;display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:11px;padding:7px 11px 7px 7px}
+  .card:hover{border-color:#3A4150}
+  .card.on{border-color:var(--shell-accent);box-shadow:0 0 0 1px var(--shell-accent)}
+  .card .body{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .card .nm{font-weight:700;font-size:13px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .id{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--shell-faint);align-self:start;padding-top:2px}
+  .card .sub{font-size:10.5px;color:var(--shell-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t-ag{width:46px;height:46px;border-radius:8px;background:var(--shell-panel);border:1px solid var(--shell-line);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--shell-ink)}
+  .g-sw{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(255,255,255,.14)}
+  .g-sw .aa{font-size:15px;font-weight:700;font-family:'Archivo',sans-serif}
+  .g-sw .dot{width:9px;height:9px;border-radius:99px}
+
+  /* Saved tray */
+  .tray{margin-top:26px;border:1px dashed var(--shell-line);border-radius:14px;padding:16px;display:none;flex-direction:column;gap:12px}
+  .tray.show{display:flex}
+  .tray-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .tray-head h3{font-size:15px;font-weight:800}
+  .saved{display:flex;flex-wrap:wrap;gap:8px}
+  .saved-chip{display:flex;align-items:center;gap:9px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:9px;padding:7px 8px 7px 7px;font-size:12px}
+  .saved-chip .sw{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+  .saved-chip .cid{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--shell-faint)}
+  .saved-chip .x{color:var(--shell-faint);padding:2px 5px;border-radius:5px}
+  .saved-chip .x:hover{color:#FF8A80;background:var(--shell-panel-2)}
+  .saved-chip .load{padding:2px 4px}
+  .saved-chip .load:hover{color:var(--shell-accent)}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--shell-line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--shell-faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kicker">FontHabibi · The Mixer</div>
+      <h1>The Mixer. <em>Any voice, any ground, per medium.</em></h1>
+      <p class="lede">Pick the medium, then pick a type set and a ground independently — 20+ of each per category, every combination previewed in the real thing. Combine, save the pairs you like, and export them as ready-to-paste CSS.</p>
+    </div>
+    <button class="ghost-btn" id="btn-json">Copy library as JSON</button>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Medium"></nav>
+  <p class="cat-note" id="cat-note"></p>
+
+  <div class="layout">
+  <div class="stage">
+    <div class="stage-bar">
+      <div class="combo">
+        <span class="id" id="c-id"></span>
+        <span class="nm" id="c-name"></span>
+      </div>
+      <div class="actions">
+        <button class="a-btn" id="btn-shuffle">⤳ Shuffle</button>
+        <button class="a-btn" id="btn-save">☆ Save combo</button>
+        <button class="a-btn" id="btn-copy">Copy CSS</button>
+        <button class="a-btn" id="btn-dl">⬇ .css</button>
+        <button class="a-btn primary" id="btn-starter">⬇ Starter page</button>
+      </div>
+    </div>
+    <div class="preview-shell"><div class="preview" id="preview"></div></div>
+    <div class="tokens" id="token-row"></div>
+    <p class="fonts-line" id="fonts-line"></p>
+  </div>
+
+  <div class="rail">
+    <section class="panel">
+      <div class="panel-head">
+        <h3>Type</h3><span class="count" id="t-count"></span>
+      </div>
+      <div class="chips" id="t-chips"></div>
+      <div class="grid" id="t-grid"></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head">
+        <h3>Ground</h3><span class="count" id="g-count"></span>
+      </div>
+      <div class="chips" id="g-chips"></div>
+      <div class="grid" id="g-grid"></div>
+    </section>
+  </div>
+  </div><!-- /layout -->
+
+  <div class="tray" id="tray">
+    <div class="tray-head">
+      <h3>Saved combos <span class="mono" style="color:var(--shell-faint);font-size:11px" id="tray-count"></span></h3>
+      <div class="actions">
+        <button class="a-btn" id="btn-copy-all">Copy all as CSS</button>
+        <button class="a-btn" id="btn-dl-all">⬇ Download all (.css)</button>
+      </div>
+    </div>
+    <div class="saved" id="saved"></div>
+  </div>
+
+  <footer>
+    <span id="foot-counts"></span>
+    <span class="mono">display · body · ui — bg · surface · ink · muted · accent · border · radius</span>
+  </footer>
+</div>
+
+<script>
+/* ═══════════════ Font registry ═══════════════ */
+const FONTS = {
+  fraunces:{name:"Fraunces",css:"'Fraunces', Georgia, serif",gf:"Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700"},
+  outfit:{name:"Outfit",css:"'Outfit', system-ui, sans-serif",gf:"Outfit:wght@400;500;600;700"},
+  spacemono:{name:"Space Mono",css:"'Space Mono', monospace",gf:"Space+Mono:wght@400;700"},
+  spacegro:{name:"Space Grotesk",css:"'Space Grotesk', system-ui, sans-serif",gf:"Space+Grotesk:wght@400;500;600;700"},
+  inter:{name:"Inter",css:"'Inter', system-ui, sans-serif",gf:"Inter:wght@400;500;600;700;800"},
+  bricolage:{name:"Bricolage Grotesque",css:"'Bricolage Grotesque', system-ui, sans-serif",gf:"Bricolage+Grotesque:wght@400;600;700;800"},
+  nunitosans:{name:"Nunito Sans",css:"'Nunito Sans', system-ui, sans-serif",gf:"Nunito+Sans:wght@400;600;700;800"},
+  cormorant:{name:"Cormorant Garamond",css:"'Cormorant Garamond', Georgia, serif",gf:"Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400",dw:600},
+  karla:{name:"Karla",css:"'Karla', system-ui, sans-serif",gf:"Karla:wght@400;500;600;700"},
+  archivo:{name:"Archivo",css:"'Archivo', system-ui, sans-serif",gf:"Archivo:wght@400;500;600;700;800;900",dw:800},
+  sora:{name:"Sora",css:"'Sora', system-ui, sans-serif",gf:"Sora:wght@400;600;700"},
+  figtree:{name:"Figtree",css:"'Figtree', system-ui, sans-serif",gf:"Figtree:wght@400;500;600;700"},
+  lora:{name:"Lora",css:"'Lora', Georgia, serif",gf:"Lora:ital,wght@0,400;0,500;0,600;1,400",dw:600},
+  dmsans:{name:"DM Sans",css:"'DM Sans', system-ui, sans-serif",gf:"DM+Sans:wght@400;500;600;700"},
+  plexsans:{name:"IBM Plex Sans",css:"'IBM Plex Sans', system-ui, sans-serif",gf:"IBM+Plex+Sans:wght@400;500;600;700"},
+  plexmono:{name:"IBM Plex Mono",css:"'IBM Plex Mono', monospace",gf:"IBM+Plex+Mono:wght@400;500;600"},
+  franklin:{name:"Libre Franklin",css:"'Libre Franklin', system-ui, sans-serif",gf:"Libre+Franklin:wght@400;500;600;700;800"},
+  baloo:{name:"Baloo 2",css:"'Baloo 2', system-ui, sans-serif",gf:"Baloo+2:wght@400;500;600;700;800"},
+  quicksand:{name:"Quicksand",css:"'Quicksand', system-ui, sans-serif",gf:"Quicksand:wght@400;500;600;700"},
+  manrope:{name:"Manrope",css:"'Manrope', system-ui, sans-serif",gf:"Manrope:wght@400;500;600;700;800"},
+  jetbrains:{name:"JetBrains Mono",css:"'JetBrains Mono', monospace",gf:"JetBrains+Mono:wght@400;500;600;700"},
+  instrument:{name:"Instrument Sans",css:"'Instrument Sans', system-ui, sans-serif",gf:"Instrument+Sans:wght@400;500;600;700"},
+  hanken:{name:"Hanken Grotesk",css:"'Hanken Grotesk', system-ui, sans-serif",gf:"Hanken+Grotesk:wght@400;500;600;700;800"},
+  sourceserif:{name:"Source Serif 4",css:"'Source Serif 4', Georgia, serif",gf:"Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700",dw:600},
+  sourcesans:{name:"Source Sans 3",css:"'Source Sans 3', system-ui, sans-serif",gf:"Source+Sans+3:wght@400;500;600;700"},
+  ebgaramond:{name:"EB Garamond",css:"'EB Garamond', Georgia, serif",gf:"EB+Garamond:ital,wght@0,400;0,500;0,600;1,400",dw:500},
+  unbounded:{name:"Unbounded",css:"'Unbounded', system-ui, sans-serif",gf:"Unbounded:wght@400;600;800"},
+  zilla:{name:"Zilla Slab",css:"'Zilla Slab', Georgia, serif",gf:"Zilla+Slab:wght@400;500;600;700",dw:600},
+  anton:{name:"Anton",css:"'Anton', system-ui, sans-serif",gf:"Anton",dw:400},
+  bebas:{name:"Bebas Neue",css:"'Bebas Neue', system-ui, sans-serif",gf:"Bebas+Neue",dw:400},
+  abril:{name:"Abril Fatface",css:"'Abril Fatface', Georgia, serif",gf:"Abril+Fatface",dw:400},
+  alfa:{name:"Alfa Slab One",css:"'Alfa Slab One', Georgia, serif",gf:"Alfa+Slab+One",dw:400},
+  syne:{name:"Syne",css:"'Syne', system-ui, sans-serif",gf:"Syne:wght@400;600;700;800",dw:800},
+  righteous:{name:"Righteous",css:"'Righteous', system-ui, sans-serif",gf:"Righteous",dw:400},
+  worksans:{name:"Work Sans",css:"'Work Sans', system-ui, sans-serif",gf:"Work+Sans:wght@400;500;600;700"},
+  rubik:{name:"Rubik",css:"'Rubik', system-ui, sans-serif",gf:"Rubik:wght@400;500;600;700"},
+  jost:{name:"Jost",css:"'Jost', system-ui, sans-serif",gf:"Jost:wght@400;500;600;700"},
+  mulish:{name:"Mulish",css:"'Mulish', system-ui, sans-serif",gf:"Mulish:wght@400;500;600;700"},
+  playfair:{name:"Playfair Display",css:"'Playfair Display', Georgia, serif",gf:"Playfair+Display:ital,wght@0,400;0,600;0,700;1,400",dw:600},
+  dmserif:{name:"DM Serif Display",css:"'DM Serif Display', Georgia, serif",gf:"DM+Serif+Display:ital@0;1",dw:400},
+  newsreader:{name:"Newsreader",css:"'Newsreader', Georgia, serif",gf:"Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400",dw:600},
+  crimson:{name:"Crimson Pro",css:"'Crimson Pro', Georgia, serif",gf:"Crimson+Pro:ital,wght@0,400;0,600;1,400",dw:600},
+  publicsans:{name:"Public Sans",css:"'Public Sans', system-ui, sans-serif",gf:"Public+Sans:wght@400;500;600;700"},
+  epilogue:{name:"Epilogue",css:"'Epilogue', system-ui, sans-serif",gf:"Epilogue:wght@400;500;600;700;800"},
+  lexend:{name:"Lexend",css:"'Lexend', system-ui, sans-serif",gf:"Lexend:wght@400;500;600;700"},
+  barlow:{name:"Barlow",css:"'Barlow', system-ui, sans-serif",gf:"Barlow:wght@400;500;600;700"},
+  firacode:{name:"Fira Code",css:"'Fira Code', monospace",gf:"Fira+Code:wght@400;500;600"},
+  merriweather:{name:"Merriweather",css:"'Merriweather', Georgia, serif",gf:"Merriweather:wght@400;700;900"},
+  chivo:{name:"Chivo",css:"'Chivo', system-ui, sans-serif",gf:"Chivo:wght@400;500;600;700;800"},
+  spectral:{name:"Spectral",css:"'Spectral', Georgia, serif",gf:"Spectral:ital,wght@0,400;0,500;0,600;1,400",dw:600},
+  bitter:{name:"Bitter",css:"'Bitter', Georgia, serif",gf:"Bitter:wght@400;500;600;700",dw:600},
+  overpass:{name:"Overpass",css:"'Overpass', system-ui, sans-serif",gf:"Overpass:wght@400;500;600;700"},
+  nunito:{name:"Nunito",css:"'Nunito', system-ui, sans-serif",gf:"Nunito:wght@400;600;700;800"},
+  dmmono:{name:"DM Mono",css:"'DM Mono', monospace",gf:"DM+Mono:wght@400;500"},
+  bodoni:{name:"Bodoni Moda",css:"'Bodoni Moda', Georgia, serif",gf:"Bodoni+Moda:opsz,wght@6..96,400;6..96,700"},
+  yeseva:{name:"Yeseva One",css:"'Yeseva One', Georgia, serif",gf:"Yeseva+One",dw:400},
+  prata:{name:"Prata",css:"'Prata', Georgia, serif",gf:"Prata",dw:400},
+  marcellus:{name:"Marcellus",css:"'Marcellus', Georgia, serif",gf:"Marcellus",dw:400},
+  italiana:{name:"Italiana",css:"'Italiana', Georgia, serif",gf:"Italiana",dw:400},
+  gilda:{name:"Gilda Display",css:"'Gilda Display', Georgia, serif",gf:"Gilda+Display",dw:400},
+  poiret:{name:"Poiret One",css:"'Poiret One', system-ui, sans-serif",gf:"Poiret+One",dw:400},
+  michroma:{name:"Michroma",css:"'Michroma', system-ui, sans-serif",gf:"Michroma",dw:400},
+  oswald:{name:"Oswald",css:"'Oswald', system-ui, sans-serif",gf:"Oswald:wght@400;500;600;700",dw:600},
+  schibsted:{name:"Schibsted Grotesk",css:"'Schibsted Grotesk', system-ui, sans-serif",gf:"Schibsted+Grotesk:wght@400;500;600;700;800"},
+  albert:{name:"Albert Sans",css:"'Albert Sans', system-ui, sans-serif",gf:"Albert+Sans:wght@400;500;600;700"},
+  onest:{name:"Onest",css:"'Onest', system-ui, sans-serif",gf:"Onest:wght@400;500;600;700"},
+  familjen:{name:"Familjen Grotesk",css:"'Familjen Grotesk', system-ui, sans-serif",gf:"Familjen+Grotesk:wght@400;500;600;700"},
+  redhat:{name:"Red Hat Display",css:"'Red Hat Display', system-ui, sans-serif",gf:"Red+Hat+Display:wght@400;500;600;700;800"},
+  cabin:{name:"Cabin",css:"'Cabin', system-ui, sans-serif",gf:"Cabin:wght@400;500;600;700"},
+  atkinson:{name:"Atkinson Hyperlegible",css:"'Atkinson Hyperlegible', system-ui, sans-serif",gf:"Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400"},
+  caveat:{name:"Caveat",css:"'Caveat', cursive",gf:"Caveat:wght@400;600;700",dw:600},
+};
+const DW = k => FONTS[k].dw || 700;
+const solid = h => `linear-gradient(0deg, ${h}, ${h})`;
+
+/* ═══════════════ Categories ═══════════════ */
+const CATS = [
+  {id:"web", label:"Website", note:"Marketing and landing pages. Display type does the selling; grounds provide atmosphere. Previewed as a hero + nav + feature row."},
+  {id:"app", label:"App", note:"Mobile screens in a phone frame. The UI font matters as much as the display; grounds stay quieter and radii friendlier."},
+  {id:"tool", label:"Software tool", note:"Dashboards, dev tools, admin panels. Density and legibility first — previewed as sidebar + stats + a live table."},
+  {id:"edit", label:"Editorial", note:"Articles and long reads. Measure, leading and reading comfort first — the ground is paper, not a stage."},
+  {id:"docs", label:"Docs", note:"Documentation. Body and code coexist; callouts and borders do the structural work."},
+];
+
+/* ═══════════════ Type sets ═══════════════
+   d=display b=body u=ui/code · cats: which media it suits */
+const TYPES = [
+["F01","Poster Serif","fraunces","outfit","spacemono","warm editorial confidence",["web","edit"]],
+["F02","Swiss Modern","spacegro","inter","jetbrains","clean grotesk precision",["web","tool","docs","app"]],
+["F03","Grotesque Punch","bricolage","nunitosans","spacemono","quirky, friendly headlines",["web","app","edit"]],
+["F04","Maison","cormorant","karla","spacemono","luxury serif at scale",["web","edit"]],
+["F05","Block Party","archivo","archivo","spacemono","heavy grotesk statements",["web","app"]],
+["F06","Soft Geometric","sora","figtree","spacemono","rounded modern product",["web","app","tool"]],
+["F07","Humanist Calm","lora","dmsans","dmsans","serif warmth, sans clarity",["app","edit","web"]],
+["F08","Athletic","anton","inter","jetbrains","condensed impact numbers",["web","app"]],
+["F09","Bank Grade","franklin","plexsans","plexmono","sober institutional trust",["app","tool","docs"]],
+["F10","Bubble Pop","baloo","quicksand","quicksand","chunky, playful, rounded",["app","web"]],
+["F11","Wordmark","manrope","manrope","spacemono","one modern voice throughout",["app","tool","web","docs"]],
+["F12","Developer Default","inter","inter","jetbrains","the stack devs trust",["tool","docs","app"]],
+["F13","Drafting Room","spacegro","plexsans","plexmono","engineering precision",["tool","docs"]],
+["F14","Neutral Instrument","instrument","instrument","spacemono","quiet contemporary UI",["tool","web","app"]],
+["F15","Friendly Ops","hanken","hanken","plexmono","approachable admin work",["tool","app","docs"]],
+["F16","Magazine","fraunces","sourceserif","sourcesans","full serif feature set",["edit","docs"]],
+["F17","Loud Zine","unbounded","spacegro","spacemono","wide, shouty, deliberate",["web","edit"]],
+["F18","Old Style","ebgaramond","ebgaramond","spacemono","one classic serif voice",["edit"]],
+["F19","Night Serif","lora","sourcesans","jetbrains","serif heads, sans body",["edit","docs"]],
+["F20","Slab Manual","zilla","sourcesans","plexmono","slab chapters, plain body",["docs","edit","tool"]],
+["F21","Deco Poster","abril","worksans","spacemono","fat-face drama",["web","edit"]],
+["F22","Heavy Slab","alfa","rubik","spacemono","cartoon-weight slab punch",["web","app"]],
+["F23","Marquee","bebas","worksans","spacemono","tall caps, cinema energy",["web","app","edit"]],
+["F24","Art House","syne","jost","spacemono","fashion-forward geometry",["web","edit"]],
+["F25","Retro Round","righteous","rubik","spacemono","70s arcade warmth",["app","web"]],
+["F26","Newsdesk","playfair","sourceserif","sourcesans","broadsheet gravitas",["edit"]],
+["F27","Didone Pop","dmserif","mulish","spacemono","high-contrast serif sparkle",["web","edit","app"]],
+["F28","Bookish","newsreader","newsreader","spacemono","book-typography softness",["edit","docs"]],
+["F29","Crimson Read","crimson","worksans","firacode","literary serif + plain sans",["edit","docs"]],
+["F30","Civic","publicsans","publicsans","firacode","gov-grade neutrality",["tool","docs","app"]],
+["F31","Epilogue Start","epilogue","mulish","spacemono","startup-modern display",["web","app"]],
+["F32","Lexend Clarity","lexend","lexend","jetbrains","reading-speed optimised",["app","docs","tool"]],
+["F33","Barlow Utility","barlow","barlow","firacode","slightly-condensed workhorse",["tool","app","web"]],
+["F34","Merri Docs","merriweather","sourcesans","plexmono","sturdy serif documentation",["docs","edit"]],
+["F35","Chivo Press","chivo","chivo","spacemono","grotesk with press-room bite",["web","tool","docs"]],
+["F36","Spectral Essay","spectral","karla","spacemono","elegant essay serif",["edit","docs"]],
+["F37","Rubik Round","rubik","rubik","jetbrains","soft corners everywhere",["app","tool","web"]],
+["F38","Work Plain","worksans","worksans","plexmono","zero-drama versatility",["web","tool","docs","app","edit"]],
+["F39","Mono First","jetbrains","inter","jetbrains","terminal-native identity",["tool","docs"]],
+["F40","Plex Suite","plexsans","plexsans","plexmono","one coherent IBM family",["tool","docs"]],
+["F41","Jost Geo","jost","mulish","spacemono","bauhaus geometry",["web","app"]],
+["F42","Overpass Panel","overpass","overpass","firacode","signage-derived clarity",["tool","docs"]],
+["F43","Bitter Slab","bitter","sourcesans","plexmono","screen-first slab serif",["docs","edit","tool"]],
+["F44","Nunito Cloud","nunito","nunito","spacemono","balloon-soft friendliness",["app","web"]],
+["F45","DM Modern","dmsans","dmsans","dmmono","geometric with matching mono",["app","tool","web","docs"]],
+["F46","Playfair Lux","playfair","karla","spacemono","display serif + honest sans",["web","edit"]],
+["F47","Figtree Clean","figtree","figtree","spacemono","light, unfussy product",["app","web","tool","docs"]],
+["F48","Quiet Karla","karla","karla","spacemono","understated humanist",["edit","docs","web"]],
+["F49","Opera House","bodoni","mulish","spacemono","didone drama, hairline contrast",["web","edit"]],
+["F50","Golden Age","yeseva","karla","spacemono","vintage storybook charm",["web","edit"]],
+["F51","Gallery Wall","prata","worksans","spacemono","exhibition-caption elegance",["web","edit"]],
+["F52","Marble Hall","marcellus","karla","spacemono","roman-inscription calm",["web","edit"]],
+["F53","Fine Line","italiana","jost","spacemono","hairline fashion minimalism",["web","edit"]],
+["F54","Gilded Page","gilda","sourcesans","spacemono","engraved bookplate serif",["edit","web"]],
+["F55","Wire Frame","poiret","mulish","spacemono","art-deco skeleton letters",["web"]],
+["F56","Starship","michroma","spacegro","jetbrains","sci-fi console futurism",["web","tool"]],
+["F57","Headline Desk","oswald","sourcesans","plexmono","condensed newsroom urgency",["web","app","edit"]],
+["F58","Nordic Press","schibsted","schibsted","spacemono","scandinavian editorial sans",["web","tool","app","docs"]],
+["F59","Albert Modern","albert","albert","dmmono","rounded geometric polish",["app","web","tool"]],
+["F60","Onest Product","onest","onest","jetbrains","quiet interface confidence",["app","tool","docs"]],
+["F61","Familjen","familjen","familjen","spacemono","warm grotesk with character",["web","app","tool"]],
+["F62","Red Hat Suite","redhat","mulish","firacode","open-source friendliness",["tool","docs","app"]],
+["F63","Cabin Crew","cabin","cabin","spacemono","humanist utility comfort",["app","docs","tool"]],
+["F64","Hyperlegible","atkinson","atkinson","plexmono","maximum-readability accessible",["docs","tool","app"]],
+["F65","Scrapbook","caveat","worksans","spacemono","handwritten personal warmth",["web","edit"]],
+["F66","Broadside","anton","sourceserif","spacemono","poster caps over book serif",["edit","web"]],
+["F67","Museum Label","marcellus","sourcesans","plexmono","curatorial plaque precision",["edit","docs"]],
+["F68","Codex","ebgaramond","sourcesans","jetbrains","old serif meets code",["docs","edit"]],
+["F69","Signal Grotesk","archivo","publicsans","firacode","industrial control-room",["tool","docs"]],
+["F70","Round Table","nunito","mulish","dmmono","soft shapes, serious body",["app","web"]],
+["F71","Editor's Cut","playfair","mulish","spacemono","masthead serif, modern body",["edit","web"]],
+["F72","Terminal Serif","zilla","plexsans","jetbrains","slab warmth for dev tools",["tool","docs"]],
+["F73","Boutique","dmserif","figtree","spacemono","small-shop sparkle",["web","app","edit"]],
+["F74","Studio Sans","chivo","mulish","spacemono","press-room grotesk, soft body",["web","tool"]],
+].map(a=>({id:a[0],name:a[1],d:a[2],b:a[3],u:a[4],vibe:a[5],cats:a[6]}));
+
+/* ═══════════════ Grounds ═══════════════ */
+function G(id,name,vibe,cats,t){ return {id,name,vibe,cats,t}; }
+const GROUNDS = [
+G("G01","Studio Blush","warm paper, plum glow",["web","app","edit","docs"],
+ {bg:`radial-gradient(1100px 520px at 82% -10%, rgba(122,46,109,.10), transparent 60%), ${solid("#F7F4EE")}`,bgHex:"#F7F4EE",surface:"#FFFFFF",ink:"#221C24",muted:"#6E6572",accent:"#7A2E6D",accentInk:"#FFF6FC",border:"#E4DDE0",radius:14,dark:false}),
+G("G02","Night Launch","deep space, periwinkle glow",["web","app","tool"],
+ {bg:`radial-gradient(900px 480px at 50% -12%, rgba(124,147,255,.22), transparent 62%), ${solid("#0B1020")}`,bgHex:"#0B1020",surface:"#131A30",ink:"#EAEDF8",muted:"#8B93B4",accent:"#7C93FF",accentInk:"#0A0F22",border:"#232C4A",radius:12,dark:true}),
+G("G03","Fresh Green","garden-market light",["web","app","edit"],
+ {bg:`radial-gradient(720px 420px at 12% 108%, rgba(47,125,70,.14), transparent 60%), ${solid("#EFF6EC")}`,bgHex:"#EFF6EC",surface:"#FFFFFF",ink:"#1E2A20",muted:"#5F6E62",accent:"#2F7D46",accentInk:"#F2FBF4",border:"#D8E6D8",radius:18,dark:false}),
+G("G04","Ivory Gold","quiet luxury gradient",["web","edit"],
+ {bg:`linear-gradient(180deg, #FBF8F1 0%, #F3ECDD 100%)`,bgHex:"#F8F3E8",surface:"#FFFDF8",ink:"#201A12",muted:"#7A7060",accent:"#7A2E2E",accentInk:"#FBF2EE",border:"#E6DCC8",radius:4,dark:false}),
+G("G05","Hard Grid","brutalist graph paper",["web","edit","tool"],
+ {bg:`linear-gradient(#00000010 1px, transparent 1px) 0 0/100% 96px, linear-gradient(90deg, #00000010 1px, transparent 1px) 0 0/96px 100%, ${solid("#F2F2F0")}`,bgHex:"#F2F2F0",surface:"#FFFFFF",ink:"#0E0E0E",muted:"#5C5C5C",accent:"#0026FF",accentInk:"#FFFFFF",border:"#0E0E0E",radius:0,dark:false}),
+G("G06","Heatwave","magenta-peach warmth",["web","app","edit"],
+ {bg:`radial-gradient(860px 520px at 88% 0%, rgba(193,62,140,.16), transparent 58%), radial-gradient(760px 460px at 0% 100%, rgba(255,158,94,.18), transparent 58%), ${solid("#FBF6F3")}`,bgHex:"#FBF6F3",surface:"#FFFFFF",ink:"#25161E",muted:"#7A6470",accent:"#C13E8C",accentInk:"#FFF3FA",border:"#EEDCE4",radius:16,dark:false}),
+G("G07","Sage Calm","soft botanical ground",["app","web","edit"],
+ {bg:`linear-gradient(180deg, #F1F4EF 0%, #E9EFE7 100%)`,bgHex:"#EFF3ED",surface:"#FFFFFF",ink:"#232A22",muted:"#68746A",accent:"#4C7A5E",accentInk:"#F0F8F2",border:"#DCE4DA",radius:20,dark:false}),
+G("G08","Volt Black","scoreboard dark + teal",["app","web","tool"],
+ {bg:`radial-gradient(560px 380px at 50% -8%, rgba(51,224,200,.10), transparent 60%), ${solid("#0E0F12")}`,bgHex:"#0E0F12",surface:"#17191E",ink:"#F0F2F4",muted:"#8B929C",accent:"#33E0C8",accentInk:"#04241F",border:"#262A32",radius:16,dark:true}),
+G("G09","Paper Ledger","sober off-white trust",["app","tool","docs","edit","web"],
+ {bg:solid("#FAFAF7"),bgHex:"#FAFAF7",surface:"#FFFFFF",ink:"#171D1A",muted:"#616A64",accent:"#1B5E4A",accentInk:"#EDF8F3",border:"#E2E5E0",radius:12,dark:false}),
+G("G10","Lavender Play","bubbly grape lightness",["app","web"],
+ {bg:`radial-gradient(640px 420px at 100% 0%, rgba(123,77,219,.12), transparent 58%), ${solid("#F4F0FB")}`,bgHex:"#F4F0FB",surface:"#FFFFFF",ink:"#2A2140",muted:"#75688F",accent:"#7B4DDB",accentInk:"#F5F0FF",border:"#E4DCF3",radius:24,dark:false}),
+G("G11","Plum Amber","evening media glow",["app","web","edit"],
+ {bg:`radial-gradient(700px 460px at 0% 0%, rgba(255,180,84,.08), transparent 55%), ${solid("#14121B")}`,bgHex:"#14121B",surface:"#1D1A26",ink:"#EFEDF3",muted:"#938DA3",accent:"#FFB454",accentInk:"#2A1C05",border:"#2B2738",radius:18,dark:true}),
+G("G12","Terminal","the dark devs trust",["tool","docs","app"],
+ {bg:solid("#0D1117"),bgHex:"#0D1117",surface:"#161B22",ink:"#E6EDF3",muted:"#7D8590",accent:"#58A6FF",accentInk:"#06192E",border:"#30363D",radius:8,dark:true}),
+G("G13","Blueprint","faint drafting grid",["tool","docs"],
+ {bg:`linear-gradient(#1E5AE80A 1px, transparent 1px) 0 0/100% 28px, linear-gradient(90deg,#1E5AE80A 1px, transparent 1px) 0 0/28px 100%, ${solid("#F4F7FA")}`,bgHex:"#F4F7FA",surface:"#FFFFFF",ink:"#16233B",muted:"#5E6B82",accent:"#1E5AE8",accentInk:"#EFF4FF",border:"#D9E1EC",radius:8,dark:false}),
+G("G14","Darkroom","neutral dark for focus",["tool","app"],
+ {bg:solid("#161619"),bgHex:"#161619",surface:"#1F1F23",ink:"#EDECEA",muted:"#8E8C88",accent:"#E8A33D",accentInk:"#241703",border:"#2C2C31",radius:10,dark:true}),
+G("G15","Warm Paperwork","easy-on-the-eyes admin",["tool","docs","app","web"],
+ {bg:solid("#F7F6F3"),bgHex:"#F7F6F3",surface:"#FFFFFF",ink:"#23241F",muted:"#6C6D64",accent:"#4053C9",accentInk:"#EEF1FF",border:"#E3E2DA",radius:10,dark:false}),
+G("G16","Cool Ops","cool gray for data",["tool","docs"],
+ {bg:solid("#EDF0F3"),bgHex:"#EDF0F3",surface:"#FFFFFF",ink:"#1A2530",muted:"#5D6B77",accent:"#21618C",accentInk:"#EAF4FB",border:"#D6DDE4",radius:6,dark:false}),
+G("G17","Reading Cream","classic settle-in paper",["edit","docs","web"],
+ {bg:solid("#FBFAF6"),bgHex:"#FBFAF6",surface:"#FFFFFF",ink:"#1C1B17",muted:"#6E6C63",accent:"#2C4A73",accentInk:"#EEF4FB",border:"#E7E5DC",radius:6,dark:false}),
+G("G18","Zine Heat","hot paper, red flash",["edit","web"],
+ {bg:`radial-gradient(520px 340px at 96% 4%, rgba(255,61,46,.13), transparent 55%), ${solid("#FFF3E4")}`,bgHex:"#FFF3E4",surface:"#FFFBF4",ink:"#1D130C",muted:"#7C6A5B",accent:"#FF3D2E",accentInk:"#FFF4F2",border:"#F0DCC4",radius:2,dark:false}),
+G("G19","Quiet Stone","minimal gray-green calm",["edit","docs","app"],
+ {bg:solid("#F6F5F1"),bgHex:"#F6F5F1",surface:"#FCFBF8",ink:"#26282C",muted:"#75777C",accent:"#3B4A6B",accentInk:"#EFF2F9",border:"#E4E3DD",radius:4,dark:false}),
+G("G20","Night Reader","no-glare midnight page",["edit","docs","app"],
+ {bg:solid("#121417"),bgHex:"#121417",surface:"#1A1D21",ink:"#E6E4DF",muted:"#8F9297",accent:"#9BB8FF",accentInk:"#0E1830",border:"#282C32",radius:8,dark:true}),
+G("G21","Pure Reference","white page, blue links",["docs","tool","web"],
+ {bg:solid("#FFFFFF"),bgHex:"#FFFFFF",surface:"#F6F8FA",ink:"#1F2328",muted:"#656D76",accent:"#2563EB",accentInk:"#EFF4FF",border:"#D8DEE4",radius:8,dark:false}),
+G("G22","Field Notes","warm handbook paper",["docs","edit","web"],
+ {bg:solid("#FAF8F2"),bgHex:"#FAF8F2",surface:"#FFFEFA",ink:"#2A251C",muted:"#736C5E",accent:"#8A5A2B",accentInk:"#FBF3E8",border:"#E8E2D2",radius:8,dark:false}),
+G("G23","API Night","code-first dark green",["docs","tool"],
+ {bg:solid("#0B0E14"),bgHex:"#0B0E14",surface:"#131824",ink:"#DDE3EE",muted:"#7E8899",accent:"#7EE787",accentInk:"#07230C",border:"#232B3B",radius:8,dark:true}),
+G("G24","Glacier","pale arctic blue",["app","tool","docs","web"],
+ {bg:`linear-gradient(180deg,#F4F9FC 0%,#EDF4F9 100%)`,bgHex:"#F2F7FB",surface:"#FFFFFF",ink:"#122430",muted:"#5B6E7B",accent:"#0E7490",accentInk:"#E9F8FD",border:"#D8E4EC",radius:12,dark:false}),
+G("G25","Powder Rose","gentle rose warmth",["web","app","edit"],
+ {bg:solid("#FAF1F2"),bgHex:"#FAF1F2",surface:"#FFFBFB",ink:"#2C1A1E",muted:"#7E656B",accent:"#B23A5C",accentInk:"#FDF0F4",border:"#EEDCDF",radius:14,dark:false}),
+G("G26","Deep Forest","dark green canopy",["web","app","edit","tool"],
+ {bg:`radial-gradient(700px 460px at 100% 100%, rgba(123,196,127,.08), transparent 58%), ${solid("#0F1712")}`,bgHex:"#0F1712",surface:"#17211A",ink:"#E7EEE8",muted:"#8AA091",accent:"#7BC47F",accentInk:"#0B2410",border:"#243329",radius:12,dark:true}),
+G("G27","Charcoal Ember","near-black + coral heat",["web","app","tool"],
+ {bg:solid("#1B1B1E"),bgHex:"#1B1B1E",surface:"#242428",ink:"#F0EFED",muted:"#96948F",accent:"#FF7A59",accentInk:"#2C1006",border:"#333338",radius:12,dark:true}),
+G("G28","Butter","sunny cream + ochre",["web","app","edit","docs"],
+ {bg:solid("#FCF6E3"),bgHex:"#FCF6E3",surface:"#FFFCF2",ink:"#292112",muted:"#7C7258",accent:"#A16207",accentInk:"#FDF6E4",border:"#EFE5C8",radius:12,dark:false}),
+G("G29","Ultraviolet","deep purple neon",["web","app","tool"],
+ {bg:`radial-gradient(760px 480px at 80% -10%, rgba(180,156,255,.14), transparent 60%), ${solid("#131022")}`,bgHex:"#131022",surface:"#1C1830",ink:"#ECE9F7",muted:"#948DB4",accent:"#B49CFF",accentInk:"#160E33",border:"#2C2547",radius:14,dark:true}),
+G("G30","Slate Signal","navy pro + sky accent",["tool","docs","app","web"],
+ {bg:solid("#0F172A"),bgHex:"#0F172A",surface:"#182238",ink:"#E4EAF5",muted:"#8494AE",accent:"#38BDF8",accentInk:"#062536",border:"#26314C",radius:10,dark:true}),
+G("G31","Espresso","dark roast + latte gold",["edit","web","app"],
+ {bg:solid("#191512"),bgHex:"#191512",surface:"#221D19",ink:"#EFE9E2",muted:"#9C9186",accent:"#D4B483",accentInk:"#2A1E0C",border:"#332C26",radius:10,dark:true}),
+G("G32","Mint Lab","clinical fresh mint",["app","tool","docs","web"],
+ {bg:solid("#ECF8F4"),bgHex:"#ECF8F4",surface:"#FFFFFF",ink:"#122A24",muted:"#5A7269",accent:"#0F766E",accentInk:"#E7FAF6",border:"#D5EAE2",radius:12,dark:false}),
+G("G33","Dune","desert sand + agave",["web","edit","app","docs"],
+ {bg:`linear-gradient(180deg,#F7F1E8 0%,#F2EADD 100%)`,bgHex:"#F5EFE6",surface:"#FDFAF4",ink:"#28221A",muted:"#7A7161",accent:"#3F6C51",accentInk:"#EEF7F1",border:"#E7DECC",radius:10,dark:false}),
+G("G34","Cherry Soda","crisp white + cherry",["web","app","edit"],
+ {bg:solid("#FFF6F5"),bgHex:"#FFF6F5",surface:"#FFFFFF",ink:"#27171A",muted:"#7E6266",accent:"#D42D3D",accentInk:"#FFF1F2",border:"#F3DCDC",radius:14,dark:false}),
+G("G35","Sea Glass","aqua-washed light",["web","app","edit"],
+ {bg:`radial-gradient(680px 440px at 0% 0%, rgba(20,125,116,.10), transparent 58%), ${solid("#EEF7F6")}`,bgHex:"#EEF7F6",surface:"#FFFFFF",ink:"#142B29",muted:"#5D7573",accent:"#147D74",accentInk:"#E8FBF8",border:"#D6E8E5",radius:16,dark:false}),
+G("G36","Graphite Panel","mid-dark workbench",["tool","docs","app"],
+ {bg:solid("#202226"),bgHex:"#202226",surface:"#292B30",ink:"#ECEDEF",muted:"#9AA0A8",accent:"#6EA8FE",accentInk:"#0D2242",border:"#383B42",radius:8,dark:true}),
+G("G37","Blush Noir","dark romance + pink",["web","app","edit"],
+ {bg:solid("#1A1416"),bgHex:"#1A1416",surface:"#241C1F",ink:"#F2E9EC",muted:"#A18E95",accent:"#F492B0",accentInk:"#3A0E1E",border:"#362A2E",radius:14,dark:true}),
+G("G38","Citrus Court","zesty off-white + lime",["web","app","edit"],
+ {bg:`radial-gradient(620px 400px at 88% 100%, rgba(122,158,42,.13), transparent 58%), ${solid("#FDFBEF")}`,bgHex:"#FDFBEF",surface:"#FFFFFA",ink:"#232614",muted:"#6F7359",accent:"#55771C",accentInk:"#F3FAE4",border:"#E9E7CE",radius:14,dark:false}),
+G("G39","Arctic Night","polar dark + ice cyan",["tool","app","web","docs"],
+ {bg:`radial-gradient(700px 440px at 50% -10%, rgba(102,227,255,.09), transparent 60%), ${solid("#0A1220")}`,bgHex:"#0A1220",surface:"#121C2E",ink:"#E3EDF6",muted:"#7E93A8",accent:"#66E3FF",accentInk:"#04222B",border:"#20304A",radius:10,dark:true}),
+G("G40","Clay Studio","fired-clay warmth",["web","edit","app"],
+ {bg:solid("#F6E8DC"),bgHex:"#F6E8DC",surface:"#FCF4EC",ink:"#2E1F16",muted:"#82695A",accent:"#B4552D",accentInk:"#FBEDE4",border:"#EAD6C4",radius:12,dark:false}),
+G("G41","Ink & Paper","pure monochrome, radius 0",["edit","web","docs","tool"],
+ {bg:solid("#FFFFFF"),bgHex:"#FFFFFF",surface:"#F5F5F5",ink:"#111111",muted:"#666666",accent:"#111111",accentInk:"#FFFFFF",border:"#111111",radius:0,dark:false}),
+G("G42","Fog Lilac","soft violet neutrality",["docs","tool","app","web"],
+ {bg:solid("#F1EFF7"),bgHex:"#F1EFF7",surface:"#FBFAFE",ink:"#232033",muted:"#6E6A82",accent:"#5B54B8",accentInk:"#F0EEFC",border:"#DFDCEC",radius:10,dark:false}),
+G("G43","Midnight Oil","late-shift black + brass",["web","app","edit"],
+ {bg:solid("#0F0E17"),bgHex:"#0F0E17",surface:"#181724",ink:"#EFEDE6",muted:"#93909E",accent:"#E8C547",accentInk:"#2A2205",border:"#28263A",radius:12,dark:true}),
+G("G44","Peach Fuzz","soft peach morning",["web","app","edit"],
+ {bg:`linear-gradient(180deg,#FFF3EA 0%,#FFEADB 100%)`,bgHex:"#FFF0E5",surface:"#FFFAF6",ink:"#33211A",muted:"#8A6F62",accent:"#C2542B",accentInk:"#FDEFE7",border:"#F2DECF",radius:16,dark:false}),
+G("G45","Denim","washed indigo workwear",["web","tool","docs","app"],
+ {bg:solid("#EEF2F7"),bgHex:"#EEF2F7",surface:"#FFFFFF",ink:"#1B2A3D",muted:"#5F7189",accent:"#29527A",accentInk:"#EAF2FB",border:"#D9E1EB",radius:8,dark:false}),
+G("G46","Olive Grove","mediterranean matte green",["web","edit","docs"],
+ {bg:solid("#F3F2E7"),bgHex:"#F3F2E7",surface:"#FBFAF2",ink:"#28281B",muted:"#75755C",accent:"#6E7422",accentInk:"#F6F8E3",border:"#E4E3CE",radius:8,dark:false}),
+G("G47","Cocoa","milk chocolate warmth",["edit","web","docs"],
+ {bg:solid("#F4EDE7"),bgHex:"#F4EDE7",surface:"#FBF7F3",ink:"#2E2119",muted:"#7C6A5D",accent:"#6B4A33",accentInk:"#F7EEE7",border:"#E7DACE",radius:10,dark:false}),
+G("G48","Neon Rose","club-dark + hot pink",["web","app"],
+ {bg:`radial-gradient(600px 400px at 85% 0%, rgba(255,77,166,.12), transparent 58%), ${solid("#101014")}`,bgHex:"#101014",surface:"#191921",ink:"#F2F0F4",muted:"#9A97A4",accent:"#FF4DA6",accentInk:"#33061C",border:"#2A2A35",radius:16,dark:true}),
+G("G49","Steel","cold industrial gray",["tool","docs"],
+ {bg:solid("#E8EAED"),bgHex:"#E8EAED",surface:"#F7F8FA",ink:"#20262B",muted:"#5E6870",accent:"#37474F",accentInk:"#EBF1F4",border:"#D0D5DA",radius:6,dark:false}),
+G("G50","Porcelain","clean near-white + royal",["app","tool","docs","web"],
+ {bg:solid("#F9F9FB"),bgHex:"#F9F9FB",surface:"#FFFFFF",ink:"#1E2130",muted:"#666B7E",accent:"#4A5FC1",accentInk:"#EEF1FD",border:"#E4E5EC",radius:12,dark:false}),
+G("G51","Pine Board","dark cabin green + mint",["tool","app","docs"],
+ {bg:solid("#14201C"),bgHex:"#14201C",surface:"#1C2A25",ink:"#E6EFEA",muted:"#8AA398",accent:"#58C4A3",accentInk:"#062A20",border:"#2A3B34",radius:10,dark:true}),
+G("G52","Honey Jar","dark amber sweetness",["web","edit","app"],
+ {bg:solid("#1C160D"),bgHex:"#1C160D",surface:"#262015",ink:"#F1E9DC",muted:"#A2967F",accent:"#F2B33D",accentInk:"#2E2103",border:"#3A3222",radius:12,dark:true}),
+G("G53","Iris","cool periwinkle light",["app","web","docs"],
+ {bg:solid("#EEF0FF"),bgHex:"#EEF0FF",surface:"#FAFBFF",ink:"#1E2242",muted:"#666C93",accent:"#3D4EDB",accentInk:"#EDEFFE",border:"#DCDFF3",radius:14,dark:false}),
+G("G54","Salt Flat","bright neutral + brick",["edit","web","docs"],
+ {bg:solid("#FAFAF5"),bgHex:"#FAFAF5",surface:"#FFFFFC",ink:"#232320",muted:"#6E6E66",accent:"#A64B3E",accentInk:"#FBEFEC",border:"#E7E7DD",radius:6,dark:false}),
+G("G55","Deep Lagoon","tropical dark teal",["web","app","tool"],
+ {bg:`radial-gradient(700px 460px at 20% 100%, rgba(77,214,193,.09), transparent 58%), ${solid("#0A2530")}`,bgHex:"#0A2530",surface:"#123240",ink:"#E3F0F2",muted:"#7FA0A8",accent:"#4DD6C1",accentInk:"#042A24",border:"#1F4250",radius:12,dark:true}),
+G("G56","Merlot","dark wine + rose glass",["web","edit"],
+ {bg:solid("#241019"),bgHex:"#241019",surface:"#2F1822",ink:"#F4E8ED",muted:"#A98D98",accent:"#D96C8F",accentInk:"#37091B",border:"#41222E",radius:12,dark:true}),
+G("G57","Concrete","raw gray + safety orange",["web","tool"],
+ {bg:solid("#EDEDEA"),bgHex:"#EDEDEA",surface:"#F8F8F6",ink:"#1D1D1B",muted:"#666663",accent:"#E05206",accentInk:"#FFF1E8",border:"#D3D3CE",radius:2,dark:false}),
+G("G58","Sky Paper","open blue-sky light",["app","docs","web","tool"],
+ {bg:`linear-gradient(180deg,#F3F9FF 0%,#EAF3FE 100%)`,bgHex:"#F0F7FF",surface:"#FFFFFF",ink:"#132540",muted:"#5A7191",accent:"#1273EA",accentInk:"#EBF3FE",border:"#D8E5F4",radius:12,dark:false}),
+G("G59","Matcha","whisked green softness",["app","web","edit"],
+ {bg:solid("#E9F1E2"),bgHex:"#E9F1E2",surface:"#F7FBF3",ink:"#25301E",muted:"#6B7A61",accent:"#4F7942",accentInk:"#EFF8EA",border:"#D7E3CC",radius:16,dark:false}),
+G("G60","Onyx Gold","pure black + gold leaf",["web","edit"],
+ {bg:solid("#111111"),bgHex:"#111111",surface:"#1B1B1B",ink:"#F0EDE6",muted:"#979288",accent:"#D4AF37",accentInk:"#2A2103",border:"#2E2E2E",radius:6,dark:true}),
+G("G61","Newsprint","cheap paper, red masthead",["edit","web"],
+ {bg:solid("#F5F4EF"),bgHex:"#F5F4EF",surface:"#FCFBF7",ink:"#191919",muted:"#63625E",accent:"#C31E1E",accentInk:"#FCEEEE",border:"#191919",radius:0,dark:false}),
+G("G62","Bubblegum","candy pink lightness",["app","web"],
+ {bg:solid("#FDEFF6"),bgHex:"#FDEFF6",surface:"#FFFAFC",ink:"#301B27",muted:"#8A6A7B",accent:"#E0479E",accentInk:"#FDEFF8",border:"#F3DBE8",radius:20,dark:false}),
+G("G63","Retrowave","deep indigo + sunset pink",["web","app"],
+ {bg:`radial-gradient(780px 460px at 50% 110%, rgba(255,122,198,.13), transparent 58%), ${solid("#0B0F33")}`,bgHex:"#0B0F33",surface:"#141A45",ink:"#EAECFA",muted:"#8C93BE",accent:"#FF7AC6",accentInk:"#38082A",border:"#242C5E",radius:14,dark:true}),
+G("G64","Boardroom","slate paper, executive navy",["tool","docs"],
+ {bg:solid("#F0F2F5"),bgHex:"#F0F2F5",surface:"#FFFFFF",ink:"#1E2833",muted:"#5F6C79",accent:"#2F3E4E",accentInk:"#EDF2F7",border:"#DBE0E6",radius:6,dark:false}),
+G("G65","Cobalt Paper","white page, cobalt ink",["web","tool","docs","edit"],
+ {bg:solid("#FFFFFF"),bgHex:"#FFFFFF",surface:"#F4F7FE",ink:"#0B1B3F",muted:"#5B688F",accent:"#0B45D0",accentInk:"#FFFFFF",border:"#0B1B3F",radius:2,dark:false}),
+G("G66","Velvet","plush dark + dusty rose",["app","web"],
+ {bg:solid("#1B1D22"),bgHex:"#1B1D22",surface:"#25272E",ink:"#F0EEF1",muted:"#9B98A2",accent:"#E39AA7",accentInk:"#331018",border:"#34363F",radius:14,dark:true}),
+G("G67","Tangerine Cream","warm cream + tangerine",["web","app"],
+ {bg:solid("#FFF6EC"),bgHex:"#FFF6EC",surface:"#FFFBF5",ink:"#2C2013",muted:"#82705C",accent:"#E8590C",accentInk:"#FFF0E5",border:"#F2E3D0",radius:14,dark:false}),
+G("G68","Blackboard","chalk on slate green",["edit","docs","tool"],
+ {bg:solid("#1E2422"),bgHex:"#1E2422",surface:"#28302D",ink:"#EDEFEA",muted:"#98A29C",accent:"#9BD1B6",accentInk:"#12271C",border:"#38423E",radius:8,dark:true}),
+];
+
+/* ═══════════════ CSS export ═══════════════ */
+function gfImport(ty){
+  const fams=[...new Set([ty.d,ty.b,ty.u])].map(k=>"family="+FONTS[k].gf).join("&");
+  return `https://fonts.googleapis.com/css2?${fams}&display=swap`;
+}
+function comboCSS(ty,gr,catId){
+  const t=gr.t, cat=CATS.find(c=>c.id===catId).label.toLowerCase();
+  return `/* ${ty.id} × ${gr.id} · "${ty.name} on ${gr.name}" — ${cat} (FontHabibi) */
+@import url('${gfImport(ty)}');
+
+:root{
+  /* type — ${ty.name}: ${FONTS[ty.d].name} / ${FONTS[ty.b].name} / ${FONTS[ty.u].name} */
+  --font-display: ${FONTS[ty.d].css};
+  --font-display-weight: ${DW(ty.d)};
+  --font-body:    ${FONTS[ty.b].css};
+  --font-ui:      ${FONTS[ty.u].css};
+
+  /* ground — ${gr.name}: ${gr.vibe} */
+  --bg: ${t.bg};
+  --bg-solid: ${t.bgHex};
+  --surface: ${t.surface};
+  --ink: ${t.ink};
+  --ink-muted: ${t.muted};
+  --accent: ${t.accent};
+  --accent-ink: ${t.accentInk};
+  --border: ${t.border};
+  --radius: ${t.radius}px;
+}
+
+body{
+  background: var(--bg);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+h1,h2,h3{ font-family: var(--font-display); font-weight: var(--font-display-weight); }
+code, kbd, .numeric{ font-family: var(--font-ui); }
+.card{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); }
+.btn{ background: var(--accent); color: var(--accent-ink); border-radius: var(--radius); font-family: var(--font-ui); font-weight:700; }
+a{ color: var(--accent); }
+`;
+}
+function starterHTML(ty,gr,catId){
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${ty.name} on ${gr.name}</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+${comboCSS(ty,gr,catId)}
+main{min-height:100vh;padding:8vh clamp(20px,6vw,80px);display:flex;flex-direction:column;gap:22px;max-width:900px}
+.eyebrow{font-family:var(--font-ui);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.06}
+p{font-size:16.5px;line-height:1.7;color:var(--ink-muted);max-width:56ch}
+.btn{display:inline-block;padding:12px 22px;font-size:13.5px;text-decoration:none}
+.card{padding:20px 22px;max-width:420px}
+.card code{font-size:13px}
+</style></head><body><main>
+<span class="eyebrow">${ty.id} × ${gr.id} · starter</span>
+<h1>Every project starts with a voice and a ground.</h1>
+<p>This page is running your combo: ${FONTS[ty.d].name} display, ${FONTS[ty.b].name} body, ${FONTS[ty.u].name} for UI and data, on the "${gr.name}" ground. Replace this copy and keep the tokens.</p>
+<a class="btn" href="#">Primary action</a>
+<div class="card"><strong>Token check</strong><br><code>--accent: ${gr.t.accent}</code> · <code>--radius: ${gr.t.radius}px</code></div>
+</main></body></html>`;
+}
+
+/* ═══════════════ Preview builders ═══════════════ */
+const px=n=>n+"px";
+function ctx(ty,gr){
+  const t=gr.t;
+  return {t, D:FONTS[ty.d].css, B:FONTS[ty.b].css, U:FONTS[ty.u].css, DWt:DW(ty.d),
+          r:t.radius, dim:t.dark?"rgba(255,255,255,.06)":"rgba(0,0,0,.045)"};
+}
+function btn(c,label,ghost){
+  const s=ghost?`background:transparent;color:${c.t.ink};border:1px solid ${c.t.border};`
+              :`background:${c.t.accent};color:${c.t.accentInk};border:1px solid transparent;`;
+  return `<span style="display:inline-block;${s}font-family:${c.U};font-size:12.5px;font-weight:700;letter-spacing:.03em;padding:10px 18px;border-radius:${px(c.r)};">${label}</span>`;
+}
+
+function pWeb(ty,gr){ const c=ctx(ty,gr),{t,D,B,U,r,DWt}=c; return `
+<div style="background:${t.bg};color:${t.ink};font-family:${B};min-height:520px;padding:26px clamp(20px,4vw,54px) 40px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;">
+    <span style="font-family:${U};font-weight:700;font-size:13.5px;letter-spacing:.10em;text-transform:uppercase;">Northbeam</span>
+    <div style="display:flex;gap:20px;align-items:center;font-size:13.5px;color:${t.muted};"><span>Work</span><span>About</span><span>Journal</span>${btn(c,"Start a project")}</div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:52px 0 40px;max-width:780px;">
+    <span style="font-family:${U};font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:${t.accent};">Design &amp; build studio</span>
+    <h2 style="font-family:${D};font-weight:${DWt};font-size:clamp(34px,4.6vw,58px);line-height:1.06;letter-spacing:-0.01em;">We make small products feel inevitable.</h2>
+    <p style="font-size:16px;line-height:1.65;color:${t.muted};max-width:52ch;">Strategy, identity and front-end for teams shipping their first real thing. Four projects a year, done properly.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">${btn(c,"See the work")}${btn(c,"How we price",true)}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    ${["Identity","Product sites","Front-end"].map((s,i)=>`
+    <div style="background:${t.surface};border:1px solid ${t.border};border-radius:${px(r)};padding:16px 18px;">
+      <div style="font-family:${U};font-size:11px;color:${t.muted};letter-spacing:.08em;">0${i+1}</div>
+      <div style="font-weight:600;font-size:14.5px;margin-top:6px;">${s}</div>
+    </div>`).join("")}
+  </div>
+</div>`; }
+
+function pApp(ty,gr){ const c=ctx(ty,gr),{t,D,B,U,r,dim,DWt}=c;
+  const card=(k,v,s)=>`<div style="background:${t.surface};border:1px solid ${t.border};border-radius:${px(Math.max(r,10))};padding:14px 16px;">
+    <div style="font-size:12px;color:${t.muted};">${k}</div>
+    <div style="font-family:${D};font-weight:${DWt};font-size:26px;line-height:1.1;margin-top:4px;">${v}</div>
+    <div style="font-family:${U};font-size:11px;color:${t.accent};margin-top:4px;">${s}</div></div>`;
+  return `
+<div style="min-height:520px;display:flex;align-items:center;justify-content:center;padding:30px;background:${t.dark?"#0A0A0C":"#E4E4E7"};">
+  <div style="width:320px;background:${t.bg};color:${t.ink};font-family:${B};border-radius:38px;border:1px solid ${t.border};box-shadow:0 24px 60px rgba(0,0,0,.28);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;padding:12px 22px 0;font-family:${U};font-size:11px;color:${t.muted};"><span>9:41</span><span>●●●</span></div>
+    <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;">
+        <h2 style="font-family:${D};font-weight:${DWt};font-size:24px;">Today</h2>
+        <span style="font-family:${U};font-size:11px;color:${t.muted};">Tue 14</span>
+      </div>
+      ${card("Morning session","24 min","+6 vs last week")}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">${card("Streak","12","days")}${card("Focus","86%","on plan")}</div>
+      <div style="background:${dim};border-radius:${px(Math.max(r,10))};padding:13px 16px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;color:${t.muted};">Evening wind-down</span>
+        <span style="font-family:${U};font-size:11px;font-weight:700;color:${t.accent};">SET UP →</span>
+      </div>
+      <div style="text-align:center;padding-top:2px;">${btn(c,"Start next session")}</div>
+    </div>
+    <div style="display:flex;justify-content:space-around;padding:12px 8px 16px;border-top:1px solid ${t.border};font-family:${U};font-size:10.5px;color:${t.muted};">
+      <span style="color:${t.accent};font-weight:700;">Home</span><span>Plan</span><span>Stats</span><span>You</span>
+    </div>
+  </div>
+</div>`; }
+
+function pTool(ty,gr){ const c=ctx(ty,gr),{t,D,B,U,r,dim,DWt}=c;
+  const rows=[["deploy-web-7f2","Running","2m 14s","us-east"],["batch-export","Queued","—","eu-west"],["nightly-sync","Done","41s","us-east"],["index-rebuild","Failed","1m 03s","ap-south"]];
+  const stC=s=>s==="Running"?t.accent:s==="Failed"?"#D9534F":s==="Done"?(t.dark?"#6FCF97":"#2E7D4F"):t.muted;
+  return `
+<div style="background:${t.bg};color:${t.ink};font-family:${B};min-height:520px;display:grid;grid-template-columns:190px 1fr;">
+  <div style="border-right:1px solid ${t.border};padding:16px 14px;display:flex;flex-direction:column;gap:4px;">
+    <div style="font-family:${D};font-weight:${DWt};font-size:15px;padding:4px 8px 14px;">Relay<span style="color:${t.accent};">.</span></div>
+    ${["Overview","Jobs","Pipelines","Logs","Settings"].map((s,i)=>`
+      <div style="padding:8px 10px;border-radius:${px(Math.max(r-2,4))};font-size:13px;${i===1?`background:${dim};font-weight:600;color:${t.ink};`:`color:${t.muted};`}">${s}</div>`).join("")}
+    <div style="margin-top:auto;font-family:${U};font-size:10.5px;color:${t.muted};padding:8px 10px;">v2.8.1 · connected</div>
+  </div>
+  <div style="padding:18px 22px;display:flex;flex-direction:column;gap:14px;min-width:0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <h2 style="font-family:${D};font-weight:${DWt};font-size:19px;">Jobs</h2>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span style="font-family:${U};font-size:11px;color:${t.muted};border:1px solid ${t.border};border-radius:${px(Math.max(r-2,4))};padding:7px 12px;">Last 24h ▾</span>${btn(c,"New job")}
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      ${[["Active","7"],["Queued","12"],["Failed · 24h","1"]].map(([k,v])=>`
+      <div style="background:${t.surface};border:1px solid ${t.border};border-radius:${px(r)};padding:12px 14px;">
+        <div style="font-size:11.5px;color:${t.muted};">${k}</div>
+        <div style="font-family:${U};font-weight:700;font-size:22px;margin-top:3px;">${v}</div>
+      </div>`).join("")}
+    </div>
+    <div style="background:${t.surface};border:1px solid ${t.border};border-radius:${px(r)};overflow:hidden;">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr .8fr .8fr;padding:9px 14px;font-family:${U};font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:${t.muted};border-bottom:1px solid ${t.border};">
+        <span>Job</span><span>Status</span><span>Duration</span><span>Region</span>
+      </div>
+      ${rows.map(rw=>`
+      <div style="display:grid;grid-template-columns:1.6fr 1fr .8fr .8fr;padding:11px 14px;font-size:13px;border-bottom:1px solid ${t.border};align-items:center;">
+        <span style="font-family:${U};font-size:12.5px;">${rw[0]}</span>
+        <span style="color:${stC(rw[1])};font-weight:600;">${rw[1]}</span>
+        <span style="font-family:${U};font-size:12px;color:${t.muted};">${rw[2]}</span>
+        <span style="color:${t.muted};">${rw[3]}</span>
+      </div>`).join("")}
+    </div>
+  </div>
+</div>`; }
+
+function pEdit(ty,gr){ const c=ctx(ty,gr),{t,D,B,U,r,DWt}=c; return `
+<div style="background:${t.bg};color:${t.ink};font-family:${B};min-height:520px;padding:40px clamp(20px,6vw,80px) 48px;">
+  <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
+    <span style="font-family:${U};font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:${t.accent};">Field Notes · No. 14</span>
+    <h2 style="font-family:${D};font-weight:${DWt};font-size:clamp(30px,4vw,44px);line-height:1.14;">The slow craft of naming things well</h2>
+    <div style="display:flex;gap:14px;align-items:baseline;font-size:13px;color:${t.muted};">
+      <span style="font-weight:600;color:${t.ink};">Mara Ellison</span><span>·</span><span>11 min read</span><span>·</span><span>June 14</span>
+    </div>
+    <p style="font-size:17px;line-height:1.75;">A good name is the smallest possible design. It carries the whole idea in a breath, and when it lands, everything downstream — the interface, the docs, the way people talk about the work — gets easier to build.</p>
+    <blockquote style="border-left:3px solid ${t.accent};padding:6px 0 6px 20px;font-family:${D};font-style:italic;font-size:20px;line-height:1.5;">“Naming is the first interface. Everything else is commentary.”</blockquote>
+    <p style="font-size:17px;line-height:1.75;color:${t.muted};">The teams that struggle are rarely short on cleverness. They are short on patience — the willingness to sit with a bad name long enough to hear what the thing is actually <a style="color:${t.accent};text-decoration:underline;text-underline-offset:3px;">asking to be called</a>.</p>
+    <div style="display:flex;gap:8px;padding-top:6px;">
+      ${["Craft","Language","Process"].map(s=>`<span style="font-family:${U};font-size:11px;color:${t.muted};border:1px solid ${t.border};border-radius:${px(Math.max(r,4))};padding:6px 12px;">${s}</span>`).join("")}
+    </div>
+  </div>
+</div>`; }
+
+function pDocs(ty,gr){ const c=ctx(ty,gr),{t,D,B,U,r,dim,DWt}=c; return `
+<div style="background:${t.bg};color:${t.ink};font-family:${B};min-height:520px;display:grid;grid-template-columns:200px 1fr;">
+  <div style="border-right:1px solid ${t.border};padding:18px 16px;font-size:13px;">
+    <div style="font-family:${U};font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:${t.muted};margin-bottom:10px;">Getting started</div>
+    ${["Installation","Authentication","Your first request","Rate limits"].map((s,i)=>`
+    <div style="padding:7px 10px;border-radius:${px(Math.max(r-2,4))};${i===2?`background:${dim};color:${t.accent};font-weight:600;`:`color:${t.muted};`}">${s}</div>`).join("")}
+    <div style="font-family:${U};font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:${t.muted};margin:16px 0 10px;">Reference</div>
+    ${["Projects","Events","Webhooks"].map(s=>`<div style="padding:7px 10px;color:${t.muted};">${s}</div>`).join("")}
+  </div>
+  <div style="padding:26px 32px;max-width:640px;display:flex;flex-direction:column;gap:16px;">
+    <span style="font-family:${U};font-size:11px;color:${t.muted};">Docs / Getting started</span>
+    <h2 style="font-family:${D};font-weight:${DWt};font-size:27px;">Your first request</h2>
+    <p style="font-size:15px;line-height:1.7;color:${t.muted};">Every request is authenticated with your project key. Create one from the dashboard, then send your first event:</p>
+    <div style="background:${t.surface};border:1px solid ${t.border};border-radius:${px(r)};padding:14px 16px;font-family:${U};font-size:12.5px;line-height:1.7;overflow:auto;">
+<span style="color:${t.muted};"># send one event</span><br>
+curl -X POST api.relay.dev/v1/events \\<br>
+&nbsp;&nbsp;-H <span style="color:${t.accent};">"Authorization: Bearer $KEY"</span> \\<br>
+&nbsp;&nbsp;-d <span style="color:${t.accent};">'{"type":"signup","user":"u_812"}'</span>
+    </div>
+    <div style="border:1px solid ${t.border};border-left:3px solid ${t.accent};border-radius:${px(Math.max(r-2,4))};background:${t.surface};padding:12px 16px;font-size:13.5px;line-height:1.6;">
+      <b style="font-family:${U};font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:${t.accent};">Note</b><br>
+      Keys are scoped per environment. A test key never writes to production data.
+    </div>
+    <p style="font-size:15px;line-height:1.7;color:${t.muted};">A <code style="font-family:${U};font-size:13px;background:${t.surface};border:1px solid ${t.border};border-radius:5px;padding:2px 6px;">201</code> response confirms the event was stored. Next: <a style="color:${t.accent};text-decoration:underline;text-underline-offset:3px;">rate limits</a>.</p>
+  </div>
+</div>`; }
+
+const BUILDERS={web:pWeb,app:pApp,tool:pTool,edit:pEdit,docs:pDocs};
+
+/* ═══════════════ State ═══════════════ */
+const $=id=>document.getElementById(id);
+const typesFor=c=>TYPES.filter(t=>t.cats.includes(c));
+const groundsFor=c=>GROUNDS.filter(g=>g.cats.includes(c));
+
+let curCat="web";
+const SEL={};            // per-category {f,g}
+CATS.forEach(c=>SEL[c.id]={f:typesFor(c.id)[0].id, g:groundsFor(c.id)[0].id});
+let gFilter="all";       // all | light | dark
+const SAVED=[];          // {cat,f,g}
+
+const curType=()=>TYPES.find(t=>t.id===SEL[curCat].f);
+const curGround=()=>GROUNDS.find(g=>g.id===SEL[curCat].g);
+
+/* ═══════════════ Render ═══════════════ */
+function renderTabs(){
+  $("tabs").innerHTML=CATS.map(c=>{
+    return `<button class="tab ${c.id===curCat?"on":""}" data-cat="${c.id}">${c.label} <span class="n">${typesFor(c.id).length}×${groundsFor(c.id).length}</span></button>`;
+  }).join("");
+  $("cat-note").textContent=CATS.find(c=>c.id===curCat).note;
+  $("tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{curCat=b.dataset.cat;renderAll();});
+}
+
+function renderTypes(){
+  const list=typesFor(curCat), sel=SEL[curCat].f;
+  const keep=$("t-grid").scrollTop;
+  $("t-count").textContent=list.length+" sets";
+  $("t-grid").innerHTML=list.map(ty=>`
+  <button class="card ${ty.id===sel?"on":""}" data-t="${ty.id}" title="${ty.vibe}">
+    <span class="t-ag" style="font-family:${FONTS[ty.d].css};font-weight:${DW(ty.d)};">Ag</span>
+    <span class="body">
+      <span class="nm">${ty.name}</span>
+      <span class="sub">${FONTS[ty.d].name} · ${FONTS[ty.b].name} · ${FONTS[ty.u].name}</span>
+    </span>
+    <span class="id">${ty.id}</span>
+  </button>`).join("");
+  $("t-grid").scrollTop=keep;
+  $("t-grid").querySelectorAll(".card").forEach(b=>b.onclick=()=>{SEL[curCat].f=b.dataset.t;renderTypes();renderStage();});
+}
+
+function renderGrounds(){
+  let list=groundsFor(curCat);
+  if(gFilter!=="all") list=list.filter(g=>gFilter==="dark"?g.t.dark:!g.t.dark);
+  const sel=SEL[curCat].g, all=groundsFor(curCat);
+  const keep=$("g-grid").scrollTop;
+  $("g-count").textContent=all.length+" grounds";
+  $("g-chips").innerHTML=["all","light","dark"].map(f=>`<button class="chip ${gFilter===f?"on":""}" data-f="${f}">${f}</button>`).join("");
+  $("g-chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{gFilter=b.dataset.f;renderGrounds();});
+  $("g-grid").innerHTML=list.map(g=>{const t=g.t;return `
+  <button class="card ${g.id===sel?"on":""}" data-g="${g.id}" title="${g.vibe}">
+    <span class="g-sw" style="background:${t.bg};">
+      <span class="aa" style="color:${t.ink};">Aa</span>
+      <span class="dot" style="background:${t.accent};"></span>
+    </span>
+    <span class="body">
+      <span class="nm">${g.name} <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--shell-faint);">· ${t.dark?"dark":"light"}</span></span>
+      <span class="sub">${g.vibe}</span>
+    </span>
+    <span class="id">${g.id}</span>
+  </button>`;}).join("");
+  $("g-grid").scrollTop=keep;
+  $("g-grid").querySelectorAll(".card").forEach(b=>b.onclick=()=>{SEL[curCat].g=b.dataset.g;renderGrounds();renderStage();});
+}
+
+function renderStage(){
+  const ty=curType(), gr=curGround(), t=gr.t;
+  $("c-id").textContent=ty.id+" × "+gr.id;
+  $("c-name").textContent=ty.name+" on "+gr.name;
+  const pv=$("preview");
+  const paint=()=>{pv.innerHTML=BUILDERS[curCat](ty,gr);pv.classList.remove("fade");};
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){paint();}
+  else{pv.classList.add("fade");setTimeout(paint,80);}
+  const chips=[["bg",t.bgHex],["surface",t.surface],["ink",t.ink],["muted",t.muted],["accent",t.accent],["border",t.border]];
+  $("token-row").innerHTML=chips.map(([k,v])=>`<span class="tk"><i style="background:${v}"></i>${k} <b>${v}</b></span>`).join("")+`<span class="tk">radius <b>${t.radius}px</b></span>`;
+  $("fonts-line").innerHTML=`<b>Display</b> ${FONTS[ty.d].name} &nbsp;·&nbsp; <b>Body</b> ${FONTS[ty.b].name} &nbsp;·&nbsp; <b>UI / data</b> ${FONTS[ty.u].name} &nbsp;—&nbsp; ${ty.vibe} · ${gr.vibe}`;
+  const bc=$("btn-copy"); bc.textContent="Copy CSS"; bc.classList.remove("ok");
+}
+
+function renderSaved(){
+  $("tray").classList.toggle("show",SAVED.length>0);
+  $("tray-count").textContent="· "+SAVED.length;
+  $("saved").innerHTML=SAVED.map((s,i)=>{
+    const ty=TYPES.find(t=>t.id===s.f), gr=GROUNDS.find(g=>g.id===s.g);
+    return `<span class="saved-chip">
+      <span class="sw" style="background:${gr.t.bg};color:${gr.t.ink};font-family:${FONTS[ty.d].css};font-weight:${DW(ty.d)};">Ag</span>
+      <span><span class="cid">${s.cat.toUpperCase()} · ${ty.id}×${gr.id}</span><br>${ty.name} on ${gr.name}</span>
+      <button class="load" data-i="${i}" title="Load this combo">↩</button>
+      <button class="x" data-i="${i}" title="Remove">✕</button>
+    </span>`;
+  }).join("");
+  $("saved").querySelectorAll(".x").forEach(b=>b.onclick=()=>{SAVED.splice(+b.dataset.i,1);renderSaved();});
+  $("saved").querySelectorAll(".load").forEach(b=>b.onclick=()=>{
+    const s=SAVED[+b.dataset.i]; curCat=s.cat; SEL[curCat]={f:s.f,g:s.g}; renderAll();
+  });
+}
+
+function renderAll(){renderTabs();renderTypes();renderGrounds();renderStage();}
+
+/* ═══════════════ Actions ═══════════════ */
+function flash(btnEl,label){
+  const old=btnEl.textContent; btnEl.textContent=label; btnEl.classList.add("ok");
+  setTimeout(()=>{btnEl.textContent=old;btnEl.classList.remove("ok");},1500);
+}
+function copyText(text,btnEl,ok){
+  const done=()=>btnEl&&flash(btnEl,ok);
+  const fb=()=>{const ta=document.createElement("textarea");ta.value=text;ta.style.cssText="position:fixed;opacity:0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(ta);done();};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fb);}else fb();
+}
+function download(name,text,mime){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([text],{type:mime||"text/plain"}));
+  a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},400);
+}
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+
+$("btn-shuffle").onclick=()=>{
+  const ts=typesFor(curCat), gs=groundsFor(curCat);
+  SEL[curCat]={f:ts[Math.floor(Math.random()*ts.length)].id, g:gs[Math.floor(Math.random()*gs.length)].id};
+  renderTypes();renderGrounds();renderStage();
+};
+$("btn-save").onclick=()=>{
+  const s={cat:curCat,f:SEL[curCat].f,g:SEL[curCat].g};
+  if(!SAVED.some(x=>x.cat===s.cat&&x.f===s.f&&x.g===s.g)){SAVED.push(s);renderSaved();flash($("btn-save"),"Saved ✓");}
+  else flash($("btn-save"),"Already saved");
+};
+$("btn-copy").onclick=()=>copyText(comboCSS(curType(),curGround(),curCat),$("btn-copy"),"Copied ✓");
+$("btn-dl").onclick=()=>{
+  const ty=curType(),gr=curGround();
+  download(`${slug(ty.name)}-on-${slug(gr.name)}.css`,comboCSS(ty,gr,curCat),"text/css");
+};
+$("btn-starter").onclick=()=>{
+  const ty=curType(),gr=curGround();
+  download(`starter-${slug(ty.name)}-${slug(gr.name)}.html`,starterHTML(ty,gr,curCat),"text/html");
+};
+function allSavedCSS(){
+  return SAVED.map(s=>{
+    const ty=TYPES.find(t=>t.id===s.f), gr=GROUNDS.find(g=>g.id===s.g);
+    return comboCSS(ty,gr,s.cat).replace(/:root\{/,`.theme-${slug(ty.name)}-${slug(gr.name)}{`)
+      .replace(/\nbody\{[\s\S]*$/,"")  /* strip body rules; scoped class blocks only */
+      + `/* apply with: <body class="theme-${slug(ty.name)}-${slug(gr.name)}"> then use the variables */\n`;
+  }).join("\n\n");
+}
+$("btn-copy-all").onclick=()=>copyText(allSavedCSS(),$("btn-copy-all"),"Copied ✓");
+$("btn-dl-all").onclick=()=>{download("type-ground-saved-combos.css",allSavedCSS(),"text/css");flash($("btn-dl-all"),"Downloaded ✓");};
+
+$("btn-json").onclick=()=>{
+  const lib={
+    types:TYPES.map(t=>({id:t.id,name:t.name,vibe:t.vibe,categories:t.cats,
+      fonts:{display:FONTS[t.d].name,body:FONTS[t.b].name,ui:FONTS[t.u].name},fontImport:gfImport(t)})),
+    grounds:GROUNDS.map(g=>({id:g.id,name:g.name,vibe:g.vibe,categories:g.cats,tokens:g.t})),
+  };
+  copyText(JSON.stringify(lib,null,2),$("btn-json"),"Copied ✓");
+};
+
+$("foot-counts").textContent=`${TYPES.length} type sets × ${GROUNDS.length} grounds — ${TYPES.length*GROUNDS.length}+ possible combinations, 20+ of each per medium`;
+renderAll();renderSaved();
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blush">
+<!-- ============================================================
+     UNDERTONE · Landing page
+     This file is also your textbook. Every section has comments
+     explaining WHAT it does and WHY, so read as you edit.
+
+     Structure of any web page:
+       <head>  = invisible setup (title, fonts, styles)
+       <body>  = everything visible
+     ============================================================ -->
+<head>
+<meta charset="utf-8">
+<!-- viewport tag = makes the page scale properly on phones -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FontHabibi: pick a voice, pick a ground</title>
+<meta name="description" content="Stop shipping default-looking AI builds. Give Claude, Cursor, or v0 a complete design system in one paste: fonts, colors, and tokens for websites, apps, tools, articles, and docs.">
+
+<!-- Google Fonts: we only load the families used by the 6 demo themes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&family=Anton&family=Cormorant+Garamond:wght@400;600&family=Karla:wght@400;500;600;700&family=Unbounded:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. THEMES (the signature trick)
+   CSS "custom properties" (the --something values) are variables.
+   The whole page is styled ONLY through these variables, so
+   swapping the data-theme attribute on <html> re-skins everything.
+   Each block below is one real FontHabibi kit.
+   ============================================================ */
+:root, [data-theme="blush"]{            /* F01 × G01 · Poster Serif on Studio Blush */
+  --font-display:'Fraunces', Georgia, serif;  --dw:700;
+  --font-body:'Outfit', system-ui, sans-serif;
+  --font-ui:'Space Mono', monospace;
+  --bg:radial-gradient(1100px 520px at 82% -10%, rgba(122,46,109,.10), transparent 60%), linear-gradient(0deg,#F7F4EE,#F7F4EE);
+  --surface:#FFFFFF; --ink:#221C24; --muted:#6E6572;
+  --accent:#7A2E6D; --accent-ink:#FFF6FC; --border:#E4DDE0; --radius:14px;
+}
+[data-theme="night"]{                   /* F02 × G02 · Swiss Modern on Night Launch */
+  --font-display:'Space Grotesk', sans-serif; --dw:700;
+  --font-body:'Inter', sans-serif; --font-ui:'JetBrains Mono', monospace;
+  --bg:radial-gradient(900px 480px at 50% -12%, rgba(124,147,255,.22), transparent 62%), linear-gradient(0deg,#0B1020,#0B1020);
+  --surface:#131A30; --ink:#EAEDF8; --muted:#8B93B4;
+  --accent:#7C93FF; --accent-ink:#0A0F22; --border:#232C4A; --radius:12px;
+}
+[data-theme="grid"]{                    /* F05 × G05 · Block Party on Hard Grid */
+  --font-display:'Archivo', sans-serif; --dw:900;
+  --font-body:'Archivo', sans-serif; --font-ui:'Space Mono', monospace;
+  --bg:linear-gradient(#00000010 1px, transparent 1px) 0 0/100% 96px, linear-gradient(90deg,#00000010 1px, transparent 1px) 0 0/96px 100%, linear-gradient(0deg,#F2F2F0,#F2F2F0);
+  --surface:#FFFFFF; --ink:#0E0E0E; --muted:#5C5C5C;
+  --accent:#0026FF; --accent-ink:#FFFFFF; --border:#0E0E0E; --radius:0px;
+}
+[data-theme="volt"]{                    /* F08 × G08 · Athletic on Volt Black */
+  --font-display:'Anton', sans-serif; --dw:400;
+  --font-body:'Inter', sans-serif; --font-ui:'JetBrains Mono', monospace;
+  --bg:radial-gradient(560px 380px at 50% -8%, rgba(51,224,200,.10), transparent 60%), linear-gradient(0deg,#0E0F12,#0E0F12);
+  --surface:#17191E; --ink:#F0F2F4; --muted:#8B929C;
+  --accent:#33E0C8; --accent-ink:#04241F; --border:#262A32; --radius:16px;
+}
+[data-theme="maison"]{                  /* F04 × G04 · Maison on Ivory Gold */
+  --font-display:'Cormorant Garamond', serif; --dw:600;
+  --font-body:'Karla', sans-serif; --font-ui:'Space Mono', monospace;
+  --bg:linear-gradient(180deg,#FBF8F1 0%,#F3ECDD 100%);
+  --surface:#FFFDF8; --ink:#201A12; --muted:#7A7060;
+  --accent:#7A2E2E; --accent-ink:#FBF2EE; --border:#E6DCC8; --radius:4px;
+}
+[data-theme="zine"]{                    /* F17 × G18 · Loud Zine on Zine Heat */
+  --font-display:'Unbounded', sans-serif; --dw:800;
+  --font-body:'Space Grotesk', sans-serif; --font-ui:'Space Mono', monospace;
+  --bg:radial-gradient(520px 340px at 96% 4%, rgba(255,61,46,.13), transparent 55%), linear-gradient(0deg,#FFF3E4,#FFF3E4);
+  --surface:#FFFBF4; --ink:#1D130C; --muted:#7C6A5B;
+  --accent:#FF3D2E; --accent-ink:#FFF4F2; --border:#F0DCC4; --radius:2px;
+}
+
+/* ============================================================
+   2. RESET + BASE
+   The * rule wipes browser defaults so we control everything.
+   Notice: colors and fonts come ONLY from variables above.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); background-attachment:fixed;
+  color:var(--ink); font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+  transition:color .25s;               /* soft theme swap */
+}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--dw)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.mono{font-family:var(--font-ui)}
+
+/* Reusable pieces. In web dev these are called "components". */
+.btn{
+  display:inline-block;padding:13px 24px;border-radius:var(--radius);
+  background:var(--accent);color:var(--accent-ink);
+  font-family:var(--font-ui);font-weight:700;font-size:13.5px;letter-spacing:.03em;
+  transition:filter .15s, transform .15s;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--border)}
+.eyebrow{font-family:var(--font-ui);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+
+/* ============================================================
+   3. NAV
+   position:sticky keeps it visible while scrolling.
+   backdrop-filter blurs whatever scrolls behind it.
+   ============================================================ */
+nav{
+  position:sticky;top:0;z-index:50;
+  border-bottom:1px solid var(--border);
+  background:color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter:blur(10px);
+}
+.nav-in{display:flex;justify-content:space-between;align-items:center;height:62px;gap:16px}
+.logo{font-family:'Habibi', var(--font-display);font-weight:700;font-size:20px}
+.logo i{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+@media(max-width:700px){.nav-links a.hide-sm{display:none}}
+
+/* ============================================================
+   4. HERO
+   min-height:calc(100vh - 62px) makes it fill the first screen.
+   clamp(min, preferred, max) = fluid font sizes that scale
+   with the window. This one line replaces media queries.
+   ============================================================ */
+.hero{min-height:calc(96vh - 62px);display:flex;flex-direction:column;justify-content:center;gap:22px;padding:70px 0 60px}
+.hero h1{font-size:clamp(40px,6.4vw,78px);line-height:1.03;letter-spacing:-0.015em;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:clamp(15.5px,1.6vw,18px);line-height:1.65;color:var(--muted);max-width:54ch}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;padding-top:6px}
+.hero-proof{font-family:var(--font-ui);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+/* The floating "wearing" chip = the signature interaction */
+.wearing{
+  position:fixed;bottom:22px;right:22px;z-index:60;
+  display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;
+  background:var(--surface);border:1px solid var(--border);border-radius:99px;
+  box-shadow:0 10px 34px rgba(0,0,0,.18);font-size:12.5px;color:var(--muted);
+}
+.wearing b{color:var(--ink);font-weight:600}
+.wearing .swap{
+  font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.04em;
+  background:var(--accent);color:var(--accent-ink);padding:8px 14px;border-radius:99px;
+}
+.wearing .swap:hover{filter:brightness(1.1)}
+
+/* ============================================================
+   5. SECTIONS (how it works, media, packs, faq)
+   display:grid = modern layout tool. repeat(3,1fr) means
+   "three equal columns". auto-fit + minmax makes it responsive.
+   ============================================================ */
+section{padding:76px 0}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:620px}
+.sec-head h2{font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.sec-head p{color:var(--muted);line-height:1.65;font-size:15.5px}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.step{padding:22px;display:flex;flex-direction:column;gap:10px}
+.step .n{font-family:var(--font-ui);font-size:11px;color:var(--accent);letter-spacing:.1em}
+.step h3{font-size:19px}
+.step p{font-size:14px;line-height:1.6;color:var(--muted)}
+
+.media-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.medium{padding:18px;display:flex;flex-direction:column;gap:6px;text-align:left;transition:transform .15s}
+.medium:hover{transform:translateY(-3px)}
+.medium .glyph{font-family:var(--font-display);font-weight:var(--dw);font-size:30px;color:var(--accent)}
+.medium b{font-size:14.5px}
+.medium span{font-size:12px;color:var(--muted)}
+
+/* Packs = the money section */
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.pack{padding:26px;display:flex;flex-direction:column;gap:14px;position:relative}
+.pack.featured{outline:2px solid var(--accent);outline-offset:-2px}
+.pack .tag{position:absolute;top:-11px;left:22px;background:var(--accent);color:var(--accent-ink);font-family:var(--font-ui);font-size:10px;letter-spacing:.08em;padding:5px 12px;border-radius:99px}
+.pack h3{font-size:21px}
+.pack .price{font-family:var(--font-display);font-weight:var(--dw);font-size:38px}
+.pack .price small{font-family:var(--font-ui);font-size:12px;color:var(--muted);font-weight:400}
+.pack ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14px;color:var(--muted)}
+.pack li::before{content:"→ ";color:var(--accent);font-family:var(--font-ui)}
+
+.faq{max-width:720px;display:flex;flex-direction:column;gap:8px}
+.faq details{padding:16px 20px}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px}
+.faq details p{padding-top:10px;font-size:14px;line-height:1.65;color:var(--muted)}
+
+footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+
+/* Accessibility: visible focus ring for keyboard users, and
+   respect users who turn off animations at the OS level. */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+
+<body>
+<!-- ══════════════ NAV ══════════════ -->
+<nav><div class="wrap nav-in">
+  <a class="logo" href="#">font<i>habibi</i></a>
+  <div class="nav-links">
+    <a class="hide-sm" href="#how">How it works</a>
+    <a class="hide-sm" href="#media">Media</a>
+    <a href="#support">Support</a>
+    <a class="btn" href="type-ground-mixer-pro.html">Open the mixer</a>
+  </div>
+</div></nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<header class="hero wrap">
+  <span class="eyebrow">A free tool for the AI-builder era</span>
+  <h1>Stop shipping <em>default-looking</em> builds.</h1>
+  <p>I kept making projects that all came out wearing the same cream page and the same serif, so I built this. FontHabibi gives your project a voice and a ground: complete font and color systems for websites, apps, tools, articles, and docs. Pick, copy, paste into your prompt. Free, no signup, forever.</p>
+  <div class="hero-ctas">
+    <a class="btn" href="type-ground-mixer-pro.html">Open the mixer</a>
+    <a class="btn ghost" href="#support">Support the project ♥</a>
+  </div>
+  <span class="hero-proof mono">74 voices · 68 grounds · 5 media · 5,000+ combos · $0</span>
+</header>
+
+<!-- The signature: this chip re-skins the entire page with real kits -->
+<div class="wearing" id="wearing">
+  <span>This page is wearing <b id="wear-name">Studio Blush</b></span>
+  <button class="swap" id="wear-btn">Try another ↻</button>
+</div>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section id="how"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">How it works</span>
+    <h2>Three clicks to a design system.</h2>
+  </div>
+  <div class="steps">
+    <div class="step card"><span class="n">01 / MEDIUM</span><h3>Pick your medium</h3><p>Website, app, software tool, editorial, or docs. Every option is previewed in the real thing: a phone frame, a dashboard, an article.</p></div>
+    <div class="step card"><span class="n">02 / VOICE × GROUND</span><h3>Mix voice and ground</h3><p>Choose a type set and a color system independently. Two thousand plus combinations, all curated to work.</p></div>
+    <div class="step card"><span class="n">03 / PASTE</span><h3>Copy and build</h3><p>Export ready CSS tokens, a starter page, or JSON you can paste straight into Claude, Cursor, or v0. Your build inherits the whole system.</p></div>
+  </div>
+</div></section>
+
+<!-- ══════════════ MEDIA ══════════════ -->
+<section id="media"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Built per medium</span>
+    <h2>A ground for every job.</h2>
+    <p>Generic pairing tools show you fonts floating in space. FontHabibi previews every combination inside the medium it will actually live in.</p>
+  </div>
+  <div class="media-strip">
+    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">Ag</span><b>Websites</b><span>Heroes that sell</span></a>
+    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">Aa</span><b>Apps</b><span>Phone-frame previews</span></a>
+    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">{ }</span><b>Tools</b><span>Dense, legible UI</span></a>
+    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">¶</span><b>Editorial</b><span>Reading comfort first</span></a>
+    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">#</span><b>Docs</b><span>Body and code together</span></a>
+  </div>
+</div></section>
+
+<!-- ══════════════ SUPPORT (free forever, tips welcome) ══════════════ -->
+<section id="support"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Support</span>
+    <h2>Free forever. Really.</h2>
+    <p>This is a personal project, not a startup. Everything works with no account and no paywall. If it saved you time and you feel like it, you can buy me a coffee, and if you want to hear when new voices and grounds drop, leave your email.</p>
+  </div>
+  <div class="packs">
+    <div class="pack card">
+      <h3>Buy me a coffee ☕</h3>
+      <p style="font-size:14px;line-height:1.65;color:var(--muted)">Totally optional, changes nothing about what you get. It just tells me this was worth building and keeps the kit drops coming.</p>
+      <!-- KO-FI: create a free page at ko-fi.com, then replace the #
+           below with your link, e.g. https://ko-fi.com/yourname -->
+      <a class="btn" href="#" id="coffee-btn">Support on Ko-fi</a>
+    </div>
+    <div class="pack card">
+      <h3>Follow the drops ✉</h3>
+      <p style="font-size:14px;line-height:1.65;color:var(--muted)">New voices and grounds land regularly. One short email when they do, nothing else, unsubscribe anytime.</p>
+      <!-- EMAIL: easiest free option is Buttondown or Formspree.
+           1) Make a free account  2) They give you a form action URL
+           3) Paste it into action="" below and this form just works. -->
+      <form action="#" method="post" style="display:flex;gap:8px;flex-wrap:wrap">
+        <input type="email" name="email" required placeholder="you@example.com"
+          style="flex:1;min-width:180px;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);color:var(--ink);font:inherit;font-size:14px">
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">FAQ</span><h2>Quick answers.</h2></div>
+  <div class="faq">
+    <details class="card"><summary>Is it really free? What's the catch?</summary><p>Really free, no catch, no account. It's a personal project I built for my own work and decided to share. The coffee button exists for people who insist; it unlocks nothing.</p></details>
+    <details class="card"><summary>How do I use a kit with Claude or Cursor?</summary><p>Copy the kit's CSS or JSON from the mixer and paste it into your prompt with: "Use these design tokens for everything you build." The AI inherits your fonts, colors, and radii instead of inventing generic ones.</p></details>
+    <details class="card"><summary>Are the fonts free to use?</summary><p>Yes. Every voice uses Google Fonts, which are free for personal and commercial projects. Each export includes the exact import line.</p></details>
+    <details class="card"><summary>Can I use kits in client or commercial work?</summary><p>Yes, unlimited projects, personal or commercial, no attribution needed. Go make things.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;width:100%">
+  <span>© 2026 FontHabibi. Pick a voice, pick a ground.</span>
+  <span class="mono">made with fonthabibi, obviously</span>
+</div></footer>
+
+<script>
+/* ============================================================
+   THE THEME SWITCHER
+   JavaScript's whole job here: change one attribute on <html>.
+   CSS does all the visual work because everything reads from
+   the theme variables. This is the power of tokens, and it is
+   exactly what your product sells.
+   ============================================================ */
+const THEMES=[
+  {id:"blush", name:"Studio Blush"},
+  {id:"night", name:"Night Launch"},
+  {id:"grid",  name:"Hard Grid"},
+  {id:"volt",  name:"Volt Black"},
+  {id:"maison",name:"Maison"},
+  {id:"zine",  name:"Zine Heat"},
+];
+let ti=0;
+document.getElementById("wear-btn").addEventListener("click",()=>{
+  ti=(ti+1)%THEMES.length;                                  // next theme, wraps around
+  document.documentElement.dataset.theme=THEMES[ti].id;     // the one line that re-skins the page
+  document.getElementById("wear-name").textContent=THEMES[ti].name;
+});
+
+/* Ko-fi note: when you have your page, do this:
+   document.getElementById("coffee-btn").href = "https://ko-fi.com/yourname";
+   or just edit the href in the HTML above. */
+</script>
+</body>
+</html>
