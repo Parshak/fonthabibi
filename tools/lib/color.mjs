@@ -92,14 +92,16 @@ export function rgba(hex, alpha) {
 // Hue families used for filtering, based on OKLCH hue of the accent.
 export function hueFamily(hex) {
   const [, C, H] = hexToOklch(hex);
+  // OKLCH hue angles. Pure sRGB red sits at 29, yellow at 110, green at 142
+  // and blue at 264, so royal blue, cobalt and navy all belong with "blue".
   if (C < 0.035) return "mono";
-  if (H >= 10 && H < 42) return "red";
-  if (H >= 42 && H < 68) return "orange";
-  if (H >= 68 && H < 108) return "yellow";
-  if (H >= 108 && H < 168) return "green";
-  if (H >= 168 && H < 205) return "teal";
-  if (H >= 205 && H < 258) return "blue";
-  if (H >= 258 && H < 312) return "violet";
+  if (H >= 12 && H < 38) return "red";
+  if (H >= 38 && H < 70) return "orange";
+  if (H >= 70 && H < 112) return "yellow";
+  if (H >= 112 && H < 170) return "green";
+  if (H >= 170 && H < 215) return "teal";
+  if (H >= 215 && H < 278) return "blue";
+  if (H >= 278 && H < 322) return "violet";
   return "pink";
 }
 

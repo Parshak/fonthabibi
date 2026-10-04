@@ -184,12 +184,12 @@ const IND = {
   bakery: (D, m, k) => (m.cute + m.happy + m.childlike + m.playful) / 160 + (["Casual script", "Handwritten", "Rounded sans", "Upright script"].includes(D.st) ? 0.35 : 0),
   barber: (D, m, k) => (m.rugged < 45 && m.vintage < 55 ? -1 : 0) + (m.vintage + m.rugged) / 120 + (["Clarendon slab", "Fat face"].includes(D.st) || condensed(D) || (D.th || []).some((t) => ["blackletter", "woodtype", "tuscan"].includes(t)) ? 0.4 : 0),
   beauty: (D, m, k) => (m.sophisticated + m.fancy + m.calm) / 150 + (["Didone", "Modern serif", "Formal script"].includes(D.st) ? 0.45 : 0),
-  fitness: (D, m, k) => (m.energetic + m.loud + m.excited + m.rugged) / 180 + (condensed(D) ? 0.45 : 0) + ((D.th || []).includes("techno") ? 0.2 : 0),
+  fitness: (D, m, k) => (m.energetic + m.loud + m.excited + m.rugged) / 180 + (condensed(D) ? 0.45 : 0) + ((D.th || []).includes("techno") ? 0.2 : 0) - ((D.th || []).includes("blackletter") ? 0.6 : 0) - (Math.max(m.cute, m.childlike, m.fancy) >= 50 ? 0.4 : 0),
   medical: (D, m, k) => (m.calm < 55 ? -1 : 0) + (m.calm + m.competent + m.sincere) / 160 + (["Humanist sans", "Rounded sans", "Geometric sans"].includes(D.st) ? 0.25 : 0) - (k !== "sans" ? 0.5 : 0),
   finance: (D, m, k) => (m.business < 50 && m.structured < 50 ? -1 : 0) + (m.business + m.competent + m.structured) / 160 + (["Transitional serif", "Scotch serif", "Modern serif", "Neo-grotesque", "Grotesque"].includes(D.st) ? 0.3 : 0) - (k === "script" ? 1 : 0) - (Math.max(m.artistic, m.quirky, m.playful) >= 50 ? 0.4 : 0),
   realestate: (D, m, k) => (m.sophisticated + m.business + m.calm) / 160 + (["Didone", "Transitional serif", "Modern serif", "Geometric sans"].includes(D.st) ? 0.3 : 0),
   trades: (D, m, k) => (m.rugged + m.structured + m.loud) / 160 + (k === "slab" || condensed(D) || D.st === "Grotesque" || (D.th || []).includes("stencil") ? 0.4 : 0),
-  tech: (D, m, k) => (m.futuristic < 40 && m.innovative < 40 && !["Geometric sans", "Neo-grotesque", "Superellipse sans"].includes(D.st) && !(D.th || []).includes("techno") ? -1 : 0) + (m.futuristic + m.innovative + m.competent) / 160 + (["Geometric sans", "Neo-grotesque", "Superellipse sans", "Glyphic sans"].includes(D.st) ? 0.3 : 0) + ((D.th || []).includes("techno") ? 0.3 : 0),
+  tech: (D, m, k) => (m.futuristic < 40 && m.innovative < 40 && !["Geometric sans", "Neo-grotesque", "Superellipse sans"].includes(D.st) && !(D.th || []).includes("techno") ? -1 : 0) + (m.futuristic + m.innovative + m.competent) / 160 + (["Geometric sans", "Neo-grotesque", "Superellipse sans", "Glyphic sans"].includes(D.st) ? 0.3 : 0) + ((D.th || []).includes("techno") ? 0.3 : 0) - (k === "script" ? 1 : 0) - (D.c === "display" && m.futuristic < 50 && !(D.th || []).includes("techno") ? 0.45 : 0),
   education: (D, m, k) => (m.sincere + m.happy + m.calm) / 160 + ((D.pu || []).length ? 0.4 : 0) + (["Rounded sans", "Humanist sans"].includes(D.st) ? 0.2 : 0),
   kids: (D, m, k) => (m.childlike + m.cute + m.playful) / 120 + (["Rounded sans", "Handwritten", "Casual script"].includes(D.st) || (D.th || []).includes("blobby") ? 0.3 : 0),
   wedding: (D, m, k) => (m.fancy + m.sophisticated) / 100 + (["Formal script", "Didone", "Upright script", "Modern serif"].includes(D.st) ? 0.45 : 0),
@@ -199,17 +199,38 @@ const IND = {
   travel: (D, m, k) => (m.happy + m.calm + m.sincere + m.vintage) / 200 + (["Casual script", "Humanist sans", "Geometric sans"].includes(D.st) ? 0.2 : 0),
   community: (D, m, k) => (m.sincere + m.happy + m.calm) / 150 + (["Humanist sans", "Rounded sans", "Old style serif"].includes(D.st) ? 0.25 : 0),
   grocery: (D, m, k) => (m.happy + m.sincere + m.vintage) / 160 + (["Humanist slab", "Clarendon slab", "Rounded sans", "Casual script"].includes(D.st) ? 0.35 : 0),
-  automotive: (D, m, k) => (m.energetic + m.futuristic + m.loud) / 160 + (condensed(D) || (D.th || []).includes("techno") || D.st === "Glyphic sans" ? 0.4 : 0),
+  automotive: (D, m, k) => (m.energetic + m.futuristic + m.loud + m.rugged) / 200 + (condensed(D) || (D.th || []).includes("techno") || D.st === "Glyphic sans" ? 0.4 : 0) + (k === "slab" || D.st === "Grotesque" ? 0.2 : 0) - (k === "script" ? 0.6 : 0) - (Math.max(m.cute, m.childlike, m.fancy) >= 50 ? 0.4 : 0),
   agency: (D, m, k) => (m.innovative + m.artistic + m.competent) / 160 + (["Grotesque", "Neo-grotesque", "Geometric sans"].includes(D.st) || k === "display" ? 0.2 : 0),
   publishing: (D, m, k) => (k !== "serif" && !condensed(D) ? -0.4 : 0) + (m.competent + m.business + m.vintage) / 160 + (["Transitional serif", "Old style serif", "Scotch serif", "Modern serif", "Venetian serif"].includes(D.st) ? 0.35 : 0) + (condensed(D) ? 0.15 : 0),
   gaming: (D, m, k) => (m.futuristic + m.loud + m.quirky + m.excited) / 180 + ((D.th || []).some((t) => ["pixel", "techno", "wacky"].includes(t)) ? 0.5 : 0),
   portfolio: (D, m, k) => (m.innovative + m.artistic + m.sincere + m.competent) / 200 + (k !== "script" && (D.q || 0) >= 75 ? 0.2 : 0),
 };
 const MOODS = ["energetic", "artistic", "quirky", "business", "calm", "childlike", "competent", "cute", "excited", "fancy", "futuristic", "happy", "innovative", "loud", "playful", "rugged", "sincere", "sophisticated", "structured", "vintage"];
+// Novelty faces only suit some kinds of business: a pixel font is at home on
+// a game site, not a law firm. A themed font is kept out of every industry
+// that is not listed for its theme.
+const NOVELTY_OK = {
+  wacky: ["kids", "gaming", "nightlife", "art"],
+  pixel: ["gaming", "nightlife", "tech"],
+  blackletter: ["barber", "nightlife", "art", "gaming"],
+  distressed: ["barber", "nightlife", "gaming", "fitness", "trades", "art", "automotive"],
+  blobby: ["kids", "bakery", "art"],
+  medieval: ["gaming", "barber", "art", "publishing"],
+  tuscan: ["barber", "restaurant", "art", "nightlife"],
+  shaded: ["barber", "nightlife", "art", "kids", "restaurant"],
+  inline: ["art", "nightlife", "barber", "fashion", "restaurant"],
+  woodtype: ["barber", "restaurant", "trades", "art", "grocery"],
+  stencil: ["trades", "fitness", "automotive", "art", "gaming"],
+  brush: ["restaurant", "bakery", "fitness", "art", "kids", "nightlife", "barber", "beauty", "wedding", "travel", "community", "grocery"],
+  techno: ["tech", "gaming", "nightlife", "automotive", "fitness"],
+};
 function industries(D) {
   const m = Object.fromEntries(MOODS.map((k) => [k, mood(D, k)]));
   const k = kind(D);
-  const scored = Object.entries(IND).map(([id, fn]) => [id, fn(D, m, k)]).sort((a, b) => b[1] - a[1]);
+  const themes = (D.th || []).filter((t) => NOVELTY_OK[t]);
+  const scored = Object.entries(IND).map(([id, fn]) => [id, fn(D, m, k)])
+    .filter(([id]) => themes.every((t) => NOVELTY_OK[t].includes(id)))
+    .sort((a, b) => b[1] - a[1]);
   const picked = scored.filter(([, s]) => s >= 0.62).slice(0, 3).map(([id]) => id);
   return picked.length ? picked : scored.filter(([, s]) => s >= 0.3).slice(0, 2).map(([id]) => id);
 }
@@ -231,7 +252,7 @@ function makeVoice(id, D, B, extra = {}) {
     dw: displayWeight(D),
     media: extra.media || mediaFor(D, B),
     mood: moodTags,
-    ind: industries(D),
+    ind: extra.ind || industries(D),
     lang: extra.lang || langs([D, B]),
     ...(extra.score != null ? { score: extra.score } : {}),
   };
@@ -242,7 +263,8 @@ const voices = [];
 for (const v of curated) {
   const D = byName.get(v.display), B = byName.get(v.body), U = byName.get(v.ui);
   if (!D || !B || !U) { console.warn("curated font missing", v.id); continue; }
-  const rec = makeVoice(v.id, D, B, { name: v.name, vibe: v.vibe, media: v.media, ui: v.ui });
+  // Hand-picked pairings carry hand-picked industries (src/curated-voices.json).
+  const rec = makeVoice(v.id, D, B, { name: v.name, vibe: v.vibe, media: v.media, ui: v.ui, ind: v.ind });
   rec.dw = v.displayWeight;
   rec.curated = 1;
   voices.push(rec);

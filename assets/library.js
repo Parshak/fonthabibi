@@ -111,11 +111,10 @@ function defs() {
   const media = META.media.map((m) => [m.id, m.label]);
   const tone = [["light", "Light"], ["dark", "Dark"]];
   const hues = HUE_ORDER.filter((h) => META.hues.some((x) => x.id === h)).map((h) => [h, HUE[h]]);
-  const byLight = (get) => ({
-    light: (a, b) => lum(get(b).tokens.bgHex) - lum(get(a).tokens.bgHex),
-    dark: (a, b) => lum(get(a).tokens.bgHex) - lum(get(b).tokens.bgHex),
-  });
-  const best = (a, b) => (b.pick || 0) - (a.pick || 0) || b.score - a.score || a.n - b.n;
+  // Every kit knows its place in each list it belongs to (k.r, in the same
+  // order as k.ind). With nothing picked, its first list decides.
+  const place = (k) => k.r?.[Math.max(0, k.ind.indexOf([...(state.sel.ind || [])][0]))] ?? 99;
+  const best = (a, b) => place(a) - place(b) || (b.pick || 0) - (a.pick || 0) || a.n - b.n;
   return {
     kits: {
       noun: ["kit", "kits"],
@@ -125,7 +124,7 @@ function defs() {
       facets: [
         { key: "ind", label: "What are you building?", opts: industries, test: anyOf((k) => k.ind), top: true, single: true },
         { key: "tone", label: "Light or dark", opts: tone, test: (k, vals) => vals.has(k.G.tokens.dark ? "dark" : "light"), bar: true, single: true },
-        { key: "hue", label: "Accent color", opts: hues, test: anyOf((k) => k.G.hue), bar: true, dots: true },
+        { key: "hue", label: "Accent color", short: "Accent", opts: hues, test: anyOf((k) => k.G.hue), bar: true, dots: true },
       ],
       toggles: [],
       sorts: [["best", "Best match"]],
@@ -173,7 +172,8 @@ function defs() {
       sorts: [["best", "Hand-picked first"], ["light", "Lightest first"], ["dark", "Darkest first"], ["hue", "By color"]],
       sortFn: {
         best: (a, b) => (b.curated || 0) - (a.curated || 0) || a.id.localeCompare(b.id, undefined, { numeric: true }),
-        ...byLight((g) => g),
+        light: (a, b) => lum(b.tokens.bgHex) - lum(a.tokens.bgHex),
+        dark: (a, b) => lum(a.tokens.bgHex) - lum(b.tokens.bgHex),
         hue: (a, b) => HUE_ORDER.indexOf(a.hue) - HUE_ORDER.indexOf(b.hue) || lum(b.tokens.bgHex) - lum(a.tokens.bgHex),
       },
       base: () => true,
@@ -225,17 +225,18 @@ function deal(list) {
     groups.get(k.ind[0]).push(k);
   }
   const order = [...DEAL.filter((id) => groups.has(id)), ...[...groups.keys()].filter((id) => !DEAL.includes(id))];
-  // Skip a kit whose colors or fonts were shown a moment ago, so neighbours differ.
+  // Skip a kit whose colors were shown a moment ago, so neighbours differ.
   const out = [], recent = [];
   while (out.length < list.length) {
     for (const id of order) {
       const group = groups.get(id);
       if (!group.length) continue;
-      const i = Math.max(0, group.findIndex((k) => !recent.includes(k.g) && !recent.includes(k.v)));
+      // Look a few places down the list, but do not swap a light kit for a dark one.
+      const i = Math.max(0, group.slice(0, 4).findIndex((k) => !recent.includes(k.g) && (!k.G.tokens.dark || group[0].G.tokens.dark)));
       const [k] = group.splice(i, 1);
       out.push(k);
-      recent.push(k.g, k.v);
-      if (recent.length > 36) recent.splice(0, 2);
+      recent.push(k.g);
+      if (recent.length > 12) recent.shift();
     }
   }
   return out;
@@ -336,7 +337,7 @@ function barGroup(f) {
       ? `<button class="dot" type="button" style="--dot:${HUE_DOT[id] || "#888"}" aria-label="${esc(label)}" title="${esc(label)}" aria-pressed="${on}" data-facet="${f.key}" data-val="${esc(id)}" ${off}></button>`
       : `<button class="chip" type="button" aria-pressed="${on}" data-facet="${f.key}" data-val="${esc(id)}" ${off}>${esc(label)}</button>`;
   }).join("");
-  return `<div class="bar-group" role="group" aria-label="${esc(f.label)}">${f.dots ? `<span class="bar-label">${esc(f.label)}</span>` : ""}${items}</div>`;
+  return `<div class="bar-group${f.dots ? " dots" : ""}" role="group" aria-label="${esc(f.label)}">${f.dots ? `<span class="bar-label">${esc(f.short || f.label)}</span>` : ""}${items}</div>`;
 }
 
 function renderFilters() {
@@ -345,17 +346,22 @@ function renderFilters() {
   // The first question on the Kits tab sits above the results, not in the side column.
   const top = def.facets.find((f) => f.top);
   const box = $("#building");
+  box.hidden = !top;
   if (top) {
     const sel = state.sel[top.key] || new Set();
     const keep = $(".chips", box)?.scrollLeft || 0;
     box.innerHTML = `<h2>${esc(top.label)}</h2><div class="chips">${top.opts.map(([id, label]) => chipHTML(top, id, label, sel.has(id))).join("")}</div>`;
-    $(".chips", box).scrollLeft = keep;
+    // On a phone the chips are one row that scrolls sideways: stay where the
+    // visitor was, and make sure the chosen chip is in view.
+    const row = $(".chips", box), on = $('.chip[aria-pressed="true"]', row);
+    row.scrollLeft = keep;
+    if (on && row.scrollWidth > row.clientWidth) {
+      const a = on.getBoundingClientRect(), b = row.getBoundingClientRect();
+      if (a.left < b.left + 16 || a.right > b.right - 16) row.scrollLeft += a.left - b.left - (b.width - a.width) / 2;
+    }
   } else box.innerHTML = "";
-  box.hidden = !top;
 
-  const bar = def.facets.filter((f) => f.bar);
-  const anyBar = def.facets.some((f) => (f.top || f.bar) && hasSel(f.key));
-  $("#bar").innerHTML = bar.map(barGroup).join("") + (bar.length && anyBar ? `<button class="text-btn" type="button" data-clear>Clear</button>` : "");
+  $("#bar").innerHTML = def.facets.filter((f) => f.bar).map(barGroup).join("");
 
   const html = [];
   for (const f of def.facets) {
@@ -403,6 +409,7 @@ function renderResultLine() {
   let line = `<b>${fmt(n)}</b> ${n === 1 ? def.noun[0] : def.noun[1]}`;
   const ind = state.tab === "kits" && [...(state.sel.ind || [])][0];
   if (ind) line += ` for ${esc(IND[ind] || ind)}`;
+  if (state.tab === "kits" && def.facets.some((f) => hasSel(f.key))) line += ` <button class="clear-font" type="button" id="clear-all">Show all kits</button>`;
   if (state.tab === "voices" && state.font) line += ` using ${esc(state.font)} <button class="clear-font" type="button" id="clear-font">Show all font pairings</button>`;
   // Items made for another script wait behind the Language filter; say so.
   const waiting = hasSel("lang") ? 0 : def.items().filter((x) => !def.base(x) && matches(x, def, "lang")).length;
@@ -682,7 +689,7 @@ function bind() {
   });
 
   $("#building").addEventListener("click", onChip);
-  $("#bar").addEventListener("click", (e) => { if (!onChip(e) && e.target.closest("[data-clear]")) clearAll(); });
+  $("#bar").addEventListener("click", onChip);
   $("#facets").addEventListener("click", (e) => {
     if (onChip(e)) return;
     const more = e.target.closest("[data-unfold]");
@@ -717,7 +724,10 @@ function bind() {
     }
   });
 
-  $("#result-line").addEventListener("click", (e) => { if (e.target.id === "clear-font") { state.font = ""; render(); } });
+  $("#result-line").addEventListener("click", (e) => {
+    if (e.target.id === "clear-font") { state.font = ""; render(); }
+    if (e.target.id === "clear-all") clearAll();
+  });
   $("#empty").addEventListener("click", (e) => { if (e.target.id === "empty-clear") clearAll(); });
 
   $("#results").addEventListener("click", async (e) => {

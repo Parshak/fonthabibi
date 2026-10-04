@@ -10,7 +10,13 @@
   "display": "Fraunces",
   "body": "Outfit",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "restaurant",
+   "bakery",
+   "publishing",
+   "grocery"
+  ]
  },
  {
   "id": "F02",
@@ -25,7 +31,12 @@
   "display": "Space Grotesk",
   "body": "Inter",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "finance",
+   "agency"
+  ]
  },
  {
   "id": "F03",
@@ -39,7 +50,13 @@
   "display": "Bricolage Grotesque",
   "body": "Nunito Sans",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "tech",
+   "education",
+   "community"
+  ]
  },
  {
   "id": "F04",
@@ -52,7 +69,13 @@
   "display": "Cormorant Garamond",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "restaurant",
+   "wedding",
+   "fashion",
+   "beauty"
+  ]
  },
  {
   "id": "F05",
@@ -65,7 +88,13 @@
   "display": "Archivo",
   "body": "Archivo",
   "ui": "Space Mono",
-  "displayWeight": 800
+  "displayWeight": 800,
+  "ind": [
+   "trades",
+   "fitness",
+   "agency",
+   "automotive"
+  ]
  },
  {
   "id": "F06",
@@ -79,7 +108,12 @@
   "display": "Sora",
   "body": "Figtree",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "medical",
+   "education"
+  ]
  },
  {
   "id": "F07",
@@ -93,7 +127,13 @@
   "display": "Lora",
   "body": "DM Sans",
   "ui": "DM Sans",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "realestate",
+   "finance",
+   "community",
+   "travel"
+  ]
  },
  {
   "id": "F08",
@@ -106,7 +146,13 @@
   "display": "Anton",
   "body": "Inter",
   "ui": "JetBrains Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "fitness",
+   "trades",
+   "automotive",
+   "barber"
+  ]
  },
  {
   "id": "F09",
@@ -120,7 +166,12 @@
   "display": "Libre Franklin",
   "body": "IBM Plex Sans",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "finance",
+   "publishing",
+   "realestate"
+  ]
  },
  {
   "id": "F10",
@@ -133,7 +184,12 @@
   "display": "Baloo 2",
   "body": "Quicksand",
   "ui": "Quicksand",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "kids",
+   "bakery",
+   "education"
+  ]
  },
  {
   "id": "F11",
@@ -148,7 +204,13 @@
   "display": "Manrope",
   "body": "Manrope",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "realestate",
+   "agency",
+   "portfolio"
+  ]
  },
  {
   "id": "F12",
@@ -162,7 +224,12 @@
   "display": "Inter",
   "body": "Inter",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "finance",
+   "medical"
+  ]
  },
  {
   "id": "F13",
@@ -175,7 +242,12 @@
   "display": "Space Grotesk",
   "body": "IBM Plex Sans",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "trades",
+   "agency"
+  ]
  },
  {
   "id": "F14",
@@ -189,7 +261,13 @@
   "display": "Instrument Sans",
   "body": "Instrument Sans",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "portfolio",
+   "tech",
+   "art"
+  ]
  },
  {
   "id": "F15",
@@ -203,7 +281,12 @@
   "display": "Hanken Grotesk",
   "body": "Hanken Grotesk",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "medical",
+   "community"
+  ]
  },
  {
   "id": "F16",
@@ -216,7 +299,12 @@
   "display": "Fraunces",
   "body": "Source Serif 4",
   "ui": "Source Sans 3",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "publishing",
+   "restaurant",
+   "travel"
+  ]
  },
  {
   "id": "F17",
@@ -229,7 +317,13 @@
   "display": "Unbounded",
   "body": "Space Grotesk",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "nightlife",
+   "agency",
+   "gaming",
+   "art"
+  ]
  },
  {
   "id": "F18",
@@ -241,7 +335,13 @@
   "display": "EB Garamond",
   "body": "EB Garamond",
   "ui": "Space Mono",
-  "displayWeight": 500
+  "displayWeight": 500,
+  "ind": [
+   "publishing",
+   "wedding",
+   "community",
+   "finance"
+  ]
  },
  {
   "id": "F19",
@@ -254,7 +354,12 @@
   "display": "Lora",
   "body": "Source Sans 3",
   "ui": "JetBrains Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "finance",
+   "realestate"
+  ]
  },
  {
   "id": "F20",
@@ -268,7 +373,13 @@
   "display": "Zilla Slab",
   "body": "Source Sans 3",
   "ui": "IBM Plex Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "trades",
+   "finance",
+   "portfolio",
+   "publishing"
+  ]
  },
  {
   "id": "F21",
@@ -281,7 +392,13 @@
   "display": "Abril Fatface",
   "body": "Work Sans",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "restaurant",
+   "barber",
+   "fashion",
+   "nightlife"
+  ]
  },
  {
   "id": "F22",
@@ -294,7 +411,13 @@
   "display": "Alfa Slab One",
   "body": "Rubik",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "barber",
+   "trades",
+   "fitness",
+   "restaurant"
+  ]
  },
  {
   "id": "F23",
@@ -308,7 +431,13 @@
   "display": "Bebas Neue",
   "body": "Work Sans",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "fitness",
+   "barber",
+   "automotive",
+   "nightlife"
+  ]
  },
  {
   "id": "F24",
@@ -321,7 +450,13 @@
   "display": "Syne",
   "body": "Jost",
   "ui": "Space Mono",
-  "displayWeight": 800
+  "displayWeight": 800,
+  "ind": [
+   "art",
+   "fashion",
+   "agency",
+   "nightlife"
+  ]
  },
  {
   "id": "F25",
@@ -334,7 +469,12 @@
   "display": "Righteous",
   "body": "Rubik",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "nightlife",
+   "barber",
+   "gaming"
+  ]
  },
  {
   "id": "F26",
@@ -346,7 +486,12 @@
   "display": "Playfair Display",
   "body": "Source Serif 4",
   "ui": "Source Sans 3",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "wedding",
+   "realestate"
+  ]
  },
  {
   "id": "F27",
@@ -360,7 +505,13 @@
   "display": "DM Serif Display",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "fashion",
+   "beauty",
+   "publishing",
+   "restaurant"
+  ]
  },
  {
   "id": "F28",
@@ -373,7 +524,12 @@
   "display": "Newsreader",
   "body": "Newsreader",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "portfolio",
+   "finance"
+  ]
  },
  {
   "id": "F29",
@@ -386,7 +542,12 @@
   "display": "Crimson Pro",
   "body": "Work Sans",
   "ui": "Fira Code",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "finance",
+   "education"
+  ]
  },
  {
   "id": "F30",
@@ -400,7 +561,13 @@
   "display": "Public Sans",
   "body": "Public Sans",
   "ui": "Fira Code",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "community",
+   "medical",
+   "finance",
+   "education"
+  ]
  },
  {
   "id": "F31",
@@ -413,7 +580,12 @@
   "display": "Epilogue",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "tech",
+   "portfolio"
+  ]
  },
  {
   "id": "F32",
@@ -427,7 +599,12 @@
   "display": "Lexend",
   "body": "Lexend",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "education",
+   "medical",
+   "community"
+  ]
  },
  {
   "id": "F33",
@@ -441,7 +618,12 @@
   "display": "Barlow",
   "body": "Barlow",
   "ui": "Fira Code",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "trades",
+   "automotive",
+   "fitness"
+  ]
  },
  {
   "id": "F34",
@@ -454,7 +636,12 @@
   "display": "Merriweather",
   "body": "Source Sans 3",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "publishing",
+   "education",
+   "community"
+  ]
  },
  {
   "id": "F35",
@@ -468,7 +655,12 @@
   "display": "Chivo",
   "body": "Chivo",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "publishing",
+   "automotive"
+  ]
  },
  {
   "id": "F36",
@@ -481,7 +673,12 @@
   "display": "Spectral",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "portfolio",
+   "art"
+  ]
  },
  {
   "id": "F37",
@@ -495,7 +692,13 @@
   "display": "Rubik",
   "body": "Rubik",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "education",
+   "kids",
+   "community",
+   "medical"
+  ]
  },
  {
   "id": "F38",
@@ -511,7 +714,13 @@
   "display": "Work Sans",
   "body": "Work Sans",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "finance",
+   "medical",
+   "community"
+  ]
  },
  {
   "id": "F39",
@@ -524,7 +733,12 @@
   "display": "JetBrains Mono",
   "body": "Inter",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "portfolio",
+   "gaming"
+  ]
  },
  {
   "id": "F40",
@@ -537,7 +751,12 @@
   "display": "IBM Plex Sans",
   "body": "IBM Plex Sans",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "finance",
+   "medical"
+  ]
  },
  {
   "id": "F41",
@@ -550,7 +769,13 @@
   "display": "Jost",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "travel",
+   "fashion",
+   "realestate",
+   "agency"
+  ]
  },
  {
   "id": "F42",
@@ -563,7 +788,12 @@
   "display": "Overpass",
   "body": "Overpass",
   "ui": "Fira Code",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "trades",
+   "automotive",
+   "community"
+  ]
  },
  {
   "id": "F43",
@@ -577,7 +807,13 @@
   "display": "Bitter",
   "body": "Source Sans 3",
   "ui": "IBM Plex Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "education",
+   "portfolio",
+   "grocery"
+  ]
  },
  {
   "id": "F44",
@@ -590,7 +826,13 @@
   "display": "Nunito",
   "body": "Nunito",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "kids",
+   "education",
+   "community",
+   "medical"
+  ]
  },
  {
   "id": "F45",
@@ -605,7 +847,13 @@
   "display": "DM Sans",
   "body": "DM Sans",
   "ui": "DM Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "realestate",
+   "tech",
+   "medical",
+   "portfolio"
+  ]
  },
  {
   "id": "F46",
@@ -618,7 +866,13 @@
   "display": "Playfair Display",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "wedding",
+   "beauty",
+   "realestate",
+   "fashion"
+  ]
  },
  {
   "id": "F47",
@@ -633,7 +887,13 @@
   "display": "Figtree",
   "body": "Figtree",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "medical",
+   "realestate",
+   "tech",
+   "education"
+  ]
  },
  {
   "id": "F48",
@@ -647,7 +907,12 @@
   "display": "Karla",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "portfolio",
+   "finance",
+   "art"
+  ]
  },
  {
   "id": "F49",
@@ -660,7 +925,12 @@
   "display": "Bodoni Moda",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "fashion",
+   "beauty",
+   "wedding"
+  ]
  },
  {
   "id": "F50",
@@ -673,7 +943,13 @@
   "display": "Yeseva One",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "restaurant",
+   "bakery",
+   "barber",
+   "beauty"
+  ]
  },
  {
   "id": "F51",
@@ -686,7 +962,13 @@
   "display": "Prata",
   "body": "Work Sans",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "art",
+   "fashion",
+   "restaurant",
+   "travel"
+  ]
  },
  {
   "id": "F52",
@@ -699,7 +981,13 @@
   "display": "Marcellus",
   "body": "Karla",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "realestate",
+   "travel",
+   "wedding",
+   "finance"
+  ]
  },
  {
   "id": "F53",
@@ -712,7 +1000,13 @@
   "display": "Italiana",
   "body": "Jost",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "beauty",
+   "fashion",
+   "wedding",
+   "restaurant"
+  ]
  },
  {
   "id": "F54",
@@ -725,7 +1019,13 @@
   "display": "Gilda Display",
   "body": "Source Sans 3",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "wedding",
+   "restaurant",
+   "realestate",
+   "publishing"
+  ]
  },
  {
   "id": "F55",
@@ -737,7 +1037,12 @@
   "display": "Poiret One",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "beauty",
+   "fashion",
+   "art"
+  ]
  },
  {
   "id": "F56",
@@ -750,7 +1055,12 @@
   "display": "Michroma",
   "body": "Space Grotesk",
   "ui": "JetBrains Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "gaming",
+   "tech",
+   "automotive"
+  ]
  },
  {
   "id": "F57",
@@ -764,7 +1074,13 @@
   "display": "Oswald",
   "body": "Source Sans 3",
   "ui": "IBM Plex Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "fitness",
+   "trades",
+   "automotive"
+  ]
  },
  {
   "id": "F58",
@@ -779,7 +1095,12 @@
   "display": "Schibsted Grotesk",
   "body": "Schibsted Grotesk",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "publishing",
+   "agency",
+   "finance"
+  ]
  },
  {
   "id": "F59",
@@ -793,7 +1114,13 @@
   "display": "Albert Sans",
   "body": "Albert Sans",
   "ui": "DM Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "medical",
+   "realestate",
+   "travel",
+   "tech"
+  ]
  },
  {
   "id": "F60",
@@ -807,7 +1134,12 @@
   "display": "Onest",
   "body": "Onest",
   "ui": "JetBrains Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "medical",
+   "realestate"
+  ]
  },
  {
   "id": "F61",
@@ -821,7 +1153,12 @@
   "display": "Familjen Grotesk",
   "body": "Familjen Grotesk",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "tech",
+   "art"
+  ]
  },
  {
   "id": "F62",
@@ -835,7 +1172,12 @@
   "display": "Red Hat Display",
   "body": "Mulish",
   "ui": "Fira Code",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "tech",
+   "education",
+   "medical"
+  ]
  },
  {
   "id": "F63",
@@ -849,7 +1191,12 @@
   "display": "Cabin",
   "body": "Cabin",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "travel",
+   "community",
+   "trades"
+  ]
  },
  {
   "id": "F64",
@@ -863,7 +1210,12 @@
   "display": "Atkinson Hyperlegible",
   "body": "Atkinson Hyperlegible",
   "ui": "IBM Plex Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "community",
+   "medical",
+   "education"
+  ]
  },
  {
   "id": "F65",
@@ -876,7 +1228,13 @@
   "display": "Caveat",
   "body": "Work Sans",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "bakery",
+   "kids",
+   "restaurant",
+   "community"
+  ]
  },
  {
   "id": "F66",
@@ -889,7 +1247,13 @@
   "display": "Anton",
   "body": "Source Serif 4",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "publishing",
+   "fitness",
+   "barber",
+   "nightlife"
+  ]
  },
  {
   "id": "F67",
@@ -902,7 +1266,12 @@
   "display": "Marcellus",
   "body": "Source Sans 3",
   "ui": "IBM Plex Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "art",
+   "travel",
+   "realestate"
+  ]
  },
  {
   "id": "F68",
@@ -915,7 +1284,13 @@
   "display": "EB Garamond",
   "body": "Source Sans 3",
   "ui": "JetBrains Mono",
-  "displayWeight": 500
+  "displayWeight": 500,
+  "ind": [
+   "publishing",
+   "community",
+   "education",
+   "wedding"
+  ]
  },
  {
   "id": "F69",
@@ -928,7 +1303,12 @@
   "display": "Archivo",
   "body": "Public Sans",
   "ui": "Fira Code",
-  "displayWeight": 800
+  "displayWeight": 800,
+  "ind": [
+   "trades",
+   "automotive",
+   "community"
+  ]
  },
  {
   "id": "F70",
@@ -941,7 +1321,12 @@
   "display": "Nunito",
   "body": "Mulish",
   "ui": "DM Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "community",
+   "education",
+   "kids"
+  ]
  },
  {
   "id": "F71",
@@ -954,7 +1339,12 @@
   "display": "Playfair Display",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "publishing",
+   "fashion",
+   "wedding"
+  ]
  },
  {
   "id": "F72",
@@ -967,7 +1357,12 @@
   "display": "Zilla Slab",
   "body": "IBM Plex Sans",
   "ui": "JetBrains Mono",
-  "displayWeight": 600
+  "displayWeight": 600,
+  "ind": [
+   "tech",
+   "portfolio",
+   "trades"
+  ]
  },
  {
   "id": "F73",
@@ -981,7 +1376,13 @@
   "display": "DM Serif Display",
   "body": "Figtree",
   "ui": "Space Mono",
-  "displayWeight": 400
+  "displayWeight": 400,
+  "ind": [
+   "fashion",
+   "beauty",
+   "bakery",
+   "restaurant"
+  ]
  },
  {
   "id": "F74",
@@ -994,6 +1395,11 @@
   "display": "Chivo",
   "body": "Mulish",
   "ui": "Space Mono",
-  "displayWeight": 700
+  "displayWeight": 700,
+  "ind": [
+   "agency",
+   "portfolio",
+   "art"
+  ]
  }
 ]

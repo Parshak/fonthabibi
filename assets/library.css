@@ -57,7 +57,6 @@
 .bar .chip{background:var(--shell-panel)}
 .bar .chip[aria-pressed="true"]{background:var(--shell-accent)}
 .bar .chip:disabled{opacity:.4;cursor:default}
-.bar .text-btn{padding:0}
 .dot{width:24px;height:24px;border-radius:99px;background:var(--dot);border:3px solid var(--shell-bg);box-shadow:0 0 0 1px var(--shell-line-2);transition:box-shadow .12s}
 .dot:hover{box-shadow:0 0 0 2px var(--shell-muted)}
 .dot[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--shell-ink)}
@@ -151,15 +150,17 @@
   .filter-drawer>summary::after{content:"Show";font-weight:500;font-size:14px;color:var(--shell-accent)}
   .filter-drawer[open]>summary::after{content:"Hide"}
   .filter-drawer[open]{padding-bottom:12px}
-  .building .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
-  .building .chip{flex:none}
   .results,.results.fonts,.results.kits{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
   .field input[type="text"]{width:170px}
 }
 @media(max-width:600px){
   /* The count and Light / Dark share a row; the accent dots get their own */
   .bar{display:contents}
-  .bar-group:has(.dot){width:100%}
+  .bar-group.dots{width:100%;gap:5px}
+  .dot{width:23px;height:23px}
+  .building .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
+  .building .chips::-webkit-scrollbar{display:none}
+  .building .chip{flex:none}
   .tab{padding:8px 11px;font-size:14.5px}
   .tab .n{display:none}
   .lede{font-size:16px}

@@ -185,32 +185,47 @@ function describe(g) {
   if ((!t.dark && t.radius <= 12 && !mood.has("playful")) || (t.dark && aC < 0.13)) media.add("edit");
   if (!t.dark ? bC < 0.03 && t.radius <= 12 : mood.has("techy") || aC < 0.12) media.add("docs");
 
+  // Which kinds of business a color set suits. Each rule describes the color
+  // worlds that business usually lives in; the kit builder then picks a spread
+  // of them, so a rule should be generous rather than narrow.
   const ind = new Set();
   const m = (x) => mood.has(x);
-  if (m("warm") && (["red", "orange", "yellow"].includes(fam) || m("natural"))) ind.add("restaurant");
-  if (!t.dark && m("warm") && ["pink", "orange", "yellow", "red"].includes(fam)) ind.add("bakery");
-  if ((t.dark && ["red", "blue", "yellow", "mono"].includes(fam)) || (m("editorial") && ["red", "mono"].includes(fam))) ind.add("barber");
-  if ((m("calm") || m("luxurious")) && ["pink", "violet", "green", "teal", "yellow"].includes(fam)) ind.add("beauty");
-  if (m("bold") && (t.dark || ["green", "orange", "red"].includes(fam))) ind.add("fitness");
-  if (!t.dark && (m("fresh") || m("cool")) && ["blue", "teal", "green"].includes(fam)) ind.add("medical");
-  if ((m("calm") || m("editorial") || m("minimal")) && ["blue", "green", "red", "mono"].includes(fam) && t.radius <= 10) ind.add("finance");
-  if ((m("luxurious") || m("calm")) && ["blue", "green", "yellow", "mono"].includes(fam) && t.radius <= 12) ind.add("realestate");
-  if (["orange", "yellow"].includes(fam) || (["blue", "mono"].includes(fam) && t.radius <= 6)) ind.add("trades");
-  if (m("techy") || (["blue", "violet", "teal"].includes(fam) && (m("cool") || t.dark))) ind.add("tech");
-  if (!t.dark && t.radius >= 10 && ["blue", "green", "orange", "yellow", "teal"].includes(fam)) ind.add("education");
-  if (m("playful") && !t.dark) ind.add("kids");
-  if (!t.dark && (m("luxurious") || (m("warm") && ["pink", "yellow"].includes(fam))) && aC < 0.16) ind.add("wedding");
-  if (m("minimal") || m("editorial") || (m("luxurious") && t.dark)) ind.add("fashion");
-  if (m("minimal") || (t.dark && aC < 0.12)) ind.add("art");
-  if (t.dark && m("bold") && ["pink", "violet", "blue", "teal", "green"].includes(fam)) ind.add("nightlife");
-  if ((m("fresh") || m("warm")) && ["teal", "blue", "orange", "yellow"].includes(fam) && !t.dark) ind.add("travel");
-  if (!t.dark && (m("warm") || m("natural")) && ["green", "orange", "blue", "teal"].includes(fam)) ind.add("community");
-  if (!t.dark && (m("fresh") || m("natural")) && ["green", "orange", "yellow"].includes(fam)) ind.add("grocery");
-  if (t.dark && ["red", "orange", "blue", "mono"].includes(fam)) ind.add("automotive");
+  const is = (...fams) => fams.includes(fam);
+  const light = !t.dark;
+  const soft = aC < 0.14;          // an accent that does not shout
+  const plainPaper = bC < 0.012;   // white, bone, chalk, mist, stone
+  if (m("warm") && (is("red", "orange", "yellow") || m("natural"))) ind.add("restaurant");
+  if (light && m("warm") && is("pink", "orange", "yellow", "red")) ind.add("bakery");
+  if ((t.dark && is("red", "blue", "yellow", "mono")) || (m("editorial") && is("red", "mono", "blue"))) ind.add("barber");
+  if ((light && is("pink", "violet") && aC < 0.185 && !m("playful"))
+    || (light && soft && is("green", "teal", "orange", "yellow") && (m("calm") || m("natural") || m("warm")))
+    || (t.dark && m("luxurious"))) ind.add("beauty");
+  if (m("bold") && (t.dark || is("green", "orange", "red", "blue", "yellow"))) ind.add("fitness");
+  if (light && is("blue", "teal", "green") && (m("fresh") || m("cool") || (soft && plainPaper))) ind.add("medical");
+  if (((m("calm") || m("editorial") || m("minimal")) && is("blue", "green", "red", "mono", "teal") && t.radius <= 10)
+    || (light && is("blue", "teal", "green") && aC < 0.16 && t.radius <= 12 && !m("playful"))
+    || (t.dark && cool && is("blue", "teal", "yellow") && aC < 0.135)) ind.add("finance");
+  if (((m("luxurious") || m("calm")) && is("blue", "green", "yellow", "mono", "teal", "orange") && t.radius <= 12)
+    || (light && is("blue", "green", "teal") && aC < 0.15 && t.radius <= 12)) ind.add("realestate");
+  if (is("orange", "yellow") || (is("blue", "mono") && t.radius <= 8) || (light && is("green") && soft && t.radius <= 8) || (is("red") && t.radius <= 6)) ind.add("trades");
+  if (m("techy") || (is("blue", "violet", "teal") && (m("cool") || t.dark))
+    || (light && plainPaper && is("blue", "violet", "teal", "green", "mono") && t.radius >= 6 && t.radius <= 14)) ind.add("tech");
+  if (light && t.radius >= 10 && is("blue", "green", "orange", "yellow", "teal")) ind.add("education");
+  if (light && (m("playful") || (vivid && t.radius >= 12))) ind.add("kids");   // bright accents, round corners
+  if (light && aC < 0.16 && !m("playful")
+    && (m("luxurious") || (m("warm") && is("pink", "yellow", "orange")) || is("pink") || (is("green") && aC < 0.125) || (is("violet") && aC < 0.13))) ind.add("wedding");
+  if (m("minimal") || m("editorial") || (m("luxurious") && t.dark) || (light && is("pink", "orange", "red") && aC < 0.15 && t.radius <= 10)) ind.add("fashion");
+  if (m("minimal") || (t.dark && aC < 0.12) || (light && plainPaper)) ind.add("art");   // gallery-white walls take any accent
+  if (t.dark && (m("bold") || (is("violet", "blue", "pink", "teal") && aC > 0.105))) ind.add("nightlife");
+  if (light && (m("fresh") || m("warm") || m("natural")) && is("teal", "blue", "orange", "yellow", "green")) ind.add("travel");
+  if (light && (m("warm") || m("natural")) && is("green", "orange", "blue", "teal")) ind.add("community");
+  if (light && (((m("fresh") || m("natural")) && is("green", "orange", "yellow", "teal")) || (m("warm") && is("red", "orange", "yellow")))) ind.add("grocery");
+  if ((t.dark && is("red", "orange", "blue", "mono", "yellow"))
+    || (light && is("red", "blue", "mono") && t.radius <= 8 && (plainPaper || cool))) ind.add("automotive");
   if (m("bold") || m("minimal")) ind.add("agency");
-  if (m("editorial") || (!t.dark && t.radius <= 4)) ind.add("publishing");
-  if (t.dark && m("bold")) ind.add("gaming");
-  if (m("minimal") || m("editorial") || m("calm")) ind.add("portfolio");
+  if (m("editorial") || (light && t.radius <= 4) || (t.dark && aC < 0.11)) ind.add("publishing");
+  if (t.dark && (m("bold") || (is("violet", "blue", "teal", "green") && aC > 0.105))) ind.add("gaming");
+  if (m("minimal") || m("editorial") || m("calm") || (t.dark && soft) || (light && vivid && plainPaper)) ind.add("portfolio");
 
   return { hue: fam, mood: [...mood], media: [...media], ind: [...ind] };
 }
