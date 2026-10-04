@@ -9,7 +9,7 @@
    In the code a font pairing is a "voice" and a color set is a
    "ground"; those are the names used in the data files.
    ============================================================ */
-import { loadData, esc, fmt, cssStack, useFont, comboCSS, kitPrompt, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005d";
+import { loadData, esc, fmt, cssStack, useFont, comboCSS, kitPrompt, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005e";
 
 const $ = (id) => document.getElementById(id);
 const px = (n) => n + "px";
@@ -352,7 +352,7 @@ function bindActions() {
   };
   $("btn-ai").onclick = () => copyText(kitPrompt(curType(), curGround(), IDX, catLabel(curCat).toLowerCase())).then(() => {
     flash($("btn-ai"), "Copied");
-    toast("Copied. Paste it at the top of your prompt in Claude, Cursor or v0.");
+    toast("Copied. Paste it at the top of your prompt in any AI tool.");
   });
   $("btn-copy").onclick = () => copyText(comboCSS(curType(), curGround(), catLabel(curCat), IDX)).then(() => {
     flash($("btn-copy"), "Copied");

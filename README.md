@@ -4,7 +4,7 @@
 
 🔗 **Live site:** https://fonthabibi.pages.dev
 
-FontHabibi is a free library of ready-made font and color kits. Pick what you're building, see each kit as a real website, and copy it into Claude, Cursor, v0 or your own CSS.
+FontHabibi is a free library of ready-made font and color kits. Pick what you're building, see each kit as a real website, and copy it into any AI builder or your own CSS.
 
 ## What's inside
 

@@ -9,7 +9,7 @@
 // The version string makes browsers that cached an older copy fetch the new
 // files. Cloudflare revalidates on every visit anyway, so it only needs a bump
 // if a long cache header is ever added again.
-const DATA_VERSION = "20261005d";
+const DATA_VERSION = "20261005e";
 const cache = {};
 export function loadData(name) {
   if (!cache[name]) {
@@ -220,7 +220,7 @@ a{ color: var(--accent); }
 
 /* ---------- prompt for AI builders ----------
    Plain words first (what each font and color is for), then the import
-   line and CSS variables, so Claude, Cursor or v0 can use it as is. */
+   line and CSS variables, so any AI tool can use it as is. */
 export function kitPrompt(v, g, idx, label) {
   const t = g.tokens;
   const { D, B, U } = voiceFonts(v, idx);

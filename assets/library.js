@@ -19,7 +19,7 @@
 import {
   loadData, esc, fmt, cssStack, useFont, nearestWeight, familyParam, gfURL,
   isRTL, SAMPLES, voiceCSS, groundCSS, comboCSS, kitPrompt, copyText, flash,
-} from "./fh-core.js?v=20261005d";
+} from "./fh-core.js?v=20261005e";
 
 const $ = (s, el = document) => el.querySelector(s);
 const TABS = ["kits", "voices", "grounds", "fonts"];
@@ -741,7 +741,7 @@ function bind() {
       const label = IND[pickedIndustry(k.ind)] || "";
       if (act === "kit-ai") {
         text = kitPrompt(k.V, k.G, IDX, label);
-        said = "Copied. Paste it at the top of your prompt in Claude, Cursor or v0.";
+        said = "Copied. Paste it at the top of your prompt in any AI tool.";
       } else text = comboCSS(k.V, k.G, label, IDX);
     }
     if (act === "copy-font") {
