@@ -7,8 +7,9 @@
     "fonts": "node build-fonts.mjs",
     "grounds": "node build-grounds.mjs",
     "voices": "node build-voices.mjs",
+    "kits": "node build-kits.mjs",
     "check": "node check-data.mjs",
-    "build": "node build-fonts.mjs && node build-grounds.mjs && node build-voices.mjs && node check-data.mjs"
+    "build": "node build-fonts.mjs && node build-grounds.mjs && node build-voices.mjs && node build-kits.mjs && node check-data.mjs"
   },
   "devDependencies": {
     "google-font-metadata": "6.0.8"

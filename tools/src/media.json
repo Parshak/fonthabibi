@@ -2,26 +2,26 @@
  {
   "id": "web",
   "label": "Website",
-  "note": "Marketing and landing pages. Display type does the selling; grounds provide atmosphere. Previewed as a hero + nav + feature row."
+  "note": "Marketing sites and landing pages. The heading font does the selling and the colors set the mood."
  },
  {
   "id": "app",
   "label": "App",
-  "note": "Mobile screens in a phone frame. The UI font matters as much as the display; grounds stay quieter and radii friendlier."
+  "note": "Phone screens. The font used for labels matters as much as the heading font, and the colors stay calmer."
  },
  {
   "id": "tool",
-  "label": "Software tool",
-  "note": "Dashboards, dev tools, admin panels. Density and legibility first — previewed as sidebar + stats + a live table."
+  "label": "Dashboard",
+  "note": "Dashboards and admin panels. Busy screens, so easy reading comes first."
  },
  {
   "id": "edit",
-  "label": "Editorial",
-  "note": "Articles and long reads. Measure, leading and reading comfort first — the ground is paper, not a stage."
+  "label": "Article",
+  "note": "Articles and long reads. Comfortable line length and spacing on a paper-like background."
  },
  {
   "id": "docs",
   "label": "Docs",
-  "note": "Documentation. Body and code coexist; callouts and borders do the structural work."
+  "note": "Documentation. Text and code sit side by side, and borders and notes give the page its structure."
  }
 ]

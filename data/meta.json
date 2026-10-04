@@ -7,177 +7,202 @@
   "curatedVoices": 74,
   "grounds": 340,
   "curatedGrounds": 68,
-  "combos": 429760
+  "combos": 429760,
+  "kits": 522
  },
  "media": [
   {
    "id": "web",
    "label": "Website",
-   "note": "Marketing and landing pages. Display type does the selling; grounds provide atmosphere. Previewed as a hero + nav + feature row."
+   "note": "Marketing sites and landing pages. The heading font does the selling and the colors set the mood."
   },
   {
    "id": "app",
    "label": "App",
-   "note": "Mobile screens in a phone frame. The UI font matters as much as the display; grounds stay quieter and radii friendlier."
+   "note": "Phone screens. The font used for labels matters as much as the heading font, and the colors stay calmer."
   },
   {
    "id": "tool",
-   "label": "Software tool",
-   "note": "Dashboards, dev tools, admin panels. Density and legibility first — previewed as sidebar + stats + a live table."
+   "label": "Dashboard",
+   "note": "Dashboards and admin panels. Busy screens, so easy reading comes first."
   },
   {
    "id": "edit",
-   "label": "Editorial",
-   "note": "Articles and long reads. Measure, leading and reading comfort first — the ground is paper, not a stage."
+   "label": "Article",
+   "note": "Articles and long reads. Comfortable line length and spacing on a paper-like background."
   },
   {
    "id": "docs",
    "label": "Docs",
-   "note": "Documentation. Body and code coexist; callouts and borders do the structural work."
+   "note": "Documentation. Text and code sit side by side, and borders and notes give the page its structure."
   }
  ],
  "industries": [
   {
    "id": "restaurant",
    "label": "Restaurant & café",
+   "kits": 26,
    "voices": 254,
-   "grounds": 66
+   "grounds": 64
   },
   {
    "id": "bakery",
    "label": "Bakery & sweets",
+   "kits": 25,
    "voices": 101,
    "grounds": 49
   },
   {
    "id": "grocery",
    "label": "Grocery & market",
+   "kits": 24,
    "voices": 168,
    "grounds": 44
   },
   {
    "id": "barber",
    "label": "Barber & salon",
+   "kits": 25,
    "voices": 310,
    "grounds": 90
   },
   {
    "id": "beauty",
    "label": "Beauty & spa",
+   "kits": 24,
    "voices": 74,
    "grounds": 40
   },
   {
    "id": "fitness",
    "label": "Fitness & sport",
+   "kits": 24,
    "voices": 102,
    "grounds": 61
   },
   {
    "id": "medical",
    "label": "Medical & dental",
+   "kits": 24,
    "voices": 213,
    "grounds": 35
   },
   {
    "id": "finance",
    "label": "Law & finance",
+   "kits": 25,
    "voices": 337,
    "grounds": 41
   },
   {
    "id": "realestate",
    "label": "Real estate",
+   "kits": 24,
    "voices": 295,
    "grounds": 47
   },
   {
    "id": "trades",
    "label": "Construction & trades",
+   "kits": 26,
    "voices": 198,
    "grounds": 95
   },
   {
    "id": "automotive",
    "label": "Automotive",
+   "kits": 14,
    "voices": 18,
    "grounds": 35
   },
   {
    "id": "tech",
    "label": "Tech & SaaS",
+   "kits": 25,
    "voices": 112,
    "grounds": 77
   },
   {
    "id": "education",
    "label": "Education & tutoring",
+   "kits": 24,
    "voices": 52,
    "grounds": 66
   },
   {
    "id": "kids",
    "label": "Kids & family",
+   "kits": 17,
    "voices": 78,
    "grounds": 17
   },
   {
    "id": "wedding",
    "label": "Wedding & events",
+   "kits": 20,
    "voices": 81,
    "grounds": 20
   },
   {
    "id": "fashion",
    "label": "Fashion & boutique",
+   "kits": 24,
    "voices": 82,
    "grounds": 65
   },
   {
    "id": "art",
    "label": "Art & photography",
+   "kits": 24,
    "voices": 147,
    "grounds": 66
   },
   {
    "id": "nightlife",
    "label": "Music & nightlife",
+   "kits": 24,
    "voices": 86,
    "grounds": 28
   },
   {
    "id": "travel",
    "label": "Travel & hospitality",
+   "kits": 24,
    "voices": 40,
    "grounds": 58
   },
   {
    "id": "community",
    "label": "Nonprofit & community",
+   "kits": 25,
    "voices": 112,
    "grounds": 76
   },
   {
    "id": "agency",
    "label": "Agency & studio",
+   "kits": 24,
    "voices": 59,
    "grounds": 134
   },
   {
    "id": "publishing",
    "label": "Publishing & news",
+   "kits": 26,
    "voices": 245,
    "grounds": 51
   },
   {
    "id": "gaming",
    "label": "Gaming",
+   "kits": 24,
    "voices": 78,
    "grounds": 53
   },
   {
    "id": "portfolio",
    "label": "Personal portfolio",
+   "kits": 24,
    "voices": 99,
    "grounds": 67
   }
@@ -624,12 +649,12 @@
    "n": 104
   },
   {
-   "id": "natural",
-   "n": 92
-  },
-  {
    "id": "cool",
    "n": 78
+  },
+  {
+   "id": "natural",
+   "n": 77
   },
   {
    "id": "calm",

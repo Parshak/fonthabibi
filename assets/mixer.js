@@ -1,13 +1,15 @@
 /* ============================================================
-   The Mixer
-   Same mixer as before, now reading the shared data files:
-   - curated voices and grounds per medium, as designed
-   - any pairing or ground from the library can be opened here
-     with ?voice=F123&ground=G150&medium=web
+   The mixer
+   Any font pairing on any color set, previewed as a real page.
+   - the hand-picked pairings and color sets for each kind of page
+   - anything from the library can be opened here with
+     ?voice=F123&ground=G150&medium=web
    - fonts load only when they are needed
-   - saved combos are kept in this browser
+   - saved combinations are kept in this browser
+   In the code a font pairing is a "voice" and a color set is a
+   "ground"; those are the names used in the data files.
    ============================================================ */
-import { loadData, esc, fmt, cssStack, useFont, comboCSS, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005";
+import { loadData, esc, fmt, cssStack, useFont, comboCSS, kitPrompt, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005b";
 
 const $ = (id) => document.getElementById(id);
 const px = (n) => n + "px";
@@ -202,11 +204,11 @@ p{font-size:16.5px;line-height:1.7;color:var(--ink-muted);max-width:56ch}
 .card{padding:20px 22px;max-width:420px}
 .card code{font-size:13px}
 </style></head><body><main>
-<span class="eyebrow">${ty.id} × ${gr.id} · starter</span>
-<h1>Every project starts with a voice and a ground.</h1>
-<p>This page is running your combo: ${ty.d} display, ${ty.b} body, ${ty.u} for UI and data, on the "${gr.name}" ground. Replace this copy and keep the tokens.</p>
-<a class="btn" href="#">Primary action</a>
-<div class="card"><strong>Token check</strong><br><code>--accent: ${gr.tokens.accent}</code> · <code>--radius: ${gr.tokens.radius}px</code></div>
+<span class="eyebrow">Starter page from FontHabibi</span>
+<h1>Your fonts and colors are ready.</h1>
+<p>This page uses ${ty.d} for headings, ${ty.b} for text and ${ty.u} for labels, on the "${gr.name}" colors. Replace this copy and keep the variables at the top of the stylesheet.</p>
+<a class="btn" href="#">Main button</a>
+<div class="card"><strong>Variables in use</strong><br><code>--accent: ${gr.tokens.accent}</code><br><code>--radius: ${gr.tokens.radius}px</code></div>
 </main></body></html>`;
 }
 
@@ -227,7 +229,7 @@ function syncURL() {
 
 function renderTabs() {
   $("tabs").innerHTML = CATS.map((c) =>
-    `<button class="tab ${c.id === curCat ? "on" : ""}" data-cat="${c.id}">${esc(c.label)} <span class="n">${typesFor(c.id).length}×${groundsFor(c.id).length}</span></button>`).join("");
+    `<button class="tab ${c.id === curCat ? "on" : ""}" type="button" data-cat="${c.id}" aria-pressed="${c.id === curCat}">${esc(c.label)}</button>`).join("");
   $("cat-note").textContent = (CATS.find((c) => c.id === curCat) || {}).note || "";
   $("tabs").querySelectorAll(".tab").forEach((b) => (b.onclick = () => { curCat = b.dataset.cat; renderAll(); }));
 }
@@ -235,15 +237,15 @@ function renderTabs() {
 function renderTypes() {
   const list = typesFor(curCat), sel = SEL[curCat].f;
   const keep = $("t-grid").scrollTop;
-  $("t-count").textContent = list.length + " sets";
+  $("t-count").textContent = list.length + " pairings";
   $("t-grid").innerHTML = list.map((ty) => `
-  <button class="card ${ty.id === sel ? "on" : ""}" data-t="${esc(ty.id)}" title="${esc(ty.vibe)}">
+  <button class="card ${ty.id === sel ? "on" : ""}" type="button" data-t="${esc(ty.id)}" aria-pressed="${ty.id === sel}" title="${esc(ty.vibe)}">
     <span class="t-ag" style="font-family:${esc(css(ty.d))};font-weight:${ty.dw};">Ag</span>
     <span class="body">
       <span class="nm">${esc(ty.name)}</span>
-      <span class="sub">${esc(ty.d)} · ${esc(ty.b)} · ${esc(ty.u)}</span>
+      <span class="sub">${esc([...new Set([ty.d, ty.b, ty.u])].join(", "))}</span>
     </span>
-    <span class="id">${isExtra(ty) ? "library" : esc(ty.id)}</span>
+    ${isExtra(ty) ? '<span class="from">From the library</span>' : "<span></span>"}
   </button>`).join("");
   $("t-grid").scrollTop = keep;
   $("t-grid").querySelectorAll(".card").forEach((b) => {
@@ -257,20 +259,20 @@ function renderGrounds() {
   if (gFilter !== "all") list = list.filter((g) => (gFilter === "dark" ? g.tokens.dark : !g.tokens.dark));
   const sel = SEL[curCat].g, all = groundsFor(curCat);
   const keep = $("g-grid").scrollTop;
-  $("g-count").textContent = all.length + " grounds";
-  $("g-chips").innerHTML = ["all", "light", "dark"].map((f) => `<button class="chip ${gFilter === f ? "on" : ""}" data-f="${f}">${f}</button>`).join("");
+  $("g-count").textContent = all.length + " color sets";
+  $("g-chips").innerHTML = [["all", "All"], ["light", "Light"], ["dark", "Dark"]].map(([f, label]) => `<button class="chip ${gFilter === f ? "on" : ""}" type="button" data-f="${f}" aria-pressed="${gFilter === f}">${label}</button>`).join("");
   $("g-chips").querySelectorAll(".chip").forEach((b) => (b.onclick = () => { gFilter = b.dataset.f; renderGrounds(); }));
   $("g-grid").innerHTML = list.map((g) => { const t = g.tokens; return `
-  <button class="card ${g.id === sel ? "on" : ""}" data-g="${esc(g.id)}" title="${esc(g.vibe)}">
+  <button class="card ${g.id === sel ? "on" : ""}" type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === sel}" title="${esc(g.vibe)}">
     <span class="g-sw" style="background:${t.bg};">
       <span class="aa" style="color:${t.ink};">Aa</span>
       <span class="dot" style="background:${t.accent};"></span>
     </span>
     <span class="body">
-      <span class="nm">${esc(g.name)} <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--shell-faint);">· ${t.dark ? "dark" : "light"}</span></span>
-      <span class="sub">${esc(g.vibe)}</span>
+      <span class="nm">${esc(g.name)}</span>
+      <span class="sub">${t.dark ? "Dark" : "Light"}, ${esc(g.vibe)}</span>
     </span>
-    <span class="id">${isExtra(g) ? "library" : esc(g.id)}</span>
+    ${isExtra(g) ? '<span class="from">From the library</span>' : "<span></span>"}
   </button>`; }).join("");
   $("g-grid").scrollTop = keep;
   $("g-grid").querySelectorAll(".card").forEach((b) => (b.onclick = () => { SEL[curCat].g = b.dataset.g; renderGrounds(); renderStage(); }));
@@ -279,32 +281,31 @@ function renderGrounds() {
 function renderStage() {
   const ty = curType(), gr = curGround(), t = gr.tokens;
   loadVoiceFonts(ty, true);
-  $("c-id").textContent = ty.id + " × " + gr.id;
   $("c-name").textContent = ty.name + " on " + gr.name;
   const pv = $("preview");
   const paint = () => { pv.innerHTML = BUILDERS[curCat](ty, gr); pv.classList.remove("fade"); };
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) paint();
   else { pv.classList.add("fade"); setTimeout(paint, 80); }
-  const chips = [["bg", t.bgHex], ["surface", t.surface], ["ink", t.ink], ["muted", t.muted], ["accent", t.accent], ["border", t.border]];
-  $("token-row").innerHTML = chips.map(([k, v]) => `<span class="tk"><i style="background:${v}"></i>${k} <b>${v}</b></span>`).join("") + `<span class="tk">radius <b>${t.radius}px</b></span>`;
-  const grade = gr.grade ? ` &nbsp;·&nbsp; contrast <b>${esc(gr.grade)}</b>` : "";
-  $("fonts-line").innerHTML = `<b>Display</b> ${esc(ty.d)} &nbsp;·&nbsp; <b>Body</b> ${esc(ty.b)} &nbsp;·&nbsp; <b>UI / data</b> ${esc(ty.u)}${grade} &nbsp;—&nbsp; ${esc(ty.vibe)} · ${esc(gr.vibe)}`;
-  const bc = $("btn-copy"); bc.textContent = "Copy CSS"; bc.classList.remove("ok");
+  const chips = [["Background", t.bgHex], ["Cards", t.surface], ["Text", t.ink], ["Secondary text", t.muted], ["Accent", t.accent], ["Borders", t.border]];
+  $("token-row").innerHTML = chips.map(([k, v]) => `<span class="tk"><i style="background:${v}"></i>${k} <b>${v}</b></span>`).join("") + `<span class="tk">Corners <b>${t.radius}px</b></span>`;
+  const grade = gr.grade ? ` Contrast: <b>${esc(gr.grade)}</b>.` : "";
+  $("fonts-line").innerHTML = `Headings in <b>${esc(ty.d)}</b>, text in <b>${esc(ty.b)}</b>, labels and numbers in <b>${esc(ty.u)}</b>.${grade}`;
+  for (const id of ["btn-ai", "btn-copy"]) { const b = $(id); if (b.dataset.label) b.textContent = b.dataset.label; b.classList.remove("ok"); }
   syncURL();
 }
 
 function renderSaved() {
   SAVED = SAVED.filter((s) => VALL.has(s.f) && GALL.has(s.g));
   $("tray").classList.toggle("show", SAVED.length > 0);
-  $("tray-count").textContent = "· " + SAVED.length;
+  $("tray-count").textContent = "(" + SAVED.length + ")";
   $("saved").innerHTML = SAVED.map((s, i) => {
     const ty = VALL.get(s.f), gr = GALL.get(s.g);
     loadVoiceFonts(ty, false);
     return `<span class="saved-chip">
       <span class="sw" style="background:${gr.tokens.bg};color:${gr.tokens.ink};font-family:${esc(css(ty.d))};font-weight:${ty.dw};">Ag</span>
-      <span><span class="cid">${esc(s.cat.toUpperCase())} · ${esc(ty.id)}×${esc(gr.id)}</span><br>${esc(ty.name)} on ${esc(gr.name)}</span>
-      <button class="load" data-i="${i}" title="Load this combo">↩</button>
-      <button class="x" data-i="${i}" title="Remove">✕</button>
+      <span>${esc(ty.name)} on ${esc(gr.name)}<br><span class="cid">${esc(catLabel(s.cat))}</span></span>
+      <button class="load" type="button" data-i="${i}">Open</button>
+      <button class="x" type="button" data-i="${i}">Remove</button>
     </span>`;
   }).join("");
   store.set(SAVE_KEY, SAVED);
@@ -317,12 +318,27 @@ function renderSaved() {
     if (!GROUNDS.includes(g)) EXTRA.ground = g;
     SEL[curCat] = { f: s.f, g: s.g };
     renderAll();
+    reveal();
   }));
 }
 
 function renderAll() { renderTabs(); renderTypes(); renderGrounds(); renderStage(); }
+// Bring the chosen row into view inside its list (a kit opened from the library can be far down).
+function reveal() {
+  for (const id of ["t-grid", "g-grid"]) {
+    const grid = $(id), on = grid.querySelector(".card.on");
+    if (on) grid.scrollTop += on.getBoundingClientRect().top - grid.getBoundingClientRect().top - 6;
+  }
+}
 
 /* ═══════════════ Actions ═══════════════ */
+function toast(msg) {
+  const el = $("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove("show"), 2600);
+}
 function bindActions() {
   $("btn-shuffle").onclick = () => {
     const ts = typesFor(curCat), gs = groundsFor(curCat);
@@ -331,10 +347,17 @@ function bindActions() {
   };
   $("btn-save").onclick = () => {
     const s = { cat: curCat, f: SEL[curCat].f, g: SEL[curCat].g };
-    if (!SAVED.some((x) => x.cat === s.cat && x.f === s.f && x.g === s.g)) { SAVED.push(s); renderSaved(); flash($("btn-save"), "Saved ✓"); }
+    if (!SAVED.some((x) => x.cat === s.cat && x.f === s.f && x.g === s.g)) { SAVED.push(s); renderSaved(); flash($("btn-save"), "Saved"); }
     else flash($("btn-save"), "Already saved");
   };
-  $("btn-copy").onclick = () => copyText(comboCSS(curType(), curGround(), catLabel(curCat), IDX)).then(() => flash($("btn-copy"), "Copied ✓"));
+  $("btn-ai").onclick = () => copyText(kitPrompt(curType(), curGround(), IDX, catLabel(curCat).toLowerCase())).then(() => {
+    flash($("btn-ai"), "Copied");
+    toast("Copied. Paste it at the top of your prompt in Claude, Cursor or v0.");
+  });
+  $("btn-copy").onclick = () => copyText(comboCSS(curType(), curGround(), catLabel(curCat), IDX)).then(() => {
+    flash($("btn-copy"), "Copied");
+    toast("CSS copied. Paste it into your stylesheet.");
+  });
   $("btn-dl").onclick = () => {
     const ty = curType(), gr = curGround();
     download(`${slug(ty.name)}-on-${slug(gr.name)}.css`, comboCSS(ty, gr, catLabel(curCat), IDX), "text/css");
@@ -349,15 +372,15 @@ function bindActions() {
       .replace(/\nbody\{[\s\S]*$/, "")
       + `/* apply with: <body class="theme-${slug(ty.name)}-${slug(gr.name)}"> then use the variables */\n`;
   }).join("\n\n");
-  $("btn-copy-all").onclick = () => copyText(allSavedCSS()).then(() => flash($("btn-copy-all"), "Copied ✓"));
-  $("btn-dl-all").onclick = () => { download("type-ground-saved-combos.css", allSavedCSS(), "text/css"); flash($("btn-dl-all"), "Downloaded ✓"); };
+  $("btn-copy-all").onclick = () => copyText(allSavedCSS()).then(() => flash($("btn-copy-all"), "Copied"));
+  $("btn-dl-all").onclick = () => { download("fonthabibi-saved.css", allSavedCSS(), "text/css"); flash($("btn-dl-all"), "Downloaded"); };
   $("btn-json").onclick = () => {
     const lib = {
       types: TYPES.map((t) => ({ id: t.id, name: t.name, vibe: t.vibe, categories: t.media, fonts: { display: t.d, body: t.b, ui: t.u }, displayWeight: t.dw })),
       grounds: GROUNDS.map((g) => ({ id: g.id, name: g.name, vibe: g.vibe, categories: g.media, tokens: g.tokens, contrast: g.grade })),
-      more: "The full library (all fonts, pairings and grounds) is at /data/voices.json, /data/grounds.json and /data/fonts.json",
+      more: "The full library is at /data/kits.json, /data/voices.json (font pairings), /data/grounds.json (color sets) and /data/fonts.json",
     };
-    copyText(JSON.stringify(lib, null, 2)).then(() => flash($("btn-json"), "Copied ✓"));
+    copyText(JSON.stringify(lib, null, 2)).then(() => flash($("btn-json"), "Copied"));
   };
 }
 
@@ -367,7 +390,7 @@ async function start() {
   try {
     [meta, fonts, voices, grounds] = await Promise.all(["meta", "fonts", "voices", "grounds"].map(loadData));
   } catch (err) {
-    $("preview").innerHTML = `<div style="padding:40px;color:var(--shell-muted)">The mixer could not load its data. Check your connection and reload.</div>`;
+    $("preview").innerHTML = `<div style="padding:40px;color:var(--shell-muted)">The mixer could not load. Check your connection and reload the page.</div>`;
     return;
   }
   META = meta;
@@ -389,9 +412,10 @@ async function start() {
 
   SAVED = store.get(SAVE_KEY, []).filter((s) => s && VALL.has(s.f) && GALL.has(s.g) && CATS.some((c) => c.id === s.cat));
   const c = meta.counts;
-  $("foot-counts").textContent = `${TYPES.length} curated voices × ${GROUNDS.length} curated grounds here, plus ${fmt(c.voices)} pairings and ${fmt(c.grounds)} grounds in the library`;
+  $("foot-counts").textContent = `${TYPES.length} hand-picked font pairings and ${GROUNDS.length} color sets are here. The library has all ${fmt(c.voices)} pairings, ${fmt(c.grounds)} color sets and ${fmt(c.kits || 0)} ready-made kits.`;
   bindActions();
   renderAll();
   renderSaved();
+  reveal();
 }
 start();

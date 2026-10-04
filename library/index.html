@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FontHabibi · Library</title>
-<meta name="description" content="Every Google font, over a thousand font pairings and hundreds of contrast-checked colour grounds. Search by mood, industry and language, then open any of them in the mixer.">
+<title>FontHabibi · Font and color kits for what you're building</title>
+<meta name="description" content="Ready-made font and color kits for restaurants, shops, studios, apps and more, each shown as a real website. Copy one into Claude, Cursor or your CSS, or browse every Google font, font pairing and color set.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005">
-<link rel="stylesheet" href="/assets/library.css?v=20261005">
+<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tool.css?v=20261005b">
+<link rel="stylesheet" href="/assets/library.css?v=20261005b">
 </head>
 <body>
 <a class="skip" href="#results">Skip to results</a>
@@ -18,22 +18,25 @@
   <div class="topbar-in">
     <a class="brand" href="/">font<i>habibi</i></a>
     <nav class="topnav" aria-label="Main">
-      <a href="/type-ground-mixer-pro">Mixer</a>
       <a href="/library/" aria-current="page">Library</a>
+      <a href="/type-ground-mixer-pro">Mixer</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
   <section class="lib-head">
-    <h1>The library</h1>
-    <p class="lede" id="lede">Every Google font, ready-made font pairings and contrast-checked colour grounds. Filter by mood, industry or language, then open anything in the mixer.</p>
+    <h1>Fonts and colors that already go together</h1>
+    <p class="lede" id="lede">Pick what you're building and get a ready-made kit of fonts and colors, shown as a real website. Copy it into Claude, Cursor or your own CSS in one click.</p>
     <div class="tabs" role="tablist" aria-label="Library sections">
+      <button class="tab" role="tab" id="tab-kits" aria-controls="results" data-tab="kits">Kits <span class="n" data-count="kits"></span></button>
+      <button class="tab" role="tab" id="tab-voices" aria-controls="results" data-tab="voices">Font pairings <span class="n" data-count="voices"></span></button>
+      <button class="tab" role="tab" id="tab-grounds" aria-controls="results" data-tab="grounds">Colors <span class="n" data-count="grounds"></span></button>
       <button class="tab" role="tab" id="tab-fonts" aria-controls="results" data-tab="fonts">Fonts <span class="n" data-count="fonts"></span></button>
-      <button class="tab" role="tab" id="tab-voices" aria-controls="results" data-tab="voices">Pairings <span class="n" data-count="voices"></span></button>
-      <button class="tab" role="tab" id="tab-grounds" aria-controls="results" data-tab="grounds">Grounds <span class="n" data-count="grounds"></span></button>
     </div>
   </section>
+
+  <section class="building" id="building" aria-label="What are you building?" hidden></section>
 
   <div class="lib">
     <aside class="filters" id="filters" aria-label="Filters">
@@ -48,9 +51,10 @@
       </details>
     </aside>
 
-    <section class="results-wrap" aria-labelledby="result-line">
+    <section class="results-wrap" aria-label="Results">
       <div class="toolbar">
         <p class="result-line" id="result-line" aria-live="polite"></p>
+        <div class="bar" id="bar"></div>
         <div class="tools" id="tools"></div>
       </div>
       <div class="results" id="results" role="tabpanel"></div>
@@ -61,11 +65,11 @@
 </main>
 
 <footer class="foot wrap">
-  <span>Font data from Google Fonts. Every font here is free for personal and commercial use.</span>
-  <span>Contrast checked against WCAG 2.2: AA means every text colour reads at 4.5:1 or better.</span>
+  <span>Every font here is a Google font, free for personal and commercial use.</span>
+  <span>Contrast is checked against WCAG 2.2. AA means every text color reads at 4.5:1 or better.</span>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="/assets/library.js?v=20261005"></script>
+<script type="module" src="/assets/library.js?v=20261005b"></script>
 </body>
 </html>

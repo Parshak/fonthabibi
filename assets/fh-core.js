@@ -9,7 +9,7 @@
 // The version string makes browsers that cached an older copy fetch the new
 // files. Cloudflare revalidates on every visit anyway, so it only needs a bump
 // if a long cache header is ever added again.
-const DATA_VERSION = "20261005";
+const DATA_VERSION = "20261005b";
 const cache = {};
 export function loadData(name) {
   if (!cache[name]) {
@@ -89,7 +89,7 @@ const PS = {
   Cyrl: "cyrillic", Grek: "greek",
 };
 export const SAMPLES = {
-  latin: "Pick a voice, pick a ground.",
+  latin: "Fonts and colors that go together",
   cyrillic: "Выбери голос и фон.",
   greek: "Διάλεξε φωνή και φόντο.",
   devanagari: "नमस्ते संसार, सुन्दर अक्षर",
@@ -182,13 +182,13 @@ export function comboCSS(v, g, mediumLabel, idx) {
 @import url('${voiceImportURL(v, idx)}');
 
 :root{
-  /* type: ${v.d} / ${v.b} / ${v.u} */
+  /* fonts: ${v.d} (headings), ${v.b} (text), ${v.u} (labels and numbers) */
   --font-display: ${cssStack(D, v.d)};
   --font-display-weight: ${v.dw || 700};
   --font-body:    ${cssStack(B, v.b)};
   --font-ui:      ${cssStack(U, v.u)};
 
-  /* ground: ${g.name}, ${g.vibe} */
+  /* colors: ${g.name}, ${g.vibe} */
   --bg: ${t.bg};
   --bg-solid: ${t.bgHex};
   --surface: ${t.surface};
@@ -211,6 +211,56 @@ code, kbd, .numeric{ font-family: var(--font-ui); }
 .card{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); }
 .btn{ background: var(--accent); color: var(--accent-ink); border-radius: var(--radius); font-family: var(--font-ui); font-weight:700; }
 a{ color: var(--accent); }
+`;
+}
+
+/* ---------- prompt for AI builders ----------
+   Plain words first (what each font and color is for), then the import
+   line and CSS variables, so Claude, Cursor or v0 can use it as is. */
+export function kitPrompt(v, g, idx, label) {
+  const t = g.tokens;
+  const { D, B, U } = voiceFonts(v, idx);
+  const contrastNote = g.grade === "AA large"
+    ? "Contrast: body text passes WCAG AA; use the accent color for large text and buttons only."
+    : `Contrast: every text color passes WCAG ${g.grade === "AAA" ? "AAA for main text and AA" : "AA"} (4.5:1 or better).`;
+  return `Design system for this project${label ? ` (${label})` : ""}, from FontHabibi.
+Use only these fonts and colors for everything you build. Do not add other fonts or colors.
+
+FONTS (Google Fonts, free for commercial use)
+- Headings: ${v.d}, weight ${v.dw || 700}
+- Body text: ${v.b}
+- Labels, buttons, numbers and code: ${v.u}
+Load them in <head>:
+<link href="${voiceImportURL(v, idx)}" rel="stylesheet">
+
+COLORS
+- Page background: ${t.bgHex}${t.bg.includes("gradient") ? ` (full background: ${t.bg})` : ""}
+- Cards and panels: ${t.surface}
+- Main text: ${t.ink}
+- Secondary text: ${t.muted}
+- Accent for buttons and links: ${t.accent}
+- Text on accent buttons: ${t.accentInk}
+- Borders and dividers: ${t.border}
+- Corner radius: ${t.radius}px
+- ${t.dark ? "This is a dark theme." : "This is a light theme."}
+${contrastNote}
+
+CSS VARIABLES
+:root{
+  --font-display: ${cssStack(D, v.d)};
+  --font-display-weight: ${v.dw || 700};
+  --font-body: ${cssStack(B, v.b)};
+  --font-ui: ${cssStack(U, v.u)};
+  --bg: ${t.bg};
+  --bg-solid: ${t.bgHex};
+  --surface: ${t.surface};
+  --ink: ${t.ink};
+  --ink-muted: ${t.muted};
+  --accent: ${t.accent};
+  --accent-ink: ${t.accentInk};
+  --border: ${t.border};
+  --radius: ${t.radius}px;
+}
 `;
 }
 

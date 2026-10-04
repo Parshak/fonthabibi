@@ -3,199 +3,187 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FontHabibi · The Mixer</title>
+<title>FontHabibi · The mixer</title>
+<meta name="description" content="Try any font pairing on any color set and see it as a real website, app, dashboard, article or docs page. Copy the result for your AI builder or your stylesheet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005">
+<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tool.css?v=20261005b">
 <style>
-  :root{
-    --shell-bg:#14161B; --shell-panel:#1B1E25; --shell-panel-2:#20242D;
-    --shell-ink:#ECEDEF; --shell-muted:#9AA0AB; --shell-faint:#6F7581;
-    --shell-line:#2B3039; --shell-accent:#7D95FF; --shell-accent-ink:#0C1020;
-    --shell-ok:#5BD6A0;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{color-scheme:dark}
-  body{background:var(--shell-bg);color:var(--shell-ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
-  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-  .mono{font-family:'Space Mono',monospace}
-  .wrap{max-width:1500px;margin:0 auto;padding:34px clamp(16px,3vw,44px) 80px}
+  /* The mixer's own layout. Colors and fonts for the frame come from tool.css. */
+  .mixer{padding-top:30px;padding-bottom:70px}
 
-  .wrap>header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:24px}
-  .kicker{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--shell-muted)}
-  h1{font-weight:800;font-size:clamp(26px,3.2vw,40px);line-height:1.03;letter-spacing:-.01em;margin-top:8px}
-  h1 em{font-style:normal;color:var(--shell-accent)}
-  .lede{margin-top:10px;max-width:62ch;font-size:14.5px;line-height:1.6;color:var(--shell-muted)}
-  .ghost-btn{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.05em;padding:9px 14px;border:1px solid var(--shell-line);border-radius:8px;color:var(--shell-muted);transition:border-color .15s,color .15s}
-  .ghost-btn:hover{border-color:var(--shell-accent);color:var(--shell-ink)}
+  .mx-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px;margin-bottom:24px}
+  .mx-head h1{font-family:var(--font-title);font-weight:700;font-size:clamp(29px,3.5vw,46px);line-height:1.05;letter-spacing:-.02em}
+  .lede{margin-top:10px;max-width:60ch;font-size:16.5px;line-height:1.55;color:var(--shell-muted)}
+  .ghost-btn{display:inline-block;font-size:14px;font-weight:500;padding:9px 15px;border:1px solid var(--shell-line-2);border-radius:99px;color:var(--shell-ink);background:var(--shell-panel);text-decoration:none;transition:border-color .15s}
+  .ghost-btn:hover{border-color:var(--shell-accent)}
 
-  .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--shell-line);padding-bottom:14px;margin-bottom:14px}
-  .tab{display:flex;align-items:baseline;gap:8px;padding:9px 15px;border-radius:9px;border:1px solid transparent;color:var(--shell-muted);font-weight:600;font-size:14px;transition:background .15s,color .15s}
-  .tab .n{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--shell-faint)}
-  .tab:hover{color:var(--shell-ink);background:var(--shell-panel)}
-  .tab.on{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
-  .tab.on .n{color:var(--shell-accent-ink);opacity:.65}
-  .cat-note{font-size:13px;color:var(--shell-muted);margin:0 0 20px;max-width:82ch;line-height:1.55}
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--shell-panel-2);border-radius:14px;width:max-content;max-width:100%;margin-bottom:12px}
+  .tab{padding:9px 16px;border-radius:10px;color:var(--shell-muted);font-weight:500;font-size:15px;transition:background .15s,color .15s}
+  .tab:hover{color:var(--shell-ink)}
+  .tab.on{background:var(--shell-panel);color:var(--shell-ink);font-weight:600;box-shadow:0 1px 2px rgba(31,26,33,.08),0 0 0 1px var(--shell-line)}
+  .cat-note{font-size:14.5px;color:var(--shell-muted);margin:0 0 20px;max-width:70ch;line-height:1.55}
 
-  /* Stage */
-  /* Side-by-side: sticky preview left, picker rail right — select and see at once */
+  /* Preview on the left stays in view while you pick on the right */
   .layout{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:22px;align-items:start}
-  @media(max-width:1160px){.layout{grid-template-columns:minmax(0,1fr) 340px}}
-  .stage{display:flex;flex-direction:column;gap:12px;position:sticky;top:14px}
+  .stage{display:flex;flex-direction:column;gap:12px;position:sticky;top:74px}
   .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
-  @media(max-width:940px){
-    .layout{grid-template-columns:1fr}
-    .stage{position:sticky;top:0;z-index:30;background:var(--shell-bg);padding:8px 0 10px;border-bottom:1px solid var(--shell-line)}
-    .preview{max-height:44vh;overflow:auto}
-    .tokens,.fonts-line{display:none}
-    .stage .combo .nm{font-size:15px}
-  }
-  .stage-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-  .combo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .combo .id{font-family:'Space Mono',monospace;font-size:12px;color:var(--shell-accent)}
-  .combo .nm{font-weight:800;font-size:19px}
-  .actions{display:flex;gap:8px;flex-wrap:wrap}
-  .a-btn{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.04em;padding:10px 15px;border-radius:9px;border:1px solid var(--shell-line);color:var(--shell-muted);transition:border-color .15s,color .15s,background .15s;font-weight:700}
-  .a-btn:hover{border-color:var(--shell-accent);color:var(--shell-ink)}
-  .a-btn.primary{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
-  .a-btn.primary:hover{filter:brightness(1.1)}
-  .a-btn.ok{background:var(--shell-ok);color:#082018;border-color:var(--shell-ok)}
-  .a-btn:focus-visible,.tab:focus-visible,.ghost-btn:focus-visible,.card:focus-visible,.chip:focus-visible{outline:2px solid var(--shell-accent);outline-offset:2px}
+  .stage-bar{display:flex;justify-content:space-between;align-items:center;gap:10px 14px;flex-wrap:wrap}
+  .combo .nm{font-weight:600;font-size:19px;line-height:1.25}
+  .actions{display:flex;gap:6px;flex-wrap:wrap}
+  .a-btn{font-size:13.5px;font-weight:500;padding:8px 13px;border-radius:99px;border:1px solid var(--shell-line-2);background:var(--shell-panel);color:var(--shell-ink);transition:border-color .15s,background .15s}
+  .a-btn:hover{border-color:var(--shell-accent)}
+  .a-btn.primary{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent);font-weight:600}
+  .a-btn.primary:hover{filter:brightness(1.12)}
+  .a-btn.ok,.a-btn.primary.ok{background:var(--shell-ok);color:#fff;border-color:var(--shell-ok)}
 
-  .preview-shell{border:1px solid var(--shell-line);border-radius:16px;overflow:hidden;background:var(--shell-panel)}
+  .preview-shell{border:1px solid var(--shell-line-2);border-radius:16px;overflow:hidden;background:var(--shell-panel);box-shadow:0 1px 2px rgba(31,26,33,.05)}
   .preview{min-height:520px;transition:opacity .16s}
   .preview.fade{opacity:0}
-  @media(prefers-reduced-motion:reduce){.preview{transition:none}}
 
   .tokens{display:flex;flex-wrap:wrap;gap:8px}
-  .tk{display:flex;align-items:center;gap:7px;padding:6px 10px 6px 7px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--shell-muted)}
-  .tk i{width:15px;height:15px;border-radius:4px;border:1px solid rgba(255,255,255,.18);flex:none}
-  .tk b{color:var(--shell-ink);font-weight:400}
-  .fonts-line{font-size:12.5px;color:var(--shell-muted);line-height:1.7}
+  .tk{display:flex;align-items:center;gap:7px;padding:6px 11px 6px 7px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:99px;font-size:13px;color:var(--shell-muted)}
+  .tk i{width:16px;height:16px;border-radius:99px;border:1px solid rgba(31,26,33,.14);flex:none}
+  .tk b{color:var(--shell-ink);font-weight:500}
+  .fonts-line{font-size:14px;color:var(--shell-muted);line-height:1.7}
   .fonts-line b{color:var(--shell-ink);font-weight:600}
 
-  /* Pickers — compact rows in a side rail, always next to the preview */
-  .panel{background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:10px}
+  /* Pickers: compact rows in a side column, always next to the preview */
+  .panel{background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
   .panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .panel-head h3{font-size:15px;font-weight:800}
-  .panel-head .count{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--shell-faint)}
+  .panel-head h2{font-size:16px;font-weight:600}
+  .panel-head .count{font-size:13px;color:var(--shell-faint)}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
-  .chip{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.04em;padding:5px 11px;border:1px solid var(--shell-line);border-radius:99px;color:var(--shell-muted)}
-  .chip.on{background:var(--shell-ink);color:var(--shell-bg);border-color:var(--shell-ink)}
+  .chips:empty{display:none}
+  .chip{font-size:13px;padding:5px 12px;border:1px solid var(--shell-line);border-radius:99px;color:var(--shell-ink)}
+  .chip:hover{border-color:var(--shell-line-2)}
+  .chip.on{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
   .grid{display:flex;flex-direction:column;gap:6px;max-height:min(37vh,380px);overflow:auto;padding:2px;scrollbar-width:thin;overscroll-behavior:contain}
-  @media(max-width:940px){.grid{max-height:300px}}
 
-  .card{text-align:left;background:var(--shell-panel-2);border:1px solid var(--shell-line);border-radius:10px;transition:border-color .12s;display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:11px;padding:7px 11px 7px 7px}
-  .card:hover{border-color:#3A4150}
-  .card.on{border-color:var(--shell-accent);box-shadow:0 0 0 1px var(--shell-accent)}
+  .card{text-align:left;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:12px;transition:border-color .12s;display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:11px;padding:7px 11px 7px 7px}
+  .card:hover{border-color:var(--shell-line-2)}
+  .card.on{border-color:var(--shell-accent);box-shadow:0 0 0 1px var(--shell-accent);background:var(--shell-accent-soft)}
   .card .body{display:flex;flex-direction:column;gap:1px;min-width:0}
-  .card .nm{font-weight:700;font-size:13px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .card .id{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--shell-faint);align-self:start;padding-top:2px}
-  .card .sub{font-size:10.5px;color:var(--shell-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .t-ag{width:46px;height:46px;border-radius:8px;background:var(--shell-panel);border:1px solid var(--shell-line);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--shell-ink)}
-  .g-sw{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(255,255,255,.14)}
-  .g-sw .aa{font-size:15px;font-weight:700;font-family:'Archivo',sans-serif}
+  .card .nm{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .sub{font-size:12.5px;color:var(--shell-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .from{font-size:12px;color:var(--shell-accent);font-weight:500}
+  .t-ag{width:46px;height:46px;border-radius:9px;background:var(--shell-panel-2);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--shell-ink)}
+  .card.on .t-ag{background:var(--shell-panel)}
+  .g-sw{width:46px;height:46px;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(31,26,33,.14)}
+  .g-sw .aa{font-size:15px;font-weight:700}
   .g-sw .dot{width:9px;height:9px;border-radius:99px}
 
-  /* Saved tray */
-  .tray{margin-top:26px;border:1px dashed var(--shell-line);border-radius:14px;padding:16px;display:none;flex-direction:column;gap:12px}
+  /* Saved combinations */
+  .tray{margin-top:26px;border:1px dashed var(--shell-line-2);border-radius:16px;padding:16px;display:none;flex-direction:column;gap:12px;background:var(--shell-panel)}
   .tray.show{display:flex}
   .tray-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-  .tray-head h3{font-size:15px;font-weight:800}
+  .tray-head h2{font-size:16px;font-weight:600}
+  .tray-head h2 span{color:var(--shell-faint);font-weight:400}
   .saved{display:flex;flex-wrap:wrap;gap:8px}
-  .saved-chip{display:flex;align-items:center;gap:9px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:9px;padding:7px 8px 7px 7px;font-size:12px}
-  .saved-chip .sw{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
-  .saved-chip .cid{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--shell-faint)}
-  .saved-chip .x{color:var(--shell-faint);padding:2px 5px;border-radius:5px}
-  .saved-chip .x:hover{color:#FF8A80;background:var(--shell-panel-2)}
-  .saved-chip .load{padding:2px 4px}
-  .saved-chip .load:hover{color:var(--shell-accent)}
+  .saved-chip{display:flex;align-items:center;gap:10px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:12px;padding:7px 8px 7px 7px;font-size:13.5px;line-height:1.3}
+  .saved-chip .sw{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none;border:1px solid rgba(31,26,33,.12)}
+  .saved-chip .cid{font-size:12px;color:var(--shell-faint)}
+  .saved-chip .load,.saved-chip .x{font-size:13px;padding:4px 8px;border-radius:99px;color:var(--shell-muted)}
+  .saved-chip .load:hover{color:var(--shell-accent);background:var(--shell-accent-soft)}
+  .saved-chip .x:hover{color:#B42318;background:#FDECEA}
 
-  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--shell-line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--shell-faint)}
+  .mx-foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--shell-line);display:flex;justify-content:space-between;align-items:baseline;gap:10px 24px;flex-wrap:wrap;font-size:13.5px;line-height:1.5;color:var(--shell-faint)}
+  .mx-foot button{color:var(--shell-muted);text-decoration:underline;text-underline-offset:3px}
+  .mx-foot button:hover{color:var(--shell-ink)}
+  .mx-foot button.ok{color:var(--shell-ok)}
+
+  @media(max-width:1160px){.layout{grid-template-columns:minmax(0,1fr) 340px}}
+  @media(max-width:940px){
+    /* On a phone the preview sticks to the top instead of the site bar */
+    .topbar{position:static}
+    .layout{grid-template-columns:1fr}
+    .stage{top:0;z-index:30;background:var(--shell-bg);padding:8px 0 10px;border-bottom:1px solid var(--shell-line)}
+    .preview{max-height:44vh;overflow:auto}
+    .tokens,.fonts-line{display:none}
+    .combo .nm{font-size:16px}
+    .grid{max-height:300px}
+  }
 </style>
 </head>
 <body>
+<a class="skip" href="#preview">Skip to the preview</a>
 <header class="topbar">
   <div class="topbar-in">
     <a class="brand" href="/">font<i>habibi</i></a>
     <nav class="topnav" aria-label="Main">
-      <a href="/type-ground-mixer-pro" aria-current="page">Mixer</a>
       <a href="/library/">Library</a>
+      <a href="/type-ground-mixer-pro" aria-current="page">Mixer</a>
     </nav>
   </div>
 </header>
-<div class="wrap">
-  <header>
+
+<main class="wrap mixer">
+  <header class="mx-head">
     <div>
-      <div class="kicker">FontHabibi · The Mixer</div>
-      <h1>The Mixer. <em>Any voice, any ground, per medium.</em></h1>
-      <p class="lede">Pick the medium, then pick a type set and a ground independently, every combination previewed in the real thing. Combine, save the pairs you like, and export them as ready-to-paste CSS. Anything you open from the library shows up at the top of the lists.</p>
+      <h1>The mixer</h1>
+      <p class="lede">Try any font pairing on any color set and see it as a real page. When it looks right, copy it for your AI builder or your stylesheet.</p>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="ghost-btn" href="/library/" style="text-decoration:none">Browse the full library</a>
-      <button class="ghost-btn" id="btn-json">Copy curated set as JSON</button>
-    </div>
+    <a class="ghost-btn" href="/library/">Browse ready-made kits</a>
   </header>
 
-  <nav class="tabs" id="tabs" aria-label="Medium"></nav>
+  <nav class="tabs" id="tabs" aria-label="What are you making?"></nav>
   <p class="cat-note" id="cat-note"></p>
 
   <div class="layout">
-  <div class="stage">
-    <div class="stage-bar">
-      <div class="combo">
-        <span class="id" id="c-id"></span>
-        <span class="nm" id="c-name"></span>
+    <div class="stage">
+      <div class="stage-bar">
+        <div class="combo"><span class="nm" id="c-name"></span></div>
+        <div class="actions">
+          <button class="a-btn primary" id="btn-ai" type="button">Copy for AI</button>
+          <button class="a-btn" id="btn-copy" type="button">Copy CSS</button>
+          <button class="a-btn" id="btn-save" type="button">Save</button>
+          <button class="a-btn" id="btn-shuffle" type="button">Shuffle</button>
+          <button class="a-btn" id="btn-dl" type="button">Download CSS</button>
+          <button class="a-btn" id="btn-starter" type="button">Download page</button>
+        </div>
       </div>
-      <div class="actions">
-        <button class="a-btn" id="btn-shuffle">⤳ Shuffle</button>
-        <button class="a-btn" id="btn-save">☆ Save combo</button>
-        <button class="a-btn" id="btn-copy">Copy CSS</button>
-        <button class="a-btn" id="btn-dl">⬇ .css</button>
-        <button class="a-btn primary" id="btn-starter">⬇ Starter page</button>
-      </div>
+      <div class="preview-shell"><div class="preview" id="preview" tabindex="-1"></div></div>
+      <div class="tokens" id="token-row"></div>
+      <p class="fonts-line" id="fonts-line"></p>
     </div>
-    <div class="preview-shell"><div class="preview" id="preview"></div></div>
-    <div class="tokens" id="token-row"></div>
-    <p class="fonts-line" id="fonts-line"></p>
-  </div>
 
-  <div class="rail">
-    <section class="panel">
-      <div class="panel-head">
-        <h3>Type</h3><span class="count" id="t-count"></span>
-      </div>
-      <div class="chips" id="t-chips"></div>
-      <div class="grid" id="t-grid"></div>
-    </section>
-    <section class="panel">
-      <div class="panel-head">
-        <h3>Ground</h3><span class="count" id="g-count"></span>
-      </div>
-      <div class="chips" id="g-chips"></div>
-      <div class="grid" id="g-grid"></div>
-    </section>
+    <div class="rail">
+      <section class="panel" aria-labelledby="t-title">
+        <div class="panel-head">
+          <h2 id="t-title">Fonts</h2><span class="count" id="t-count"></span>
+        </div>
+        <div class="chips" id="t-chips"></div>
+        <div class="grid" id="t-grid"></div>
+      </section>
+      <section class="panel" aria-labelledby="g-title">
+        <div class="panel-head">
+          <h2 id="g-title">Colors</h2><span class="count" id="g-count"></span>
+        </div>
+        <div class="chips" id="g-chips"></div>
+        <div class="grid" id="g-grid"></div>
+      </section>
+    </div>
   </div>
-  </div><!-- /layout -->
 
   <div class="tray" id="tray">
     <div class="tray-head">
-      <h3>Saved combos <span class="mono" style="color:var(--shell-faint);font-size:11px" id="tray-count"></span></h3>
+      <h2>Saved <span id="tray-count"></span></h2>
       <div class="actions">
-        <button class="a-btn" id="btn-copy-all">Copy all as CSS</button>
-        <button class="a-btn" id="btn-dl-all">⬇ Download all (.css)</button>
+        <button class="a-btn" id="btn-copy-all" type="button">Copy all as CSS</button>
+        <button class="a-btn" id="btn-dl-all" type="button">Download all as CSS</button>
       </div>
     </div>
     <div class="saved" id="saved"></div>
   </div>
 
-  <footer>
+  <footer class="mx-foot">
     <span id="foot-counts"></span>
-    <span class="mono">display · body · ui — bg · surface · ink · muted · accent · border · radius</span>
+    <button id="btn-json" type="button">Copy this hand-picked list as JSON</button>
   </footer>
-</div>
+</main>
 
-<script type="module" src="/assets/mixer.js?v=20261005"></script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/assets/mixer.js?v=20261005b"></script>
 </body>
 </html>

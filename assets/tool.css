@@ -1,38 +1,40 @@
 /* ============================================================
-   FontHabibi tool shell: the quiet dark frame around the
-   library (and later the mixer). The content inside is the
-   colourful part, so the frame stays neutral.
+   FontHabibi tool pages (library, mixer): a light frame in the
+   same family as the home page. Fraunces for page titles,
+   Outfit for everything you read and click, plum for actions.
+   The frame stays quiet so the kits and specimens carry the color.
    ============================================================ */
 :root{
-  --shell-bg:#14161B; --shell-panel:#1B1E25; --shell-panel-2:#20242D; --shell-panel-3:#262B35;
-  --shell-ink:#ECEDEF; --shell-muted:#9AA0AB; --shell-faint:#6F7581;
-  --shell-line:#2B3039; --shell-line-2:#3A4150;
-  --shell-accent:#7D95FF; --shell-accent-ink:#0C1020;
-  --shell-ok:#5BD6A0;
+  --shell-bg:#F7F5F2; --shell-panel:#FFFFFF; --shell-panel-2:#F2EFEB; --shell-panel-3:#E9E4DF;
+  --shell-ink:#1F1A21; --shell-muted:#5F5863; --shell-faint:#736C76;
+  --shell-line:#E4DFD9; --shell-line-2:#CDC6BF;
+  --shell-accent:#7A2E6D; --shell-accent-ink:#FFF6FC; --shell-accent-soft:#F4E9F1;
+  --shell-ok:#1F7A4D;
+  --font-ui:'Outfit',system-ui,sans-serif; --font-title:'Fraunces',Georgia,serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{color-scheme:dark}
-body{background:var(--shell-bg);color:var(--shell-ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;line-height:1.4}
+html{color-scheme:light}
+body{background:var(--shell-bg);color:var(--shell-ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;min-height:100vh;line-height:1.45}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 a{color:inherit}
 input,select{font:inherit}
 .wrap{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,44px)}
 
-.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--shell-accent);color:var(--shell-accent-ink);padding:10px 14px;border-radius:8px;font-weight:700}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--shell-accent);color:var(--shell-accent-ink);padding:10px 14px;border-radius:8px;font-weight:600}
 .skip:focus{left:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--shell-line);background:rgba(20,22,27,.9);backdrop-filter:blur(8px)}
-.topbar-in{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,44px);height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--shell-line);background:rgba(247,245,242,.9);backdrop-filter:blur(8px)}
+.topbar-in{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,44px);height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{font-family:'Habibi',Georgia,serif;font-size:22px;text-decoration:none;color:var(--shell-ink)}
 .brand i{font-style:normal;color:var(--shell-accent)}
 .topnav{display:flex;gap:4px}
-.topnav a{text-decoration:none;color:var(--shell-muted);font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px}
-.topnav a:hover{color:var(--shell-ink);background:var(--shell-panel)}
-.topnav a[aria-current="page"]{color:var(--shell-ink);background:var(--shell-panel-2)}
+.topnav a{text-decoration:none;color:var(--shell-muted);font-weight:500;font-size:15px;padding:8px 13px;border-radius:99px}
+.topnav a:hover{color:var(--shell-ink);background:var(--shell-panel-2)}
+.topnav a[aria-current="page"]{color:var(--shell-accent-ink);background:var(--shell-accent)}
 
 :focus-visible{outline:2px solid var(--shell-accent);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--shell-ink);color:var(--shell-bg);font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:opacity .18s,transform .18s;z-index:90}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--shell-ink);color:#fff;font-weight:500;font-size:14px;padding:11px 16px;border-radius:12px;box-shadow:0 14px 34px rgba(31,26,33,.22);transition:opacity .18s,transform .18s;z-index:90;max-width:calc(100vw - 32px)}
 .toast.show{opacity:1;transform:translate(-50%,0)}

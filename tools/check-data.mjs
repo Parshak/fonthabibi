@@ -12,6 +12,7 @@ const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, "data", f), "utf8
 const { fonts } = read("fonts.json");
 const { voices } = read("voices.json");
 const { grounds } = read("grounds.json");
+const { kits } = read("kits.json");
 const media = JSON.parse(fs.readFileSync(path.join(here, "src", "media.json"), "utf8"));
 
 const problems = [];
@@ -33,6 +34,14 @@ for (const g of grounds) {
   if (!g.curated && !["AA", "AAA"].includes(g.grade)) problems.push(`ground ${g.id}: generated ground below AA`);
 }
 
+const vIds = new Set(voices.map((v) => v.id)), gIds = new Set(grounds.map((g) => g.id)), kIds = new Set();
+for (const k of kits) {
+  if (!vIds.has(k.v)) problems.push(`kit ${k.id}: unknown voice ${k.v}`);
+  if (!gIds.has(k.g)) problems.push(`kit ${k.id}: unknown ground ${k.g}`);
+  if (kIds.has(k.id)) problems.push(`duplicate kit id ${k.id}`);
+  kIds.add(k.id);
+}
+
 const LANG_LABEL = {
   latin: "Latin", "latin-ext": "Latin Extended", cyrillic: "Cyrillic", greek: "Greek", vietnamese: "Vietnamese",
   devanagari: "Devanagari (Hindi, Nepali, Marathi)", arabic: "Arabic", hebrew: "Hebrew", thai: "Thai", bengali: "Bengali",
@@ -48,7 +57,7 @@ const INDUSTRIES = [
   ["education", "Education & tutoring"], ["kids", "Kids & family"], ["wedding", "Wedding & events"], ["fashion", "Fashion & boutique"],
   ["art", "Art & photography"], ["nightlife", "Music & nightlife"], ["travel", "Travel & hospitality"], ["community", "Nonprofit & community"],
   ["agency", "Agency & studio"], ["publishing", "Publishing & news"], ["gaming", "Gaming"], ["portfolio", "Personal portfolio"],
-].map(([id, label]) => ({ id, label, voices: voices.filter((v) => v.ind.includes(id)).length, grounds: grounds.filter((g) => g.ind.includes(id)).length }));
+].map(([id, label]) => ({ id, label, kits: kits.filter((k) => k.ind.includes(id)).length, voices: voices.filter((v) => v.ind.includes(id)).length, grounds: grounds.filter((g) => g.ind.includes(id)).length }));
 
 const count = (list, key) => {
   const m = {};
@@ -67,6 +76,7 @@ const meta = {
     grounds: grounds.length,
     curatedGrounds: grounds.filter((g) => g.curated).length,
     combos: voices.length * grounds.length,
+    kits: kits.length,
   },
   media: media.map((m) => ({ id: m.id, label: m.label, note: m.note })),
   industries: INDUSTRIES,

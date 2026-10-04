@@ -174,7 +174,8 @@ function describe(g) {
   if (t.radius >= 16 && vivid) mood.add("playful");
   if ((t.dark && fam === "yellow") || (!t.dark && warm && ["red", "pink"].includes(fam) && t.radius <= 6 && aC < 0.15)) mood.add("luxurious");
   if ((t.dark && ["teal", "blue", "green"].includes(fam) && vivid) || (!t.dark && cool && fam === "blue" && t.radius <= 10)) mood.add("techy");
-  if (["green", "teal"].includes(fam) || (fam === "orange" && aC < 0.08)) mood.add("natural");
+  // Neon limes and mints are not "natural", however green they are.
+  if ((["green", "teal"].includes(fam) && aC < 0.15) || (fam === "orange" && aC < 0.08)) mood.add("natural");
   if (!t.dark && t.radius <= 6 && (["red", "blue", "mono"].includes(fam))) mood.add("editorial");
   if (!t.dark && bL > 0.96 && ["green", "teal", "blue"].includes(fam) && !warm) mood.add("fresh");
 
@@ -186,7 +187,7 @@ function describe(g) {
 
   const ind = new Set();
   const m = (x) => mood.has(x);
-  if (m("warm") && (["red", "orange", "yellow", "green"].includes(fam) || m("natural"))) ind.add("restaurant");
+  if (m("warm") && (["red", "orange", "yellow"].includes(fam) || m("natural"))) ind.add("restaurant");
   if (!t.dark && m("warm") && ["pink", "orange", "yellow", "red"].includes(fam)) ind.add("bakery");
   if ((t.dark && ["red", "blue", "yellow", "mono"].includes(fam)) || (m("editorial") && ["red", "mono"].includes(fam))) ind.add("barber");
   if ((m("calm") || m("luxurious")) && ["pink", "violet", "green", "teal", "yellow"].includes(fam)) ind.add("beauty");

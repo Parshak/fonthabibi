@@ -219,10 +219,10 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
   <h1>Stop shipping <em>default-looking</em> builds.</h1>
   <p>I kept making projects that all came out wearing the same cream page and the same serif, so I built this. FontHabibi gives your project a voice and a ground: complete font and color systems for websites, apps, tools, articles, and docs. Pick, copy, paste into your prompt. Free, no signup, forever.</p>
   <div class="hero-ctas">
-    <a class="btn" href="/type-ground-mixer-pro">Open the mixer</a>
-    <a class="btn ghost" href="/library/">Browse the library</a>
+    <a class="btn" href="/library/">Browse ready-made kits</a>
+    <a class="btn ghost" href="/type-ground-mixer-pro">Open the mixer</a>
   </div>
-  <span class="hero-proof mono" id="proof">1,884 fonts · 1,264 pairings · 340 grounds · $0</span>
+  <span class="hero-proof mono" id="proof">522 kits · 1,884 fonts · 1,264 pairings · 340 color sets · $0</span>
 </header>
 
 <!-- The signature: this chip re-skins the entire page with real kits -->
@@ -332,11 +332,11 @@ document.getElementById("wear-btn").addEventListener("click",()=>{
    The proof line under the hero reads the real numbers from
    /data/meta.json, so it stays right as the library grows.
    ============================================================ */
-fetch("/data/meta.json?v=20261005").then(r => r.ok ? r.json() : null).then(meta => {
+fetch("/data/meta.json?v=20261005b").then(r => r.ok ? r.json() : null).then(meta => {
   if (!meta) return;
   const n = x => x.toLocaleString("en-AU");
   const c = meta.counts;
-  document.getElementById("proof").textContent = `${n(c.fonts)} fonts · ${n(c.voices)} pairings · ${n(c.grounds)} grounds · $0`;
+  document.getElementById("proof").textContent = `${c.kits ? n(c.kits) + " kits · " : ""}${n(c.fonts)} fonts · ${n(c.voices)} pairings · ${n(c.grounds)} color sets · $0`;
 }).catch(() => {});
 
 /* ============================================================
