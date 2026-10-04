@@ -8,7 +8,7 @@ Every AI-generated build comes out wearing the same cream page and the same seri
 
 ## What's inside
 
-- **Kits** (`/library/`): 522 ready-made font and color kits for 24 kinds of business, each shown as a small website. Pick what you're building, then **Copy for AI** or **Copy CSS**
+- **Kits** (`/library/`): 555 ready-made font and color kits for 24 kinds of business, each shown as a small website. Pick what you're building, then **Copy for AI** or **Copy CSS**
 - **The rest of the library**: 1,264 font pairings, 340 color sets and every Google font (1,884), searchable by mood, industry, language and contrast
 - **The mixer** (`/type-ground-mixer-pro`): any font pairing on any color set, previewed as a website, app, dashboard, article or docs page
 - **Contrast checked**: every generated ground passes WCAG AA (4.5:1) for body text, muted text, links and button labels

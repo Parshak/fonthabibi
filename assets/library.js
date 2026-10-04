@@ -17,7 +17,7 @@
 import {
   loadData, esc, fmt, cssStack, useFont, nearestWeight, familyParam, gfURL,
   isRTL, SAMPLES, voiceCSS, groundCSS, comboCSS, kitPrompt, copyText, flash,
-} from "./fh-core.js?v=20261005b";
+} from "./fh-core.js?v=20261005c";
 
 const $ = (s, el = document) => el.querySelector(s);
 const TABS = ["kits", "voices", "grounds", "fonts"];

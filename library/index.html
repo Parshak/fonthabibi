@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005b">
-<link rel="stylesheet" href="/assets/library.css?v=20261005b">
+<link rel="stylesheet" href="/assets/tool.css?v=20261005c">
+<link rel="stylesheet" href="/assets/library.css?v=20261005c">
 </head>
 <body>
 <a class="skip" href="#results">Skip to results</a>
@@ -38,7 +38,16 @@
 
   <section class="building" id="building" aria-label="What are you building?" hidden></section>
 
-  <div class="lib">
+  <div class="lib wide" id="lib">
+    <!-- Before first paint: mark the tab from the address, and show the filter
+         column for every tab except Kits (the default), so nothing jumps. -->
+    <script>
+      (function () {
+        var m = /[?&]tab=(voices|grounds|fonts)\b/.exec(location.search), tab = m ? m[1] : "kits";
+        if (tab !== "kits") document.getElementById("lib").classList.remove("wide");
+        document.getElementById("tab-" + tab).setAttribute("aria-selected", "true");
+      })();
+    </script>
     <aside class="filters" id="filters" aria-label="Filters">
       <label class="search">
         <span class="sr">Search</span>
@@ -47,7 +56,7 @@
       <details class="filter-drawer" id="drawer" open>
         <summary>Filters <span id="active-count"></span></summary>
         <div id="facets"></div>
-        <button class="text-btn" id="clear" type="button">Clear filters</button>
+        <button class="text-btn" id="clear" type="button" hidden>Clear filters</button>
       </details>
     </aside>
 
@@ -57,7 +66,7 @@
         <div class="bar" id="bar"></div>
         <div class="tools" id="tools"></div>
       </div>
-      <div class="results" id="results" role="tabpanel"></div>
+      <div class="results" id="results" role="tabpanel"><p class="loading">Loading the library…</p></div>
       <div class="more" id="more" aria-hidden="true"></div>
       <div class="empty" id="empty" hidden></div>
     </section>
@@ -70,6 +79,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="/assets/library.js?v=20261005b"></script>
+<script type="module" src="/assets/library.js?v=20261005c"></script>
 </body>
 </html>
