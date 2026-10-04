@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&family=Karla:wght@400&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@700&family=Inter:wght@400&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@600&family=Work+Sans:wght@400&family=Abril+Fatface&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005e">
-<script src="/assets/look.js?v=20261005e"></script>
+<link rel="stylesheet" href="/assets/tool.css?v=20261005f">
+<script src="/assets/look.js?v=20261005f"></script>
 
 <style>
 :root{--wrap:1180px}
@@ -46,7 +46,9 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
 .hero h1{font-size:clamp(40px,6.2vw,74px);line-height:.98;max-width:17ch;text-wrap:balance}
 .hero-sub{margin-top:20px;max-width:54ch;font-size:clamp(17px,1.5vw,19.5px);line-height:1.55}
 .cta{display:flex;gap:10px 12px;flex-wrap:wrap;align-items:center;margin-top:26px}
-.free{font-size:15px;font-weight:600;margin-left:4px}
+/* A small sticker in a color the hero is not wearing */
+.free{font-size:14.5px;font-weight:700;margin-left:6px;padding:7px 13px;border:1.5px solid var(--shell-ink);border-radius:99px;background:var(--c-green);transform:rotate(-2deg)}
+:root[data-look="mint"] .free{background:var(--c-yellow)}
 
 /* Four real kits. They sit on the bottom edge of the hero, half on the
    color and half on the white page below. */
@@ -70,13 +72,13 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
 .place-name{font-family:var(--font-title);font-weight:var(--title-weight);letter-spacing:var(--title-track);font-size:21px;line-height:1.15}
 .place-n{font-size:13.5px;font-weight:600;color:var(--shell-muted)}
 .place-d{margin-top:5px;font-size:14.5px;line-height:1.5;color:var(--shell-muted)}
-.a1{background:var(--swatch-1)}.a2{background:var(--swatch-2)}.a3{background:var(--swatch-3)}.a4{background:var(--swatch-4)}.a5{background:var(--swatch-5)}
+.a1{background:var(--c-yellow)}.a2{background:var(--c-coral)}.a3{background:var(--c-pink)}.a4{background:var(--c-blue)}.a5{background:var(--c-green)}
 /* Little drawings, one per place */
 .art-site{width:124px;height:84px;display:flex;flex-direction:column;gap:7px;padding:12px;background:#fff;border:1.5px solid var(--shell-ink);border-radius:10px;box-shadow:4px 4px 0 var(--shell-ink)}
 .art-site i{display:block;height:5px;border-radius:3px;background:#D3C7B8}
 .art-site i:nth-child(1){height:11px;width:80%;background:var(--shell-ink)}
 .art-site i:nth-child(2){width:94%}.art-site i:nth-child(3){width:62%}
-.art-site i:nth-child(4){height:15px;width:46px;border-radius:99px;margin-top:auto;background:var(--swatch-4)}
+.art-site i:nth-child(4){height:15px;width:46px;border-radius:99px;margin-top:auto;background:var(--c-pink)}
 .art-aa{display:flex;align-items:baseline;gap:10px;color:var(--shell-ink);line-height:1}
 .art-aa span:first-child{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:60px}
 .art-aa span:last-child{font-family:'Karla',system-ui,sans-serif;font-size:34px}
@@ -84,14 +86,16 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
 .art-dots i{width:38px;height:38px;border-radius:99px;border:1.5px solid var(--shell-ink);margin-left:-9px}
 .art-dots i:first-child{margin-left:0}
 .art-letters{display:flex;align-items:baseline;gap:12px;color:var(--shell-ink);font-size:58px;line-height:1}
-.art-mix{display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:24px}
+.art-mix{display:flex;align-items:center;gap:9px;color:var(--shell-ink);font-weight:800;font-size:24px}
 .art-mix span{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--shell-ink);border-radius:13px;background:#fff;color:var(--shell-ink);font-size:23px}
-.art-mix span:last-child{background:var(--swatch-1)}
+.art-mix span:last-child{background:var(--c-yellow)}
 
 /* ---------- How it works ---------- */
 .steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:30px}
 .steps li{display:flex;flex-direction:column;gap:8px}
-.num{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:99px;background:var(--field);border:1.5px solid var(--shell-ink);font-family:var(--font-title);font-weight:800;font-size:19px;margin-bottom:6px}
+.num{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:99px;background:var(--c-yellow);border:1.5px solid var(--shell-ink);font-family:var(--font-title);font-weight:800;font-size:19px;margin-bottom:6px}
+.steps li:nth-child(2) .num{background:var(--c-blue)}
+.steps li:nth-child(3) .num{background:var(--c-green)}
 .steps h3{font-size:21px;line-height:1.15}
 .steps p{font-size:16px;line-height:1.55;color:var(--shell-muted)}
 
@@ -112,7 +116,7 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
 .faq summary::after{content:"+";flex:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:99px;background:var(--wash);font-size:19px;font-weight:600}
 .faq details[open] summary::after{content:"\2212";background:var(--field)}
 .faq p{padding:0 44px 18px 0;font-size:16px;line-height:1.6;color:var(--shell-muted)}
-.updates{background:var(--wash);border:1.5px solid var(--shell-ink);border-radius:20px;padding:26px}
+.updates{background:#E4F2FF;border:1.5px solid var(--shell-ink);border-radius:20px;padding:26px}
 .updates h2{font-size:26px}
 .updates p{margin-top:8px;font-size:16px;line-height:1.55;color:var(--shell-muted)}
 .signup{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
@@ -145,7 +149,7 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
   .places{grid-template-columns:repeat(2,minmax(0,1fr))}
   .place:last-child{grid-column:1/-1}
   .place-art{height:108px}
-  .free{width:100%;margin-left:0}
+  .free{margin-left:0}
   .faq p{padding-right:0}
 }
 </style>
@@ -392,7 +396,7 @@ Use only these fonts and colors for everything you build.
    The numbers on the page are read from /data/meta.json, so they
    stay right as the library grows.
    ============================================================ */
-fetch("/data/meta.json?v=20261005e").then(r => r.ok ? r.json() : null).then(meta => {
+fetch("/data/meta.json?v=20261005f").then(r => r.ok ? r.json() : null).then(meta => {
   if (!meta) return;
   for (const el of document.querySelectorAll("[data-count]")) {
     const n = meta.counts[el.dataset.count];

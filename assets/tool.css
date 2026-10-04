@@ -1,30 +1,35 @@
 /* ============================================================
    FontHabibi: the look shared by every page.
-   White paper, espresso ink, one warm field color, and a strip of
-   five warm swatches across the top of every page. The frame stays
-   plain so the kits carry the color.
+   White paper, espresso ink, and six bright colors. One of them is
+   the "field" (hero block, page headers, pressed chips); all six
+   run as a strip across the top of every page. The frame itself
+   stays plain so the kits carry their own color.
    ============================================================ */
 :root{
+  /* The palette: strip, home page tiles and small accents */
+  --c-yellow:#FFC72C; --c-coral:#FF7A59; --c-pink:#F0457B; --c-violet:#8B6CFF; --c-blue:#3B9BFF; --c-green:#2FBF71;
   /* The field: hero block, page headers, pressed chips, "Our pick" */
   --field:#FFC72C; --wash:#FFF4CF; --wash-2:#FFE8A1;
-  /* The strip across the top: saffron, mango, coral, rose, pomegranate */
-  --swatch-1:#FFC72C; --swatch-2:#FF9A3C; --swatch-3:#FF6B57; --swatch-4:#F0457B; --swatch-5:#B5173E;
 
   --shell-bg:#FFFFFF; --shell-panel:#FFFFFF; --shell-panel-2:var(--wash); --shell-panel-3:var(--wash-2);
   --shell-neutral:#F4F0EA;
   --shell-ink:#231710; --shell-muted:#5E5249; --shell-faint:#786C62;
   --shell-line:#E9E1D6; --shell-line-2:#D3C7B8;
   --shell-accent:#231710; --shell-accent-ink:#FFFFFF; --shell-accent-soft:var(--wash);
-  --shell-link:#C21F45;
+  --shell-link:#1D4ED8;
   --shell-ok:#1F7A4D;
 
   --font-ui:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --font-title:var(--font-ui); --title-weight:800; --title-track:-.035em;
   --wrap:1500px;
 }
-/* Other looks, only reachable from the preview switcher (assets/look.js) */
+/* "Change the look" (assets/look.js) lets a visitor swap the field color and
+   the font. Saffron and Plus Jakarta Sans above are the defaults. */
 :root[data-look="coral"]{--field:#FF8674;--wash:#FFE6E0;--wash-2:#FFCFC5}
 :root[data-look="rose"]{--field:#FF9DB8;--wash:#FFE6EE;--wash-2:#FFCCDB}
+:root[data-look="sky"]{--field:#8CC8FF;--wash:#E4F2FF;--wash-2:#C6E2FF}
+:root[data-look="mint"]{--field:#86DDA8;--wash:#E3F7EA;--wash-2:#C4EED3}
+:root[data-look="lilac"]{--field:#C7B2FF;--wash:#F0EAFF;--wash-2:#DDD0FF}
 :root[data-type="rubik"]{--font-ui:'Rubik',system-ui,sans-serif;--title-weight:700;--title-track:-.02em}
 :root[data-type="bricolage"]{--font-ui:'Figtree',system-ui,sans-serif;--font-title:'Bricolage Grotesque',system-ui,sans-serif;--title-weight:700;--title-track:-.025em}
 
@@ -41,9 +46,9 @@ h1,h2,h3{font-family:var(--font-title);font-weight:var(--title-weight);letter-sp
 .skip:focus{left:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* Top bar: the swatch strip, the name, and the five places to go */
+/* Top bar: the color strip, the name, and the five places to go */
 .topbar{position:sticky;top:0;z-index:40;background:var(--shell-bg);border-bottom:1px solid var(--shell-line)}
-.topbar::before{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--swatch-1) 0 20%,var(--swatch-2) 20% 40%,var(--swatch-3) 40% 60%,var(--swatch-4) 60% 80%,var(--swatch-5) 80% 100%)}
+.topbar::before{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--c-yellow) 0 16.667%,var(--c-coral) 16.667% 33.333%,var(--c-pink) 33.333% 50%,var(--c-violet) 50% 66.667%,var(--c-blue) 66.667% 83.333%,var(--c-green) 83.333% 100%)}
 .topbar-in{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,3vw,44px);min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:6px 20px;flex-wrap:wrap}
 .brand{font-family:var(--font-title);font-weight:var(--title-weight);font-size:23px;letter-spacing:var(--title-track);text-decoration:none;color:var(--shell-ink);line-height:1.2}
 /* "habibi" gets a stroke of the field color, like a highlighter */
@@ -63,6 +68,22 @@ h1,h2,h3{font-family:var(--font-title);font-weight:var(--title-weight);letter-sp
 
 .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--shell-ink);color:#fff;font-weight:500;font-size:14px;padding:11px 16px;border-radius:12px;box-shadow:0 14px 34px rgba(35,23,16,.22);transition:opacity .18s,transform .18s;z-index:90;max-width:calc(100vw - 32px)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* "Change the look": a small button in the corner that opens the color
+   and font choices. Built by assets/look.js. */
+.look{position:fixed;left:14px;bottom:14px;z-index:80;font-family:var(--font-ui)}
+.look-btn{display:flex;align-items:center;gap:8px;padding:9px 15px 9px 10px;background:#fff;border:1.5px solid var(--shell-ink);border-radius:99px;box-shadow:3px 3px 0 var(--shell-ink);font-weight:700;font-size:14px;line-height:1.2;color:var(--shell-ink)}
+.look-btn:hover,.look-btn[aria-expanded="true"]{background:var(--field)}
+.look-btn i{width:19px;height:19px;flex:none;border-radius:99px;border:1.5px solid var(--shell-ink);background:conic-gradient(var(--c-yellow),var(--c-coral),var(--c-pink),var(--c-violet),var(--c-blue),var(--c-green),var(--c-yellow))}
+.look-panel{position:absolute;left:0;bottom:calc(100% + 10px);width:max-content;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:12px;padding:14px 16px;background:#fff;border:1.5px solid var(--shell-ink);border-radius:16px;box-shadow:5px 5px 0 var(--shell-ink)}
+.look-panel[hidden]{display:none}
+.look-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.look-row>span{width:42px;font-size:13.5px;font-weight:600;color:var(--shell-muted)}
+.look-dot{width:28px;height:28px;border-radius:99px;background:var(--dot);border:1.5px solid var(--shell-ink)}
+.look-dot[aria-pressed="true"]{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--shell-ink)}
+.look-font{font-size:14.5px;font-weight:700;line-height:1.2;padding:7px 12px;border:1.5px solid var(--shell-line-2);border-radius:99px;color:var(--shell-ink);background:#fff}
+.look-font:hover{border-color:var(--shell-ink)}
+.look-font[aria-pressed="true"]{background:var(--field);border-color:var(--shell-ink)}
 
 /* A kit drawn as a small website, in the kit's own fonts and colors.
    Used by the library and by the home page. */

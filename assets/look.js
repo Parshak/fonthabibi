@@ -1,80 +1,91 @@
 /* ============================================================
-   PREVIEW ONLY: a small bar for trying the other looks.
-   It lets Parshak compare three warm color fields and three fonts
-   on the real pages. It does nothing on the live site, and this
-   file (and the [data-look] / [data-type] rules in tool.css) is
-   deleted once a look is chosen.
+   "Change the look"
+   A small button in the bottom corner of every page. It lets a
+   visitor try the whole site in another color and another font,
+   which is the same idea the kits are built on. The choice is
+   remembered in this browser.
+
+   This file is loaded in <head>, so the chosen look is applied
+   before the page is first drawn. The colors and fonts themselves
+   are defined in tool.css ([data-look] and [data-type] on <html>);
+   this file only picks which one is on.
    ============================================================ */
 (function () {
-  var LIVE = ["fonthabibi.pages.dev"];
-  if (LIVE.indexOf(location.hostname) >= 0) return;
+  // The first entry in each list is the site's default.
+  var LOOKS = [["saffron", "Saffron", "#FFC72C"], ["coral", "Coral", "#FF8674"], ["rose", "Rose", "#FF9DB8"],
+    ["sky", "Sky", "#8CC8FF"], ["mint", "Mint", "#86DDA8"], ["lilac", "Lilac", "#C7B2FF"]];
+  var TYPES = [["jakarta", "Jakarta", "'Plus Jakarta Sans'"], ["rubik", "Rubik", "'Rubik'"], ["bricolage", "Bricolage", "'Bricolage Grotesque'"]];
+  // Every page already loads Plus Jakarta Sans. The other fonts are fetched
+  // only when someone picks one or opens the choices.
+  var MORE_FONTS = "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap";
+  var KEY = "fh-look";
 
-  var LOOKS = [["saffron", "Saffron", "#FFC72C"], ["coral", "Coral", "#FF8674"], ["rose", "Rose", "#FF9DB8"]];
-  var TYPES = [["jakarta", "Jakarta"], ["rubik", "Rubik"], ["bricolage", "Bricolage"]];
-  var root = document.documentElement, state = {};
-  try { state = JSON.parse(localStorage.getItem("fh-look") || "{}") || {}; } catch (e) { state = {}; }
-  var known = function (list, v) { return list.some(function (x) { return x[0] === v; }) ? v : list[0][0]; };
+  var root = document.documentElement, state = {}, fontsLoaded = false;
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function known(list, value) {
+    return list.some(function (item) { return item[0] === value; }) ? value : list[0][0];
+  }
+  function loadMoreFonts() {
+    if (fontsLoaded) return;
+    fontsLoaded = true;
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = MORE_FONTS;
+    document.head.appendChild(link);
+  }
   function apply() {
     state.look = known(LOOKS, state.look);
     state.type = known(TYPES, state.type);
     if (state.look === LOOKS[0][0]) delete root.dataset.look; else root.dataset.look = state.look;
     if (state.type === TYPES[0][0]) delete root.dataset.type; else root.dataset.type = state.type;
-    try { localStorage.setItem("fh-look", JSON.stringify(state)); } catch (e) { /* private window */ }
+    if (state.type !== TYPES[0][0]) loadMoreFonts();
+    try { localStorage.setItem(KEY, JSON.stringify({ look: state.look, type: state.type })); } catch (e) { /* private window: the look lasts for this page only */ }
   }
-  apply(); // before first paint, so pages do not flash the default look
-
-  // The other fonts are only needed here, so they are loaded here.
-  var link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap";
-  document.head.appendChild(link);
+  apply();
 
   document.addEventListener("DOMContentLoaded", function () {
-    var bar = document.createElement("div");
-    bar.setAttribute("role", "group");
-    bar.setAttribute("aria-label", "Preview: try another look");
-    bar.style.cssText = "position:fixed;left:12px;bottom:12px;z-index:200;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;max-width:calc(100vw - 24px);padding:9px 12px;background:#231710;color:#fff;border-radius:14px;font:500 13px/1.2 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25)";
-    function group(label, list, key) {
-      var wrap = document.createElement("span");
-      wrap.style.cssText = "display:flex;gap:5px;align-items:center";
-      var name = document.createElement("span");
-      name.textContent = label;
-      name.style.opacity = ".7";
-      wrap.appendChild(name);
-      list.forEach(function (item) {
-        var b = document.createElement("button");
-        b.type = "button";
-        b.textContent = item[1];
-        b.dataset.key = key;
-        b.dataset.val = item[0];
-        b.style.cssText = "font:inherit;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:5px 10px;cursor:pointer";
-        if (item[2]) b.style.borderLeft = "10px solid " + item[2];
-        wrap.appendChild(b);
-      });
-      return wrap;
-    }
-    var tag = document.createElement("span");
-    tag.textContent = "Preview only";
-    tag.style.cssText = "font-weight:700;color:#FFC72C";
-    bar.appendChild(tag);
-    bar.appendChild(group("Color", LOOKS, "look"));
-    bar.appendChild(group("Font", TYPES, "type"));
+    var box = document.createElement("div");
+    box.className = "look";
+    box.innerHTML =
+      '<div class="look-panel" id="look-panel" hidden>' +
+        '<div class="look-row" role="group" aria-label="Color"><span>Color</span>' +
+          LOOKS.map(function (l) {
+            return '<button class="look-dot" type="button" style="--dot:' + l[2] + '" data-key="look" data-val="' + l[0] + '" aria-label="' + l[1] + '" title="' + l[1] + '"></button>';
+          }).join("") +
+        "</div>" +
+        '<div class="look-row" role="group" aria-label="Font"><span>Font</span>' +
+          TYPES.map(function (t) {
+            return '<button class="look-font" type="button" style="font-family:' + t[2] + ',system-ui,sans-serif" data-key="type" data-val="' + t[0] + '">' + t[1] + "</button>";
+          }).join("") +
+        "</div>" +
+      "</div>" +
+      '<button class="look-btn" type="button" aria-expanded="false" aria-controls="look-panel"><i aria-hidden="true"></i>Change the look</button>';
+    var panel = box.querySelector(".look-panel"), button = box.querySelector(".look-btn");
+
     function paint() {
-      bar.querySelectorAll("button").forEach(function (b) {
-        var on = state[b.dataset.key] === b.dataset.val;
-        b.setAttribute("aria-pressed", on);
-        b.style.background = on ? "#fff" : "transparent";
-        b.style.color = on ? "#231710" : "#fff";
+      box.querySelectorAll("[data-key]").forEach(function (b) {
+        b.setAttribute("aria-pressed", state[b.dataset.key] === b.dataset.val);
       });
     }
-    bar.addEventListener("click", function (e) {
-      var b = e.target.closest("button");
+    function open(yes) {
+      panel.hidden = !yes;
+      button.setAttribute("aria-expanded", yes);
+      if (yes) loadMoreFonts(); // so each font's name is shown in that font
+    }
+    button.addEventListener("click", function () { open(panel.hidden); });
+    panel.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-key]");
       if (!b) return;
       state[b.dataset.key] = b.dataset.val;
       apply();
       paint();
     });
+    document.addEventListener("click", function (e) { if (!panel.hidden && !box.contains(e.target)) open(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !panel.hidden) { open(false); button.focus(); }
+    });
+
     paint();
-    document.body.appendChild(bar);
+    document.body.appendChild(box);
   });
 })();
