@@ -75,7 +75,8 @@
 /* Font cards: the specimen is the card */
 .spec{padding:22px 18px 18px;min-height:150px;display:flex;align-items:center;border-bottom:1px solid var(--shell-line);background:var(--shell-panel-2)}
 .spec p{font-size:var(--spec-size,34px);line-height:1.15;color:var(--shell-ink);overflow-wrap:anywhere;width:100%}
-.spec[dir="rtl"] p{text-align:right}
+.spec[dir="rtl"] p,.spec p[dir="rtl"]{text-align:right}
+.spec .spec-2{font-size:calc(var(--spec-size,34px) * .55);color:var(--shell-muted);margin-top:10px}
 .featured{font-size:11px;font-weight:700;color:var(--shell-accent);flex:none}
 
 /* Pairing cards: painted with the chosen ground */

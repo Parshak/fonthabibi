@@ -276,7 +276,10 @@ const fontObserver = new IntersectionObserver((entries) => {
 function fontCard(f) {
   const script = scriptOf(f);
   const latinish = script === "latin" || script === "cyrillic" || script === "greek";
-  const text = state.text && latinish ? state.text : sampleFor(f);
+  // Fonts that cover Latin and another script (Poppins, Mukta...) show Latin
+  // first and the other script on a second line.
+  const dual = !latinish && f.sub.includes("latin");
+  const text = dual ? state.text || SAMPLES.latin : state.text && latinish ? state.text : sampleFor(f);
   const weights = f.ax?.wght ? "variable weight" : `${f.w.length} weight${f.w.length > 1 ? "s" : ""}`;
   const facts = [f.st && f.st !== "Monospace" ? f.st : CAT[f.c] || f.c, weights, f.it ? "italics" : ""].filter(Boolean).join(", ");
   const langs = f.sub.filter((s) => s !== "latin-ext" && LANG.some((l) => l.id === s));
@@ -285,7 +288,7 @@ function fontCard(f) {
   const el = document.createElement("article");
   el.className = "card font-card";
   el.innerHTML = `
-    <div class="spec" ${isRTL(script) ? 'dir="rtl"' : ""}><p style="font-family:${esc(cssStack(f))};font-weight:${nearestWeight(f, 400)}" lang="${script === "latin" ? "en" : ""}">${esc(text)}</p></div>
+    <div class="spec" ${isRTL(script) && !dual ? 'dir="rtl"' : ""}><div style="width:100%;font-family:${esc(cssStack(f))};font-weight:${nearestWeight(f, 400)}"><p>${esc(text)}</p>${dual ? `<p class="spec-2" ${isRTL(script) ? 'dir="rtl"' : ""}>${esc(sampleFor(f))}</p>` : ""}</div></div>
     <div class="meta">
       <div class="row"><h2 class="nm">${esc(f.n)}</h2>${f.f ? '<span class="featured">Featured</span>' : ""}</div>
       <p class="facts">${esc(facts)}</p>
@@ -497,6 +500,7 @@ function bind() {
           const f = IDX.get(card.querySelector(".nm").textContent);
           const s = scriptOf(f);
           if (s === "latin" || s === "cyrillic" || s === "greek") p.textContent = state.text || sampleFor(f);
+          else if (f.sub.includes("latin")) p.textContent = state.text || SAMPLES.latin;
         }
         writeURL();
       }, 120);
