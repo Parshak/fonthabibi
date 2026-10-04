@@ -1,0 +1,13 @@
+# Cloudflare Pages settings for FontHabibi.
+# Once a deployment includes this file, it is the source of truth for the
+# project's settings (the dashboard shows them read-only).
+name = "fonthabibi"
+pages_build_output_dir = "./"
+compatibility_date = "2026-10-01"
+
+# Email sign-ups from the home page ("Follow the drops").
+# Schema: tools/schema/subscribers.sql
+[[d1_databases]]
+binding = "DB"
+database_name = "fonthabibi-signups"
+database_id = "2bfcda74-7a8c-43f0-bbab-0313f5d70cd2"

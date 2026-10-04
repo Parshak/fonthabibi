@@ -1,0 +1,711 @@
+{
+ "v": 1,
+ "generated": "2026-10-04",
+ "counts": {
+  "fonts": 1884,
+  "voices": 1264,
+  "curatedVoices": 74,
+  "grounds": 340,
+  "curatedGrounds": 68,
+  "combos": 429760
+ },
+ "media": [
+  {
+   "id": "web",
+   "label": "Website",
+   "note": "Marketing and landing pages. Display type does the selling; grounds provide atmosphere. Previewed as a hero + nav + feature row."
+  },
+  {
+   "id": "app",
+   "label": "App",
+   "note": "Mobile screens in a phone frame. The UI font matters as much as the display; grounds stay quieter and radii friendlier."
+  },
+  {
+   "id": "tool",
+   "label": "Software tool",
+   "note": "Dashboards, dev tools, admin panels. Density and legibility first — previewed as sidebar + stats + a live table."
+  },
+  {
+   "id": "edit",
+   "label": "Editorial",
+   "note": "Articles and long reads. Measure, leading and reading comfort first — the ground is paper, not a stage."
+  },
+  {
+   "id": "docs",
+   "label": "Docs",
+   "note": "Documentation. Body and code coexist; callouts and borders do the structural work."
+  }
+ ],
+ "industries": [
+  {
+   "id": "restaurant",
+   "label": "Restaurant & café",
+   "voices": 403,
+   "grounds": 66
+  },
+  {
+   "id": "bakery",
+   "label": "Bakery & sweets",
+   "voices": 130,
+   "grounds": 49
+  },
+  {
+   "id": "grocery",
+   "label": "Grocery & market",
+   "voices": 284,
+   "grounds": 44
+  },
+  {
+   "id": "barber",
+   "label": "Barber & salon",
+   "voices": 406,
+   "grounds": 91
+  },
+  {
+   "id": "beauty",
+   "label": "Beauty & spa",
+   "voices": 95,
+   "grounds": 40
+  },
+  {
+   "id": "fitness",
+   "label": "Fitness & sport",
+   "voices": 151,
+   "grounds": 66
+  },
+  {
+   "id": "medical",
+   "label": "Medical & dental",
+   "voices": 429,
+   "grounds": 35
+  },
+  {
+   "id": "finance",
+   "label": "Law & finance",
+   "voices": 461,
+   "grounds": 41
+  },
+  {
+   "id": "realestate",
+   "label": "Real estate",
+   "voices": 382,
+   "grounds": 46
+  },
+  {
+   "id": "trades",
+   "label": "Construction & trades",
+   "voices": 246,
+   "grounds": 92
+  },
+  {
+   "id": "automotive",
+   "label": "Automotive",
+   "voices": 68,
+   "grounds": 35
+  },
+  {
+   "id": "tech",
+   "label": "Tech & SaaS",
+   "voices": 204,
+   "grounds": 77
+  },
+  {
+   "id": "education",
+   "label": "Education & tutoring",
+   "voices": 114,
+   "grounds": 61
+  },
+  {
+   "id": "kids",
+   "label": "Kids & family",
+   "voices": 118,
+   "grounds": 24
+  },
+  {
+   "id": "wedding",
+   "label": "Wedding & events",
+   "voices": 96,
+   "grounds": 20
+  },
+  {
+   "id": "fashion",
+   "label": "Fashion & boutique",
+   "voices": 97,
+   "grounds": 65
+  },
+  {
+   "id": "art",
+   "label": "Art & photography",
+   "voices": 212,
+   "grounds": 66
+  },
+  {
+   "id": "nightlife",
+   "label": "Music & nightlife",
+   "voices": 127,
+   "grounds": 28
+  },
+  {
+   "id": "travel",
+   "label": "Travel & hospitality",
+   "voices": 208,
+   "grounds": 56
+  },
+  {
+   "id": "community",
+   "label": "Nonprofit & community",
+   "voices": 194,
+   "grounds": 73
+  },
+  {
+   "id": "agency",
+   "label": "Agency & studio",
+   "voices": 105,
+   "grounds": 139
+  },
+  {
+   "id": "publishing",
+   "label": "Publishing & news",
+   "voices": 522,
+   "grounds": 51
+  },
+  {
+   "id": "gaming",
+   "label": "Gaming",
+   "voices": 115,
+   "grounds": 53
+  },
+  {
+   "id": "portfolio",
+   "label": "Personal portfolio",
+   "voices": 207,
+   "grounds": 67
+  }
+ ],
+ "languages": [
+  {
+   "id": "latin",
+   "n": 1891,
+   "label": "Latin"
+  },
+  {
+   "id": "latin-ext",
+   "n": 1491,
+   "label": "Latin Extended"
+  },
+  {
+   "id": "vietnamese",
+   "n": 504,
+   "label": "Vietnamese"
+  },
+  {
+   "id": "cyrillic",
+   "n": 288,
+   "label": "Cyrillic"
+  },
+  {
+   "id": "greek",
+   "n": 114,
+   "label": "Greek"
+  },
+  {
+   "id": "japanese",
+   "n": 66,
+   "label": "Japanese"
+  },
+  {
+   "id": "devanagari",
+   "n": 62,
+   "label": "Devanagari (Hindi, Nepali, Marathi)"
+  },
+  {
+   "id": "hebrew",
+   "n": 61,
+   "label": "Hebrew"
+  },
+  {
+   "id": "arabic",
+   "n": 53,
+   "label": "Arabic"
+  },
+  {
+   "id": "korean",
+   "n": 38,
+   "label": "Korean"
+  },
+  {
+   "id": "thai",
+   "n": 34,
+   "label": "Thai"
+  },
+  {
+   "id": "khmer",
+   "n": 28,
+   "label": "Khmer"
+  },
+  {
+   "id": "telugu",
+   "n": 27,
+   "label": "Telugu"
+  },
+  {
+   "id": "tamil",
+   "n": 17,
+   "label": "Tamil"
+  },
+  {
+   "id": "gujarati",
+   "n": 13,
+   "label": "Gujarati"
+  },
+  {
+   "id": "chinese-traditional",
+   "n": 13,
+   "label": "Chinese (Traditional)"
+  },
+  {
+   "id": "bengali",
+   "n": 11,
+   "label": "Bengali"
+  },
+  {
+   "id": "kannada",
+   "n": 10,
+   "label": "Kannada"
+  },
+  {
+   "id": "gurmukhi",
+   "n": 10,
+   "label": "Gurmukhi (Punjabi)"
+  },
+  {
+   "id": "chinese-simplified",
+   "n": 10,
+   "label": "Chinese (Simplified)"
+  },
+  {
+   "id": "malayalam",
+   "n": 9,
+   "label": "Malayalam"
+  },
+  {
+   "id": "sinhala",
+   "n": 8,
+   "label": "Sinhala"
+  },
+  {
+   "id": "ethiopic",
+   "n": 6,
+   "label": "Ethiopic (Amharic)"
+  },
+  {
+   "id": "oriya",
+   "n": 6,
+   "label": "Odia"
+  },
+  {
+   "id": "lao",
+   "n": 5,
+   "label": "Lao"
+  },
+  {
+   "id": "armenian",
+   "n": 4,
+   "label": "Armenian"
+  },
+  {
+   "id": "chinese-hongkong",
+   "n": 3,
+   "label": "Chinese (Hong Kong)"
+  },
+  {
+   "id": "georgian",
+   "n": 3,
+   "label": "Georgian"
+  },
+  {
+   "id": "tibetan",
+   "n": 3,
+   "label": "Tibetan"
+  },
+  {
+   "id": "myanmar",
+   "n": 3,
+   "label": "Myanmar"
+  }
+ ],
+ "fontCategories": [
+  {
+   "id": "sans",
+   "n": 705
+  },
+  {
+   "id": "display",
+   "n": 464
+  },
+  {
+   "id": "handwriting",
+   "n": 348
+  },
+  {
+   "id": "serif",
+   "n": 343
+  },
+  {
+   "id": "mono",
+   "n": 47
+  }
+ ],
+ "fontStyles": [
+  {
+   "id": "Humanist sans",
+   "n": 356
+  },
+  {
+   "id": "Handwritten",
+   "n": 238
+  },
+  {
+   "id": "Transitional serif",
+   "n": 133
+  },
+  {
+   "id": "Geometric sans",
+   "n": 114
+  },
+  {
+   "id": "Grotesque",
+   "n": 81
+  },
+  {
+   "id": "Neo-grotesque",
+   "n": 70
+  },
+  {
+   "id": "Formal script",
+   "n": 63
+  },
+  {
+   "id": "Casual script",
+   "n": 59
+  },
+  {
+   "id": "Rounded sans",
+   "n": 56
+  },
+  {
+   "id": "Old style serif",
+   "n": 55
+  },
+  {
+   "id": "Monospace",
+   "n": 55
+  },
+  {
+   "id": "Superellipse sans",
+   "n": 49
+  },
+  {
+   "id": "Venetian serif",
+   "n": 36
+  },
+  {
+   "id": "Modern serif",
+   "n": 35
+  },
+  {
+   "id": "Humanist slab",
+   "n": 31
+  },
+  {
+   "id": "Glyphic sans",
+   "n": 21
+  },
+  {
+   "id": "Didone",
+   "n": 20
+  },
+  {
+   "id": "Upright script",
+   "n": 17
+  },
+  {
+   "id": "Geometric slab",
+   "n": 13
+  },
+  {
+   "id": "Clarendon slab",
+   "n": 13
+  },
+  {
+   "id": "Scotch serif",
+   "n": 9
+  },
+  {
+   "id": "Fat face",
+   "n": 7
+  }
+ ],
+ "fontMoods": [
+  {
+   "id": "vintage",
+   "n": 979
+  },
+  {
+   "id": "rugged",
+   "n": 961
+  },
+  {
+   "id": "sincere",
+   "n": 684
+  },
+  {
+   "id": "calm",
+   "n": 657
+  },
+  {
+   "id": "business",
+   "n": 652
+  },
+  {
+   "id": "competent",
+   "n": 651
+  },
+  {
+   "id": "quirky",
+   "n": 383
+  },
+  {
+   "id": "playful",
+   "n": 246
+  },
+  {
+   "id": "structured",
+   "n": 232
+  },
+  {
+   "id": "artistic",
+   "n": 199
+  },
+  {
+   "id": "childlike",
+   "n": 199
+  },
+  {
+   "id": "excited",
+   "n": 177
+  },
+  {
+   "id": "happy",
+   "n": 165
+  },
+  {
+   "id": "loud",
+   "n": 144
+  },
+  {
+   "id": "futuristic",
+   "n": 123
+  },
+  {
+   "id": "energetic",
+   "n": 102
+  },
+  {
+   "id": "cute",
+   "n": 97
+  },
+  {
+   "id": "fancy",
+   "n": 85
+  },
+  {
+   "id": "innovative",
+   "n": 84
+  },
+  {
+   "id": "sophisticated",
+   "n": 57
+  }
+ ],
+ "voiceMoods": [
+  {
+   "id": "competent",
+   "n": 501
+  },
+  {
+   "id": "vintage",
+   "n": 443
+  },
+  {
+   "id": "business",
+   "n": 436
+  },
+  {
+   "id": "calm",
+   "n": 391
+  },
+  {
+   "id": "sincere",
+   "n": 358
+  },
+  {
+   "id": "rugged",
+   "n": 333
+  },
+  {
+   "id": "artistic",
+   "n": 131
+  },
+  {
+   "id": "quirky",
+   "n": 113
+  },
+  {
+   "id": "loud",
+   "n": 105
+  },
+  {
+   "id": "playful",
+   "n": 105
+  },
+  {
+   "id": "happy",
+   "n": 90
+  },
+  {
+   "id": "structured",
+   "n": 86
+  },
+  {
+   "id": "fancy",
+   "n": 66
+  },
+  {
+   "id": "energetic",
+   "n": 65
+  },
+  {
+   "id": "innovative",
+   "n": 54
+  },
+  {
+   "id": "excited",
+   "n": 47
+  },
+  {
+   "id": "childlike",
+   "n": 45
+  },
+  {
+   "id": "futuristic",
+   "n": 40
+  },
+  {
+   "id": "cute",
+   "n": 32
+  },
+  {
+   "id": "sophisticated",
+   "n": 23
+  }
+ ],
+ "groundMoods": [
+  {
+   "id": "moody",
+   "n": 125
+  },
+  {
+   "id": "warm",
+   "n": 113
+  },
+  {
+   "id": "bold",
+   "n": 109
+  },
+  {
+   "id": "natural",
+   "n": 92
+  },
+  {
+   "id": "cool",
+   "n": 78
+  },
+  {
+   "id": "calm",
+   "n": 58
+  },
+  {
+   "id": "playful",
+   "n": 52
+  },
+  {
+   "id": "fresh",
+   "n": 35
+  },
+  {
+   "id": "editorial",
+   "n": 32
+  },
+  {
+   "id": "luxurious",
+   "n": 30
+  },
+  {
+   "id": "minimal",
+   "n": 30
+  },
+  {
+   "id": "techy",
+   "n": 16
+  }
+ ],
+ "hues": [
+  {
+   "id": "green",
+   "n": 60
+  },
+  {
+   "id": "violet",
+   "n": 49
+  },
+  {
+   "id": "yellow",
+   "n": 47
+  },
+  {
+   "id": "pink",
+   "n": 41
+  },
+  {
+   "id": "red",
+   "n": 37
+  },
+  {
+   "id": "blue",
+   "n": 36
+  },
+  {
+   "id": "mono",
+   "n": 25
+  },
+  {
+   "id": "teal",
+   "n": 24
+  },
+  {
+   "id": "orange",
+   "n": 21
+  }
+ ],
+ "grades": [
+  {
+   "id": "AAA",
+   "n": 331
+  },
+  {
+   "id": "AA large",
+   "n": 9
+  }
+ ]
+}

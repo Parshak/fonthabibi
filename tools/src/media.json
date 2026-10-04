@@ -1,0 +1,27 @@
+[
+ {
+  "id": "web",
+  "label": "Website",
+  "note": "Marketing and landing pages. Display type does the selling; grounds provide atmosphere. Previewed as a hero + nav + feature row."
+ },
+ {
+  "id": "app",
+  "label": "App",
+  "note": "Mobile screens in a phone frame. The UI font matters as much as the display; grounds stay quieter and radii friendlier."
+ },
+ {
+  "id": "tool",
+  "label": "Software tool",
+  "note": "Dashboards, dev tools, admin panels. Density and legibility first — previewed as sidebar + stats + a live table."
+ },
+ {
+  "id": "edit",
+  "label": "Editorial",
+  "note": "Articles and long reads. Measure, leading and reading comfort first — the ground is paper, not a stage."
+ },
+ {
+  "id": "docs",
+  "label": "Docs",
+  "note": "Documentation. Body and code coexist; callouts and borders do the structural work."
+ }
+]

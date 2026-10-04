@@ -1,0 +1,16 @@
+{
+  "name": "fonthabibi-tools",
+  "private": true,
+  "description": "Build scripts that generate the FontHabibi data files in /data. Not part of the deployed site.",
+  "type": "module",
+  "scripts": {
+    "fonts": "node build-fonts.mjs",
+    "grounds": "node build-grounds.mjs",
+    "voices": "node build-voices.mjs",
+    "check": "node check-data.mjs",
+    "build": "node build-fonts.mjs && node build-grounds.mjs && node build-voices.mjs && node check-data.mjs"
+  },
+  "devDependencies": {
+    "google-font-metadata": "6.0.8"
+  }
+}

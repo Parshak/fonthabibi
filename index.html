@@ -205,8 +205,9 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
   <div class="nav-links">
     <a class="hide-sm" href="#how">How it works</a>
     <a class="hide-sm" href="#media">Media</a>
-    <a href="#support">Support</a>
-    <a class="btn" href="type-ground-mixer-pro.html">Open the mixer</a>
+    <a href="/library/">Library</a>
+    <a class="hide-sm" href="#support">Updates</a>
+    <a class="btn" href="/type-ground-mixer-pro">Open the mixer</a>
   </div>
 </div></nav>
 
@@ -216,10 +217,10 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
   <h1>Stop shipping <em>default-looking</em> builds.</h1>
   <p>I kept making projects that all came out wearing the same cream page and the same serif, so I built this. FontHabibi gives your project a voice and a ground: complete font and color systems for websites, apps, tools, articles, and docs. Pick, copy, paste into your prompt. Free, no signup, forever.</p>
   <div class="hero-ctas">
-    <a class="btn" href="type-ground-mixer-pro.html">Open the mixer</a>
-    <a class="btn ghost" href="#support">Support the project ♥</a>
+    <a class="btn" href="/type-ground-mixer-pro">Open the mixer</a>
+    <a class="btn ghost" href="/library/">Browse the library</a>
   </div>
-  <span class="hero-proof mono">74 voices · 68 grounds · 5 media · 5,000+ combos · $0</span>
+  <span class="hero-proof mono" id="proof">1,884 fonts · 1,264 pairings · 340 grounds · $0</span>
 </header>
 
 <!-- The signature: this chip re-skins the entire page with real kits -->
@@ -236,7 +237,7 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
   </div>
   <div class="steps">
     <div class="step card"><span class="n">01 / MEDIUM</span><h3>Pick your medium</h3><p>Website, app, software tool, editorial, or docs. Every option is previewed in the real thing: a phone frame, a dashboard, an article.</p></div>
-    <div class="step card"><span class="n">02 / VOICE × GROUND</span><h3>Mix voice and ground</h3><p>Choose a type set and a color system independently. Two thousand plus combinations, all curated to work.</p></div>
+    <div class="step card"><span class="n">02 / VOICE × GROUND</span><h3>Mix voice and ground</h3><p>Choose a type set and a color system independently. Hundreds of thousands of combinations, and every color system is checked for readable contrast.</p></div>
     <div class="step card"><span class="n">03 / PASTE</span><h3>Copy and build</h3><p>Export ready CSS tokens, a starter page, or JSON you can paste straight into Claude, Cursor, or v0. Your build inherits the whole system.</p></div>
   </div>
 </div></section>
@@ -249,40 +250,38 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
     <p>Generic pairing tools show you fonts floating in space. FontHabibi previews every combination inside the medium it will actually live in.</p>
   </div>
   <div class="media-strip">
-    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">Ag</span><b>Websites</b><span>Heroes that sell</span></a>
-    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">Aa</span><b>Apps</b><span>Phone-frame previews</span></a>
-    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">{ }</span><b>Tools</b><span>Dense, legible UI</span></a>
-    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">¶</span><b>Editorial</b><span>Reading comfort first</span></a>
-    <a class="medium card" href="type-ground-mixer-pro.html"><span class="glyph">#</span><b>Docs</b><span>Body and code together</span></a>
+    <a class="medium card" href="/type-ground-mixer-pro"><span class="glyph">Ag</span><b>Websites</b><span>Heroes that sell</span></a>
+    <a class="medium card" href="/type-ground-mixer-pro"><span class="glyph">Aa</span><b>Apps</b><span>Phone-frame previews</span></a>
+    <a class="medium card" href="/type-ground-mixer-pro"><span class="glyph">{ }</span><b>Tools</b><span>Dense, legible UI</span></a>
+    <a class="medium card" href="/type-ground-mixer-pro"><span class="glyph">¶</span><b>Editorial</b><span>Reading comfort first</span></a>
+    <a class="medium card" href="/type-ground-mixer-pro"><span class="glyph">#</span><b>Docs</b><span>Body and code together</span></a>
   </div>
 </div></section>
 
-<!-- ══════════════ SUPPORT (free forever, tips welcome) ══════════════ -->
+<!-- ══════════════ UPDATES (free forever) ══════════════
+     The email form posts to /api/subscribe, a Cloudflare Pages
+     Function (functions/api/subscribe.js) that saves the address
+     in a D1 database. No third-party newsletter service.
+     ══════════════════════════════════════════════════════ -->
 <section id="support"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">Support</span>
+    <span class="eyebrow">Updates</span>
     <h2>Free forever. Really.</h2>
-    <p>This is a personal project, not a startup. Everything works with no account and no paywall. If it saved you time and you feel like it, you can buy me a coffee, and if you want to hear when new voices and grounds drop, leave your email.</p>
+    <p>This is a personal project, not a startup. Everything works with no account and no paywall. If you want to hear when new voices and grounds drop, leave your email.</p>
   </div>
-  <div class="packs">
-    <div class="pack card">
-      <h3>Buy me a coffee ☕</h3>
-      <p style="font-size:14px;line-height:1.65;color:var(--muted)">Totally optional, changes nothing about what you get. It just tells me this was worth building and keeps the kit drops coming.</p>
-      <!-- KO-FI: create a free page at ko-fi.com, then replace the #
-           below with your link, e.g. https://ko-fi.com/yourname -->
-      <a class="btn" href="#" id="coffee-btn">Support on Ko-fi</a>
-    </div>
+  <div class="packs" style="max-width:560px">
     <div class="pack card">
       <h3>Follow the drops ✉</h3>
       <p style="font-size:14px;line-height:1.65;color:var(--muted)">New voices and grounds land regularly. One short email when they do, nothing else, unsubscribe anytime.</p>
-      <!-- EMAIL: easiest free option is Buttondown or Formspree.
-           1) Make a free account  2) They give you a form action URL
-           3) Paste it into action="" below and this form just works. -->
-      <form action="#" method="post" style="display:flex;gap:8px;flex-wrap:wrap">
-        <input type="email" name="email" required placeholder="you@example.com"
+      <form id="signup" action="/api/subscribe" method="post" style="display:flex;gap:8px;flex-wrap:wrap" novalidate>
+        <label for="signup-email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="signup-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com"
           style="flex:1;min-width:180px;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);color:var(--ink);font:inherit;font-size:14px">
+        <!-- honeypot: people never see this field, bots fill it in -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <button class="btn" type="submit">Notify me</button>
       </form>
+      <p id="signup-msg" role="status" aria-live="polite" style="font-size:13.5px;line-height:1.5;color:var(--muted);min-height:1.5em"></p>
     </div>
   </div>
 </div></section>
@@ -291,7 +290,7 @@ footer{border-top:1px solid var(--border);padding:34px 0;display:flex;justify-co
 <section><div class="wrap">
   <div class="sec-head"><span class="eyebrow">FAQ</span><h2>Quick answers.</h2></div>
   <div class="faq">
-    <details class="card"><summary>Is it really free? What's the catch?</summary><p>Really free, no catch, no account. It's a personal project I built for my own work and decided to share. The coffee button exists for people who insist; it unlocks nothing.</p></details>
+    <details class="card"><summary>Is it really free? What's the catch?</summary><p>Really free, no catch, no account. It's a personal project I built for my own work and decided to share.</p></details>
     <details class="card"><summary>How do I use a kit with Claude or Cursor?</summary><p>Copy the kit's CSS or JSON from the mixer and paste it into your prompt with: "Use these design tokens for everything you build." The AI inherits your fonts, colors, and radii instead of inventing generic ones.</p></details>
     <details class="card"><summary>Are the fonts free to use?</summary><p>Yes. Every voice uses Google Fonts, which are free for personal and commercial projects. Each export includes the exact import line.</p></details>
     <details class="card"><summary>Can I use kits in client or commercial work?</summary><p>Yes, unlimited projects, personal or commercial, no attribution needed. Go make things.</p></details>
@@ -326,9 +325,46 @@ document.getElementById("wear-btn").addEventListener("click",()=>{
   document.getElementById("wear-name").textContent=THEMES[ti].name;
 });
 
-/* Ko-fi note: when you have your page, do this:
-   document.getElementById("coffee-btn").href = "https://ko-fi.com/yourname";
-   or just edit the href in the HTML above. */
+/* ============================================================
+   LIVE COUNTS
+   The proof line under the hero reads the real numbers from
+   /data/meta.json, so it stays right as the library grows.
+   ============================================================ */
+fetch("/data/meta.json").then(r => r.ok ? r.json() : null).then(meta => {
+  if (!meta) return;
+  const n = x => x.toLocaleString("en-AU");
+  const c = meta.counts;
+  document.getElementById("proof").textContent = `${n(c.fonts)} fonts · ${n(c.voices)} pairings · ${n(c.grounds)} grounds · $0`;
+}).catch(() => {});
+
+/* ============================================================
+   EMAIL SIGN-UP
+   Sends the address to /api/subscribe and shows what happened.
+   ============================================================ */
+const form = document.getElementById("signup");
+const msg = document.getElementById("signup-msg");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = form.email.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = "Enter an email address like you@example.com."; form.email.focus(); return; }
+  const button = form.querySelector("button");
+  button.disabled = true;
+  msg.textContent = "Adding you to the list…";
+  try {
+    const res = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email, company: form.company.value, source: "home" }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.ok) { msg.textContent = "You're on the list. One short email when new voices and grounds drop."; form.reset(); }
+    else msg.textContent = data.message || "That didn't go through. Try again in a minute.";
+  } catch (err) {
+    msg.textContent = "Couldn't reach the server. Check your connection and try again.";
+  } finally {
+    button.disabled = false;
+  }
+});
 </script>
 </body>
 </html>

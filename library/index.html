@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FontHabibi · Library</title>
+<meta name="description" content="Every Google font, over a thousand font pairings and hundreds of contrast-checked colour grounds. Search by mood, industry and language, then open any of them in the mixer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tool.css">
+<link rel="stylesheet" href="/assets/library.css">
+</head>
+<body>
+<a class="skip" href="#results">Skip to results</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/">font<i>habibi</i></a>
+    <nav class="topnav" aria-label="Main">
+      <a href="/type-ground-mixer-pro">Mixer</a>
+      <a href="/library/" aria-current="page">Library</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="lib-head">
+    <h1>The library</h1>
+    <p class="lede" id="lede">Every Google font, ready-made font pairings and contrast-checked colour grounds. Filter by mood, industry or language, then open anything in the mixer.</p>
+    <div class="tabs" role="tablist" aria-label="Library sections">
+      <button class="tab" role="tab" id="tab-fonts" aria-controls="results" data-tab="fonts">Fonts <span class="n" data-count="fonts"></span></button>
+      <button class="tab" role="tab" id="tab-voices" aria-controls="results" data-tab="voices">Pairings <span class="n" data-count="voices"></span></button>
+      <button class="tab" role="tab" id="tab-grounds" aria-controls="results" data-tab="grounds">Grounds <span class="n" data-count="grounds"></span></button>
+    </div>
+  </section>
+
+  <div class="lib">
+    <aside class="filters" id="filters" aria-label="Filters">
+      <label class="search">
+        <span class="sr">Search</span>
+        <input id="q" type="search" placeholder="Search" autocomplete="off" spellcheck="false">
+      </label>
+      <details class="filter-drawer" id="drawer" open>
+        <summary>Filters <span id="active-count"></span></summary>
+        <div id="facets"></div>
+        <button class="text-btn" id="clear" type="button">Clear filters</button>
+      </details>
+    </aside>
+
+    <section class="results-wrap" aria-labelledby="result-line">
+      <div class="toolbar">
+        <p class="result-line" id="result-line" aria-live="polite"></p>
+        <div class="tools" id="tools"></div>
+      </div>
+      <div class="results" id="results" role="tabpanel"></div>
+      <div class="more" id="more" aria-hidden="true"></div>
+      <div class="empty" id="empty" hidden></div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot wrap">
+  <span>Font data from Google Fonts. Every font here is free for personal and commercial use.</span>
+  <span>Contrast checked against WCAG 2.2: AA means every text colour reads at 4.5:1 or better.</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/assets/library.js"></script>
+</body>
+</html>

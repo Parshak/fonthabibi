@@ -1,0 +1,999 @@
+[
+ {
+  "id": "F01",
+  "name": "Poster Serif",
+  "vibe": "warm editorial confidence",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Fraunces",
+  "body": "Outfit",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F02",
+  "name": "Swiss Modern",
+  "vibe": "clean grotesk precision",
+  "media": [
+   "web",
+   "tool",
+   "docs",
+   "app"
+  ],
+  "display": "Space Grotesk",
+  "body": "Inter",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F03",
+  "name": "Grotesque Punch",
+  "vibe": "quirky, friendly headlines",
+  "media": [
+   "web",
+   "app",
+   "edit"
+  ],
+  "display": "Bricolage Grotesque",
+  "body": "Nunito Sans",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F04",
+  "name": "Maison",
+  "vibe": "luxury serif at scale",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Cormorant Garamond",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F05",
+  "name": "Block Party",
+  "vibe": "heavy grotesk statements",
+  "media": [
+   "web",
+   "app"
+  ],
+  "display": "Archivo",
+  "body": "Archivo",
+  "ui": "Space Mono",
+  "displayWeight": 800
+ },
+ {
+  "id": "F06",
+  "name": "Soft Geometric",
+  "vibe": "rounded modern product",
+  "media": [
+   "web",
+   "app",
+   "tool"
+  ],
+  "display": "Sora",
+  "body": "Figtree",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F07",
+  "name": "Humanist Calm",
+  "vibe": "serif warmth, sans clarity",
+  "media": [
+   "app",
+   "edit",
+   "web"
+  ],
+  "display": "Lora",
+  "body": "DM Sans",
+  "ui": "DM Sans",
+  "displayWeight": 600
+ },
+ {
+  "id": "F08",
+  "name": "Athletic",
+  "vibe": "condensed impact numbers",
+  "media": [
+   "web",
+   "app"
+  ],
+  "display": "Anton",
+  "body": "Inter",
+  "ui": "JetBrains Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F09",
+  "name": "Bank Grade",
+  "vibe": "sober institutional trust",
+  "media": [
+   "app",
+   "tool",
+   "docs"
+  ],
+  "display": "Libre Franklin",
+  "body": "IBM Plex Sans",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F10",
+  "name": "Bubble Pop",
+  "vibe": "chunky, playful, rounded",
+  "media": [
+   "app",
+   "web"
+  ],
+  "display": "Baloo 2",
+  "body": "Quicksand",
+  "ui": "Quicksand",
+  "displayWeight": 700
+ },
+ {
+  "id": "F11",
+  "name": "Wordmark",
+  "vibe": "one modern voice throughout",
+  "media": [
+   "app",
+   "tool",
+   "web",
+   "docs"
+  ],
+  "display": "Manrope",
+  "body": "Manrope",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F12",
+  "name": "Developer Default",
+  "vibe": "the stack devs trust",
+  "media": [
+   "tool",
+   "docs",
+   "app"
+  ],
+  "display": "Inter",
+  "body": "Inter",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F13",
+  "name": "Drafting Room",
+  "vibe": "engineering precision",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "Space Grotesk",
+  "body": "IBM Plex Sans",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F14",
+  "name": "Neutral Instrument",
+  "vibe": "quiet contemporary UI",
+  "media": [
+   "tool",
+   "web",
+   "app"
+  ],
+  "display": "Instrument Sans",
+  "body": "Instrument Sans",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F15",
+  "name": "Friendly Ops",
+  "vibe": "approachable admin work",
+  "media": [
+   "tool",
+   "app",
+   "docs"
+  ],
+  "display": "Hanken Grotesk",
+  "body": "Hanken Grotesk",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F16",
+  "name": "Magazine",
+  "vibe": "full serif feature set",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Fraunces",
+  "body": "Source Serif 4",
+  "ui": "Source Sans 3",
+  "displayWeight": 700
+ },
+ {
+  "id": "F17",
+  "name": "Loud Zine",
+  "vibe": "wide, shouty, deliberate",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Unbounded",
+  "body": "Space Grotesk",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F18",
+  "name": "Old Style",
+  "vibe": "one classic serif voice",
+  "media": [
+   "edit"
+  ],
+  "display": "EB Garamond",
+  "body": "EB Garamond",
+  "ui": "Space Mono",
+  "displayWeight": 500
+ },
+ {
+  "id": "F19",
+  "name": "Night Serif",
+  "vibe": "serif heads, sans body",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Lora",
+  "body": "Source Sans 3",
+  "ui": "JetBrains Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F20",
+  "name": "Slab Manual",
+  "vibe": "slab chapters, plain body",
+  "media": [
+   "docs",
+   "edit",
+   "tool"
+  ],
+  "display": "Zilla Slab",
+  "body": "Source Sans 3",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F21",
+  "name": "Deco Poster",
+  "vibe": "fat-face drama",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Abril Fatface",
+  "body": "Work Sans",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F22",
+  "name": "Heavy Slab",
+  "vibe": "cartoon-weight slab punch",
+  "media": [
+   "web",
+   "app"
+  ],
+  "display": "Alfa Slab One",
+  "body": "Rubik",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F23",
+  "name": "Marquee",
+  "vibe": "tall caps, cinema energy",
+  "media": [
+   "web",
+   "app",
+   "edit"
+  ],
+  "display": "Bebas Neue",
+  "body": "Work Sans",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F24",
+  "name": "Art House",
+  "vibe": "fashion-forward geometry",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Syne",
+  "body": "Jost",
+  "ui": "Space Mono",
+  "displayWeight": 800
+ },
+ {
+  "id": "F25",
+  "name": "Retro Round",
+  "vibe": "70s arcade warmth",
+  "media": [
+   "app",
+   "web"
+  ],
+  "display": "Righteous",
+  "body": "Rubik",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F26",
+  "name": "Newsdesk",
+  "vibe": "broadsheet gravitas",
+  "media": [
+   "edit"
+  ],
+  "display": "Playfair Display",
+  "body": "Source Serif 4",
+  "ui": "Source Sans 3",
+  "displayWeight": 600
+ },
+ {
+  "id": "F27",
+  "name": "Didone Pop",
+  "vibe": "high-contrast serif sparkle",
+  "media": [
+   "web",
+   "edit",
+   "app"
+  ],
+  "display": "DM Serif Display",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F28",
+  "name": "Bookish",
+  "vibe": "book-typography softness",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Newsreader",
+  "body": "Newsreader",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F29",
+  "name": "Crimson Read",
+  "vibe": "literary serif + plain sans",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Crimson Pro",
+  "body": "Work Sans",
+  "ui": "Fira Code",
+  "displayWeight": 600
+ },
+ {
+  "id": "F30",
+  "name": "Civic",
+  "vibe": "gov-grade neutrality",
+  "media": [
+   "tool",
+   "docs",
+   "app"
+  ],
+  "display": "Public Sans",
+  "body": "Public Sans",
+  "ui": "Fira Code",
+  "displayWeight": 700
+ },
+ {
+  "id": "F31",
+  "name": "Epilogue Start",
+  "vibe": "startup-modern display",
+  "media": [
+   "web",
+   "app"
+  ],
+  "display": "Epilogue",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F32",
+  "name": "Lexend Clarity",
+  "vibe": "reading-speed optimised",
+  "media": [
+   "app",
+   "docs",
+   "tool"
+  ],
+  "display": "Lexend",
+  "body": "Lexend",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F33",
+  "name": "Barlow Utility",
+  "vibe": "slightly-condensed workhorse",
+  "media": [
+   "tool",
+   "app",
+   "web"
+  ],
+  "display": "Barlow",
+  "body": "Barlow",
+  "ui": "Fira Code",
+  "displayWeight": 700
+ },
+ {
+  "id": "F34",
+  "name": "Merri Docs",
+  "vibe": "sturdy serif documentation",
+  "media": [
+   "docs",
+   "edit"
+  ],
+  "display": "Merriweather",
+  "body": "Source Sans 3",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F35",
+  "name": "Chivo Press",
+  "vibe": "grotesk with press-room bite",
+  "media": [
+   "web",
+   "tool",
+   "docs"
+  ],
+  "display": "Chivo",
+  "body": "Chivo",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F36",
+  "name": "Spectral Essay",
+  "vibe": "elegant essay serif",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Spectral",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F37",
+  "name": "Rubik Round",
+  "vibe": "soft corners everywhere",
+  "media": [
+   "app",
+   "tool",
+   "web"
+  ],
+  "display": "Rubik",
+  "body": "Rubik",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F38",
+  "name": "Work Plain",
+  "vibe": "zero-drama versatility",
+  "media": [
+   "web",
+   "tool",
+   "docs",
+   "app",
+   "edit"
+  ],
+  "display": "Work Sans",
+  "body": "Work Sans",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F39",
+  "name": "Mono First",
+  "vibe": "terminal-native identity",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "JetBrains Mono",
+  "body": "Inter",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F40",
+  "name": "Plex Suite",
+  "vibe": "one coherent IBM family",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "IBM Plex Sans",
+  "body": "IBM Plex Sans",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F41",
+  "name": "Jost Geo",
+  "vibe": "bauhaus geometry",
+  "media": [
+   "web",
+   "app"
+  ],
+  "display": "Jost",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F42",
+  "name": "Overpass Panel",
+  "vibe": "signage-derived clarity",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "Overpass",
+  "body": "Overpass",
+  "ui": "Fira Code",
+  "displayWeight": 700
+ },
+ {
+  "id": "F43",
+  "name": "Bitter Slab",
+  "vibe": "screen-first slab serif",
+  "media": [
+   "docs",
+   "edit",
+   "tool"
+  ],
+  "display": "Bitter",
+  "body": "Source Sans 3",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F44",
+  "name": "Nunito Cloud",
+  "vibe": "balloon-soft friendliness",
+  "media": [
+   "app",
+   "web"
+  ],
+  "display": "Nunito",
+  "body": "Nunito",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F45",
+  "name": "DM Modern",
+  "vibe": "geometric with matching mono",
+  "media": [
+   "app",
+   "tool",
+   "web",
+   "docs"
+  ],
+  "display": "DM Sans",
+  "body": "DM Sans",
+  "ui": "DM Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F46",
+  "name": "Playfair Lux",
+  "vibe": "display serif + honest sans",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Playfair Display",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F47",
+  "name": "Figtree Clean",
+  "vibe": "light, unfussy product",
+  "media": [
+   "app",
+   "web",
+   "tool",
+   "docs"
+  ],
+  "display": "Figtree",
+  "body": "Figtree",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F48",
+  "name": "Quiet Karla",
+  "vibe": "understated humanist",
+  "media": [
+   "edit",
+   "docs",
+   "web"
+  ],
+  "display": "Karla",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F49",
+  "name": "Opera House",
+  "vibe": "didone drama, hairline contrast",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Bodoni Moda",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F50",
+  "name": "Golden Age",
+  "vibe": "vintage storybook charm",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Yeseva One",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F51",
+  "name": "Gallery Wall",
+  "vibe": "exhibition-caption elegance",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Prata",
+  "body": "Work Sans",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F52",
+  "name": "Marble Hall",
+  "vibe": "roman-inscription calm",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Marcellus",
+  "body": "Karla",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F53",
+  "name": "Fine Line",
+  "vibe": "hairline fashion minimalism",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Italiana",
+  "body": "Jost",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F54",
+  "name": "Gilded Page",
+  "vibe": "engraved bookplate serif",
+  "media": [
+   "edit",
+   "web"
+  ],
+  "display": "Gilda Display",
+  "body": "Source Sans 3",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F55",
+  "name": "Wire Frame",
+  "vibe": "art-deco skeleton letters",
+  "media": [
+   "web"
+  ],
+  "display": "Poiret One",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F56",
+  "name": "Starship",
+  "vibe": "sci-fi console futurism",
+  "media": [
+   "web",
+   "tool"
+  ],
+  "display": "Michroma",
+  "body": "Space Grotesk",
+  "ui": "JetBrains Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F57",
+  "name": "Headline Desk",
+  "vibe": "condensed newsroom urgency",
+  "media": [
+   "web",
+   "app",
+   "edit"
+  ],
+  "display": "Oswald",
+  "body": "Source Sans 3",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F58",
+  "name": "Nordic Press",
+  "vibe": "scandinavian editorial sans",
+  "media": [
+   "web",
+   "tool",
+   "app",
+   "docs"
+  ],
+  "display": "Schibsted Grotesk",
+  "body": "Schibsted Grotesk",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F59",
+  "name": "Albert Modern",
+  "vibe": "rounded geometric polish",
+  "media": [
+   "app",
+   "web",
+   "tool"
+  ],
+  "display": "Albert Sans",
+  "body": "Albert Sans",
+  "ui": "DM Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F60",
+  "name": "Onest Product",
+  "vibe": "quiet interface confidence",
+  "media": [
+   "app",
+   "tool",
+   "docs"
+  ],
+  "display": "Onest",
+  "body": "Onest",
+  "ui": "JetBrains Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F61",
+  "name": "Familjen",
+  "vibe": "warm grotesk with character",
+  "media": [
+   "web",
+   "app",
+   "tool"
+  ],
+  "display": "Familjen Grotesk",
+  "body": "Familjen Grotesk",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F62",
+  "name": "Red Hat Suite",
+  "vibe": "open-source friendliness",
+  "media": [
+   "tool",
+   "docs",
+   "app"
+  ],
+  "display": "Red Hat Display",
+  "body": "Mulish",
+  "ui": "Fira Code",
+  "displayWeight": 700
+ },
+ {
+  "id": "F63",
+  "name": "Cabin Crew",
+  "vibe": "humanist utility comfort",
+  "media": [
+   "app",
+   "docs",
+   "tool"
+  ],
+  "display": "Cabin",
+  "body": "Cabin",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F64",
+  "name": "Hyperlegible",
+  "vibe": "maximum-readability accessible",
+  "media": [
+   "docs",
+   "tool",
+   "app"
+  ],
+  "display": "Atkinson Hyperlegible",
+  "body": "Atkinson Hyperlegible",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F65",
+  "name": "Scrapbook",
+  "vibe": "handwritten personal warmth",
+  "media": [
+   "web",
+   "edit"
+  ],
+  "display": "Caveat",
+  "body": "Work Sans",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F66",
+  "name": "Broadside",
+  "vibe": "poster caps over book serif",
+  "media": [
+   "edit",
+   "web"
+  ],
+  "display": "Anton",
+  "body": "Source Serif 4",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F67",
+  "name": "Museum Label",
+  "vibe": "curatorial plaque precision",
+  "media": [
+   "edit",
+   "docs"
+  ],
+  "display": "Marcellus",
+  "body": "Source Sans 3",
+  "ui": "IBM Plex Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F68",
+  "name": "Codex",
+  "vibe": "old serif meets code",
+  "media": [
+   "docs",
+   "edit"
+  ],
+  "display": "EB Garamond",
+  "body": "Source Sans 3",
+  "ui": "JetBrains Mono",
+  "displayWeight": 500
+ },
+ {
+  "id": "F69",
+  "name": "Signal Grotesk",
+  "vibe": "industrial control-room",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "Archivo",
+  "body": "Public Sans",
+  "ui": "Fira Code",
+  "displayWeight": 800
+ },
+ {
+  "id": "F70",
+  "name": "Round Table",
+  "vibe": "soft shapes, serious body",
+  "media": [
+   "app",
+   "web"
+  ],
+  "display": "Nunito",
+  "body": "Mulish",
+  "ui": "DM Mono",
+  "displayWeight": 700
+ },
+ {
+  "id": "F71",
+  "name": "Editor's Cut",
+  "vibe": "masthead serif, modern body",
+  "media": [
+   "edit",
+   "web"
+  ],
+  "display": "Playfair Display",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F72",
+  "name": "Terminal Serif",
+  "vibe": "slab warmth for dev tools",
+  "media": [
+   "tool",
+   "docs"
+  ],
+  "display": "Zilla Slab",
+  "body": "IBM Plex Sans",
+  "ui": "JetBrains Mono",
+  "displayWeight": 600
+ },
+ {
+  "id": "F73",
+  "name": "Boutique",
+  "vibe": "small-shop sparkle",
+  "media": [
+   "web",
+   "app",
+   "edit"
+  ],
+  "display": "DM Serif Display",
+  "body": "Figtree",
+  "ui": "Space Mono",
+  "displayWeight": 400
+ },
+ {
+  "id": "F74",
+  "name": "Studio Sans",
+  "vibe": "press-room grotesk, soft body",
+  "media": [
+   "web",
+   "tool"
+  ],
+  "display": "Chivo",
+  "body": "Mulish",
+  "ui": "Space Mono",
+  "displayWeight": 700
+ }
+]

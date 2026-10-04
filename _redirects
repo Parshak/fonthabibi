@@ -1,0 +1,6 @@
+# Short link to the mixer
+/mixer /type-ground-mixer-pro 301
+# Build tools and config are in the repo, not part of the site
+/tools/* / 302
+/functions/* / 302
+/wrangler.toml / 302

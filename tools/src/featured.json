@@ -1,0 +1,20 @@
+{
+  "_note": "Hand-picked families shown first in the library (Featured sort). Widely used, well made, good for real projects. Fonts used by curated voices are added automatically.",
+  "families": [
+    "Inter", "Roboto", "Open Sans", "Montserrat", "Poppins", "Lato", "Noto Sans", "Raleway", "Nunito", "Nunito Sans",
+    "Work Sans", "DM Sans", "Manrope", "Plus Jakarta Sans", "Outfit", "Figtree", "Sora", "Urbanist", "Lexend", "Rubik",
+    "Mulish", "Karla", "Barlow", "Barlow Condensed", "Archivo", "Archivo Black", "Space Grotesk", "Bricolage Grotesque", "Instrument Sans", "Schibsted Grotesk",
+    "Public Sans", "IBM Plex Sans", "Source Sans 3", "Libre Franklin", "Red Hat Display", "Albert Sans", "Onest", "Hanken Grotesk", "Epilogue", "Be Vietnam Pro",
+    "Josefin Sans", "Jost", "Quicksand", "Comfortaa", "Varela Round", "Baloo 2", "Fredoka", "Atkinson Hyperlegible", "Cabin", "Titillium Web",
+    "Oswald", "Bebas Neue", "Anton", "Teko", "Fjalla One", "League Spartan", "Big Shoulders", "Unbounded", "Syne", "Michroma",
+    "Playfair Display", "Merriweather", "Lora", "Fraunces", "Cormorant Garamond", "EB Garamond", "Libre Baskerville", "Crimson Pro", "Source Serif 4", "Newsreader",
+    "Spectral", "PT Serif", "Noto Serif", "DM Serif Display", "Bodoni Moda", "Abril Fatface", "Prata", "Marcellus", "Cinzel", "Gilda Display",
+    "Instrument Serif", "Young Serif", "Literata", "Alegreya", "Bitter", "Zilla Slab", "Roboto Slab", "Arvo", "Alfa Slab One", "Domine",
+    "Caveat", "Dancing Script", "Pacifico", "Great Vibes", "Satisfy", "Kalam", "Permanent Marker", "Shadows Into Light", "Amatic SC", "Sacramento",
+    "Lobster", "Righteous", "Bungee", "Monoton", "Rubik Mono One", "Press Start 2P", "Yeseva One", "Italiana", "Poiret One", "Limelight",
+    "JetBrains Mono", "IBM Plex Mono", "Fira Code", "Space Mono", "DM Mono", "Roboto Mono", "Source Code Pro", "Inconsolata", "Martian Mono", "Red Hat Mono",
+    "Hind", "Mukta", "Tiro Devanagari Hindi", "Noto Sans Devanagari", "Yatra One", "Rozha One", "Martel", "Kalam", "Cairo", "Tajawal",
+    "Almarai", "Amiri", "IBM Plex Sans Arabic", "Readex Pro", "El Messiri", "Noto Sans JP", "Noto Serif JP", "M PLUS Rounded 1c", "Noto Sans KR", "Noto Sans SC",
+    "Heebo", "Assistant", "Prompt", "Kanit", "Sarabun", "Exo 2", "Orbitron", "Chakra Petch", "Silkscreen", "VT323"
+  ]
+}
