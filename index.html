@@ -332,7 +332,7 @@ document.getElementById("wear-btn").addEventListener("click",()=>{
    The proof line under the hero reads the real numbers from
    /data/meta.json, so it stays right as the library grows.
    ============================================================ */
-fetch("/data/meta.json").then(r => r.ok ? r.json() : null).then(meta => {
+fetch("/data/meta.json?v=20261005").then(r => r.ok ? r.json() : null).then(meta => {
   if (!meta) return;
   const n = x => x.toLocaleString("en-AU");
   const c = meta.counts;

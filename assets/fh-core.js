@@ -6,10 +6,14 @@
    - builds the CSS people copy into their projects
    ============================================================ */
 
+// The version string makes browsers that cached an older copy fetch the new
+// files. Cloudflare revalidates on every visit anyway, so it only needs a bump
+// if a long cache header is ever added again.
+const DATA_VERSION = "20261005";
 const cache = {};
 export function loadData(name) {
   if (!cache[name]) {
-    cache[name] = fetch(`/data/${name}.json`).then((r) => {
+    cache[name] = fetch(`/data/${name}.json?v=${DATA_VERSION}`).then((r) => {
       if (!r.ok) throw new Error(`Could not load ${name} (${r.status})`);
       return r.json();
     });

@@ -7,7 +7,7 @@
    - fonts load only when they are needed
    - saved combos are kept in this browser
    ============================================================ */
-import { loadData, esc, fmt, cssStack, useFont, comboCSS, copyText, download, flash, store, slug } from "./fh-core.js";
+import { loadData, esc, fmt, cssStack, useFont, comboCSS, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005";
 
 const $ = (id) => document.getElementById(id);
 const px = (n) => n + "px";

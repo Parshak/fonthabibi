@@ -10,7 +10,7 @@
 import {
   loadData, esc, fmt, cssStack, useFont, nearestWeight, familyParam, gfURL,
   sampleFor, scriptOf, isRTL, SAMPLES, voiceCSS, groundCSS, copyText, flash,
-} from "./fh-core.js";
+} from "./fh-core.js?v=20261005";
 
 const $ = (s, el = document) => el.querySelector(s);
 const PAGE = 36;
