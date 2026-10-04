@@ -52,14 +52,14 @@
   {
    "id": "grocery",
    "label": "Grocery & market",
-   "voices": 284,
+   "voices": 286,
    "grounds": 44
   },
   {
    "id": "barber",
    "label": "Barber & salon",
    "voices": 406,
-   "grounds": 91
+   "grounds": 90
   },
   {
    "id": "beauty",
@@ -71,31 +71,31 @@
    "id": "fitness",
    "label": "Fitness & sport",
    "voices": 151,
-   "grounds": 66
+   "grounds": 61
   },
   {
    "id": "medical",
    "label": "Medical & dental",
-   "voices": 429,
+   "voices": 430,
    "grounds": 35
   },
   {
    "id": "finance",
    "label": "Law & finance",
-   "voices": 461,
+   "voices": 366,
    "grounds": 41
   },
   {
    "id": "realestate",
    "label": "Real estate",
-   "voices": 382,
-   "grounds": 46
+   "voices": 396,
+   "grounds": 47
   },
   {
    "id": "trades",
    "label": "Construction & trades",
-   "voices": 246,
-   "grounds": 92
+   "voices": 248,
+   "grounds": 95
   },
   {
    "id": "automotive",
@@ -106,20 +106,20 @@
   {
    "id": "tech",
    "label": "Tech & SaaS",
-   "voices": 204,
+   "voices": 199,
    "grounds": 77
   },
   {
    "id": "education",
    "label": "Education & tutoring",
    "voices": 114,
-   "grounds": 61
+   "grounds": 66
   },
   {
    "id": "kids",
    "label": "Kids & family",
    "voices": 118,
-   "grounds": 24
+   "grounds": 17
   },
   {
    "id": "wedding",
@@ -136,7 +136,7 @@
   {
    "id": "art",
    "label": "Art & photography",
-   "voices": 212,
+   "voices": 215,
    "grounds": 66
   },
   {
@@ -149,24 +149,24 @@
    "id": "travel",
    "label": "Travel & hospitality",
    "voices": 208,
-   "grounds": 56
+   "grounds": 58
   },
   {
    "id": "community",
    "label": "Nonprofit & community",
    "voices": 194,
-   "grounds": 73
+   "grounds": 76
   },
   {
    "id": "agency",
    "label": "Agency & studio",
-   "voices": 105,
-   "grounds": 139
+   "voices": 124,
+   "grounds": 134
   },
   {
    "id": "publishing",
    "label": "Publishing & news",
-   "voices": 522,
+   "voices": 524,
    "grounds": 51
   },
   {
@@ -621,7 +621,7 @@
   },
   {
    "id": "bold",
-   "n": 109
+   "n": 104
   },
   {
    "id": "natural",
@@ -637,7 +637,7 @@
   },
   {
    "id": "playful",
-   "n": 52
+   "n": 45
   },
   {
    "id": "fresh",
@@ -645,7 +645,7 @@
   },
   {
    "id": "editorial",
-   "n": 32
+   "n": 31
   },
   {
    "id": "luxurious",
@@ -678,12 +678,16 @@
    "n": 41
   },
   {
-   "id": "red",
-   "n": 37
-  },
-  {
    "id": "blue",
    "n": 36
+  },
+  {
+   "id": "red",
+   "n": 33
+  },
+  {
+   "id": "orange",
+   "n": 25
   },
   {
    "id": "mono",
@@ -692,10 +696,6 @@
   {
    "id": "teal",
    "n": 24
-  },
-  {
-   "id": "orange",
-   "n": 21
   }
  ],
  "grades": [

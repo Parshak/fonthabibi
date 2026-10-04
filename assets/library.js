@@ -90,7 +90,7 @@ function defs() {
       ],
       sorts: [["featured", "Featured first"], ["quality", "Highest quality"], ["new", "Newest"], ["az", "A to Z"]],
       sortFn: {
-        featured: (a, b) => (b.f || 0) - (a.f || 0) || (b.q || 0) - (a.q || 0) || a.n.localeCompare(b.n),
+        featured: (a, b) => (a.f || 9999) - (b.f || 9999) || (b.q || 0) - (a.q || 0) || a.n.localeCompare(b.n),
         quality: (a, b) => (b.q || 0) - (a.q || 0) || a.n.localeCompare(b.n),
         new: (a, b) => (b.add || "").localeCompare(a.add || "") || a.n.localeCompare(b.n),
         az: (a, b) => a.n.localeCompare(b.n),
@@ -277,9 +277,10 @@ function fontCard(f) {
   const script = scriptOf(f);
   const latinish = script === "latin" || script === "cyrillic" || script === "greek";
   const text = state.text && latinish ? state.text : sampleFor(f);
-  const weights = f.ax?.wght ? "variable" : `${f.w.length} weight${f.w.length > 1 ? "s" : ""}`;
+  const weights = f.ax?.wght ? "variable weight" : `${f.w.length} weight${f.w.length > 1 ? "s" : ""}`;
+  const facts = [f.st && f.st !== "Monospace" ? f.st : CAT[f.c] || f.c, weights, f.it ? "italics" : ""].filter(Boolean).join(", ");
   const langs = f.sub.filter((s) => s !== "latin-ext" && LANG.some((l) => l.id === s));
-  const langLabel = langs.length > 4 ? `${langs.length} languages` : langs.map((s) => (LANG.find((l) => l.id === s) || {}).label || s).join(", ");
+  const langLabel = !langs.length ? "Latin" : langs.length > 4 ? `Latin and ${langs.length} more scripts` : [f.sub.includes("latin") ? "Latin" : "", ...langs.map((s) => (LANG.find((l) => l.id === s) || {}).label || s)].filter(Boolean).join(", ");
   const moods = Object.keys(f.m || {}).slice(0, 3);
   const el = document.createElement("article");
   el.className = "card font-card";
@@ -287,8 +288,8 @@ function fontCard(f) {
     <div class="spec" ${isRTL(script) ? 'dir="rtl"' : ""}><p style="font-family:${esc(cssStack(f))};font-weight:${nearestWeight(f, 400)}" lang="${script === "latin" ? "en" : ""}">${esc(text)}</p></div>
     <div class="meta">
       <div class="row"><h2 class="nm">${esc(f.n)}</h2>${f.f ? '<span class="featured">Featured</span>' : ""}</div>
-      <p class="facts">${esc(CAT[f.c] || f.c)}${f.st && f.st !== "Monospace" ? ", " + esc(f.st.toLowerCase()) : ""}. ${weights}${f.it ? ", italics" : ""}</p>
-      <p class="langs">${esc(langLabel)}${f.ds ? ` · by ${esc(f.ds.split(",").slice(0, 2).join(","))}` : ""}</p>
+      <p class="facts">${esc(facts)}</p>
+      <p class="langs">${esc(langLabel)}${f.ds ? `. By ${esc(f.ds.split(",").slice(0, 2).join(","))}` : ""}</p>
       ${moods.length ? `<ul class="tags">${moods.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>` : ""}
     </div>
     <div class="acts">

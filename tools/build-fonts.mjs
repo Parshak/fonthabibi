@@ -136,8 +136,10 @@ const CATEGORY = { "sans-serif": "sans", serif: "serif", display: "display", han
 const LICENCE = (type = "") =>
   /open font/i.test(type) ? "OFL" : /apache/i.test(type) ? "Apache 2.0" : /ubuntu/i.test(type) ? "UFL" : type || "OFL";
 
-const featured = new Set(featuredSrc);
-for (const v of curatedVoices) { featured.add(v.display); featured.add(v.body); featured.add(v.ui); }
+// Featured rank: the order of featured.json, then fonts used by curated voices.
+const featured = new Map();
+for (const n of featuredSrc) if (!featured.has(n)) featured.set(n, featured.size + 1);
+for (const v of curatedVoices) for (const n of [v.display, v.body, v.ui]) if (!featured.has(n)) featured.set(n, featured.size + 1);
 
 /* ---------- build ---------- */
 // Icon sets are not text fonts. Utility fonts (barcodes, redaction, emoji,
@@ -194,13 +196,13 @@ for (const [id, f] of Object.entries(v1)) {
   if (seasons.length) rec.se = seasons;
   if (purposes.length) rec.pu = purposes;
   if (q.length) rec.q = Math.round(q.reduce((a, b) => a + b, 0) / q.length);
-  if (featured.has(f.family)) rec.f = 1;
+  if (featured.has(f.family)) rec.f = featured.get(f.family);
   if (SPECIAL.test(f.family) || Object.entries(tags).some(([t, s]) => t.startsWith("/Special use/") && s >= 50)) rec.sp = 1;
   fonts.push(rec);
 }
 fonts.sort((a, b) => a.n.localeCompare(b.n));
 
-const missingFeatured = [...featured].filter((n) => !fonts.some((f) => f.n === n));
+const missingFeatured = [...featured.keys()].filter((n) => !fonts.some((f) => f.n === n));
 const out = {
   v: 1,
   generated: new Date().toISOString().slice(0, 10),

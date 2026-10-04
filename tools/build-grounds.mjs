@@ -14,6 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { oklch, hexToOklch, contrast, solveL, rgba, hueFamily, contrastReport } from "./lib/color.mjs";
+import { idRegistry } from "./lib/ids.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(here, "..");
@@ -42,8 +43,8 @@ const PAPERS = [
 ];
 // Light accents: [name, hue, chroma, description]
 const ACCENTS_LIGHT = [
-  ["Crimson", 22, 0.19, "crimson"], ["Brick", 35, 0.13, "brick red"], ["Coral", 38, 0.17, "coral"],
-  ["Tangerine", 52, 0.17, "tangerine"], ["Rust", 45, 0.13, "rust"], ["Ochre", 75, 0.12, "ochre"],
+  ["Crimson", 22, 0.19, "crimson"], ["Brick", 35, 0.13, "brick red"],
+  ["Copper", 52, 0.17, "copper"], ["Rust", 45, 0.13, "rust"], ["Ochre", 75, 0.12, "ochre"],
   ["Mustard", 92, 0.12, "mustard"], ["Olive", 115, 0.1, "olive"], ["Moss", 132, 0.1, "moss green"],
   ["Forest", 150, 0.11, "forest green"], ["Emerald", 162, 0.13, "emerald"], ["Teal", 185, 0.1, "teal"],
   ["Lagoon", 205, 0.11, "lagoon blue"], ["Azure", 245, 0.15, "azure"], ["Cobalt", 262, 0.19, "cobalt"],
@@ -117,7 +118,7 @@ function makeGround(id, base, acc, dark) {
   const border = sharp ? ink : dark ? oklch(bL + 0.085, bC * 1.2 + 0.004, bH) : oklch(bL - 0.075, bC * 1.25 + 0.004, bH);
 
   // Radius: playful hues get rounder corners, serious ones stay tight.
-  const playful = ["Coral", "Tangerine", "Magenta", "Raspberry", "Violet", "Mustard", "Pink", "Lavender", "Sun", "Volt", "Lime"].includes(aName);
+  const playful = ["Coral", "Copper", "Magenta", "Raspberry", "Violet", "Mustard", "Pink", "Lavender", "Sun", "Volt", "Lime"].includes(aName);
   const serious = ["Ink", "Graphite", "Navy", "Brick", "Cocoa", "Forest", "Olive", "Ochre"].includes(aName);
   const radius = sharp ? [0, 2][Math.floor(r * 2)]
     : playful ? [14, 16, 18, 20, 24][Math.floor(r * 5)]
@@ -237,19 +238,22 @@ for (const g of curated) {
   grounds.push(rec);
 }
 
-let n = 100;
+const ids = idRegistry("grounds", "G", 100);
 const recipes = []; // [base, accent, dark]
 for (const p of PAPERS) for (const a of pickAccents(p, ACCENTS_LIGHT, p[2] < 0.013 ? 11 : 9)) recipes.push([p, a, false]);
 for (const b of BASES) for (const a of pickAccents(b, ACCENTS_DARK, b[2] < 0.013 ? 10 : 8)) recipes.push([b, a, true]);
 const failures = [];
 for (const [b, a, dark] of recipes) {
-  const g = makeGround("G" + n++, b, a, dark);
+  const key = `${dark ? "dark" : "light"}:${b[0]}:${a[0]}`;
+  const g = makeGround(ids.peek(key), b, a, dark);
   const r = contrastReport(g.tokens);
-  if (r.grade !== "AA" && r.grade !== "AAA") { failures.push(g.name + " " + JSON.stringify(r.cr)); n--; continue; }
+  if (r.grade !== "AA" && r.grade !== "AAA") { failures.push(g.name + " " + JSON.stringify(r.cr)); continue; }
+  g.id = ids.take(key);
   const d = describe(g);
   grounds.push({ id: g.id, name: g.name, vibe: g.vibe, tokens: g.tokens, media: d.media, hue: d.hue, mood: d.mood, ind: d.ind, cr: r.cr, grade: r.grade, treatment: g.treatment });
 }
 
+ids.save();
 const out = { v: 1, generated: new Date().toISOString().slice(0, 10), count: grounds.length, grounds };
 fs.mkdirSync(path.join(ROOT, "data"), { recursive: true });
 fs.writeFileSync(path.join(ROOT, "data", "grounds.json"), JSON.stringify(out));

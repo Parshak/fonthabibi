@@ -14,6 +14,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { idRegistry } from "./lib/ids.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(here, "..");
@@ -185,10 +186,10 @@ const IND = {
   beauty: (D, m, k) => (m.sophisticated + m.fancy + m.calm) / 150 + (["Didone", "Modern serif", "Formal script"].includes(D.st) ? 0.45 : 0),
   fitness: (D, m, k) => (m.energetic + m.loud + m.excited + m.rugged) / 180 + (condensed(D) ? 0.45 : 0) + ((D.th || []).includes("techno") ? 0.2 : 0),
   medical: (D, m, k) => (m.calm + m.competent + m.sincere) / 160 + (["Humanist sans", "Rounded sans", "Geometric sans"].includes(D.st) ? 0.25 : 0) - (k === "script" ? 1 : 0),
-  finance: (D, m, k) => (m.business + m.competent + m.structured) / 160 + (["Transitional serif", "Scotch serif", "Modern serif", "Neo-grotesque", "Grotesque"].includes(D.st) ? 0.3 : 0) - (k === "script" ? 1 : 0),
+  finance: (D, m, k) => (m.business < 50 && m.structured < 50 ? -1 : 0) + (m.business + m.competent + m.structured) / 160 + (["Transitional serif", "Scotch serif", "Modern serif", "Neo-grotesque", "Grotesque"].includes(D.st) ? 0.3 : 0) - (k === "script" ? 1 : 0) - (Math.max(m.artistic, m.quirky, m.playful) >= 50 ? 0.4 : 0),
   realestate: (D, m, k) => (m.sophisticated + m.business + m.calm) / 160 + (["Didone", "Transitional serif", "Modern serif", "Geometric sans"].includes(D.st) ? 0.3 : 0),
   trades: (D, m, k) => (m.rugged + m.structured + m.loud) / 160 + (k === "slab" || condensed(D) || D.st === "Grotesque" || (D.th || []).includes("stencil") ? 0.4 : 0),
-  tech: (D, m, k) => (m.futuristic + m.innovative + m.competent) / 160 + (["Geometric sans", "Neo-grotesque", "Superellipse sans", "Glyphic sans"].includes(D.st) ? 0.3 : 0) + ((D.th || []).includes("techno") ? 0.3 : 0),
+  tech: (D, m, k) => (m.futuristic < 40 && m.innovative < 40 && !["Geometric sans", "Neo-grotesque", "Superellipse sans"].includes(D.st) && !(D.th || []).includes("techno") ? -1 : 0) + (m.futuristic + m.innovative + m.competent) / 160 + (["Geometric sans", "Neo-grotesque", "Superellipse sans", "Glyphic sans"].includes(D.st) ? 0.3 : 0) + ((D.th || []).includes("techno") ? 0.3 : 0),
   education: (D, m, k) => (m.sincere + m.happy + m.calm) / 160 + ((D.pu || []).length ? 0.4 : 0) + (["Rounded sans", "Humanist sans"].includes(D.st) ? 0.2 : 0),
   kids: (D, m, k) => (m.childlike + m.cute + m.playful) / 120 + (["Rounded sans", "Handwritten", "Casual script"].includes(D.st) || (D.th || []).includes("blobby") ? 0.3 : 0),
   wedding: (D, m, k) => (m.fancy + m.sophisticated) / 100 + (["Formal script", "Didone", "Upright script", "Modern serif"].includes(D.st) ? 0.45 : 0),
@@ -301,16 +302,19 @@ for (const s of SCRIPTS) {
 }
 
 /* ---------- assemble with stable ids ---------- */
+// Ids stay the same across rebuilds (tools/src/ids-voices.json), so shared
+// links and saved combos keep pointing at the same pairing.
+const ids = idRegistry("voices", "F", 100);
 generated.sort((a, b) => (a[0].n + a[1].n).localeCompare(b[0].n + b[1].n));
-let n = 100;
-for (const [D, B, s] of generated) voices.push(makeVoice("F" + n++, D, B, { score: Math.round(Math.min(1, s / 1.6) * 100) }));
+for (const [D, B, s] of generated) voices.push(makeVoice(ids.take(`${D.n}|${B.n}`), D, B, { score: Math.round(Math.min(1, s / 1.6) * 100) }));
 scriptVoices.sort((a, b) => (a[2] + a[0].n + a[1].n).localeCompare(b[2] + b[0].n + b[1].n));
 for (const [D, B, s] of scriptVoices) {
   const media = ["web", "app"];
   if (kind(B) === "serif" || kind(D) === "serif") media.push("edit");
   if (kind(B) === "sans") media.push("docs");
-  voices.push(makeVoice("F" + n++, D, B, { lang: [s], ui: B.n, media }));
+  voices.push(makeVoice(ids.take(`${D.n}|${B.n}`), D, B, { lang: [s], ui: B.n, media }));
 }
+ids.save();
 
 const out = { v: 1, generated: new Date().toISOString().slice(0, 10), count: voices.length, voices };
 fs.writeFileSync(path.join(ROOT, "data", "voices.json"), JSON.stringify(out));
