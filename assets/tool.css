@@ -1,40 +1,89 @@
 /* ============================================================
-   FontHabibi tool pages (library, mixer): a light frame in the
-   same family as the home page. Fraunces for page titles,
-   Outfit for everything you read and click, plum for actions.
-   The frame stays quiet so the kits and specimens carry the color.
+   FontHabibi: the look shared by every page.
+   White paper, espresso ink, one warm field color, and a strip of
+   five warm swatches across the top of every page. The frame stays
+   plain so the kits carry the color.
    ============================================================ */
 :root{
-  --shell-bg:#F7F5F2; --shell-panel:#FFFFFF; --shell-panel-2:#F2EFEB; --shell-panel-3:#E9E4DF;
-  --shell-ink:#1F1A21; --shell-muted:#5F5863; --shell-faint:#736C76;
-  --shell-line:#E4DFD9; --shell-line-2:#CDC6BF;
-  --shell-accent:#7A2E6D; --shell-accent-ink:#FFF6FC; --shell-accent-soft:#F4E9F1;
+  /* The field: hero block, page headers, pressed chips, "Our pick" */
+  --field:#FFC72C; --wash:#FFF4CF; --wash-2:#FFE8A1;
+  /* The strip across the top: saffron, mango, coral, rose, pomegranate */
+  --swatch-1:#FFC72C; --swatch-2:#FF9A3C; --swatch-3:#FF6B57; --swatch-4:#F0457B; --swatch-5:#B5173E;
+
+  --shell-bg:#FFFFFF; --shell-panel:#FFFFFF; --shell-panel-2:var(--wash); --shell-panel-3:var(--wash-2);
+  --shell-neutral:#F4F0EA;
+  --shell-ink:#231710; --shell-muted:#5E5249; --shell-faint:#786C62;
+  --shell-line:#E9E1D6; --shell-line-2:#D3C7B8;
+  --shell-accent:#231710; --shell-accent-ink:#FFFFFF; --shell-accent-soft:var(--wash);
+  --shell-link:#C21F45;
   --shell-ok:#1F7A4D;
-  --font-ui:'Outfit',system-ui,sans-serif; --font-title:'Fraunces',Georgia,serif;
+
+  --font-ui:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-title:var(--font-ui); --title-weight:800; --title-track:-.035em;
+  --wrap:1500px;
 }
+/* Other looks, only reachable from the preview switcher (assets/look.js) */
+:root[data-look="coral"]{--field:#FF8674;--wash:#FFE6E0;--wash-2:#FFCFC5}
+:root[data-look="rose"]{--field:#FF9DB8;--wash:#FFE6EE;--wash-2:#FFCCDB}
+:root[data-type="rubik"]{--font-ui:'Rubik',system-ui,sans-serif;--title-weight:700;--title-track:-.02em}
+:root[data-type="bricolage"]{--font-ui:'Figtree',system-ui,sans-serif;--font-title:'Bricolage Grotesque',system-ui,sans-serif;--title-weight:700;--title-track:-.025em}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{color-scheme:light}
 body{background:var(--shell-bg);color:var(--shell-ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;min-height:100vh;line-height:1.45}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 a{color:inherit}
 input,select{font:inherit}
-.wrap{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,44px)}
+h1,h2,h3{font-family:var(--font-title);font-weight:var(--title-weight);letter-spacing:var(--title-track)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,3vw,44px)}
 
-.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--shell-accent);color:var(--shell-accent-ink);padding:10px 14px;border-radius:8px;font-weight:600}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--shell-ink);color:#fff;padding:10px 14px;border-radius:8px;font-weight:600}
 .skip:focus{left:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--shell-line);background:rgba(247,245,242,.9);backdrop-filter:blur(8px)}
-.topbar-in{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,44px);height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:'Habibi',Georgia,serif;font-size:22px;text-decoration:none;color:var(--shell-ink)}
-.brand i{font-style:normal;color:var(--shell-accent)}
-.topnav{display:flex;gap:4px}
-.topnav a{text-decoration:none;color:var(--shell-muted);font-weight:500;font-size:15px;padding:8px 13px;border-radius:99px}
-.topnav a:hover{color:var(--shell-ink);background:var(--shell-panel-2)}
-.topnav a[aria-current="page"]{color:var(--shell-accent-ink);background:var(--shell-accent)}
+/* Top bar: the swatch strip, the name, and the five places to go */
+.topbar{position:sticky;top:0;z-index:40;background:var(--shell-bg);border-bottom:1px solid var(--shell-line)}
+.topbar::before{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--swatch-1) 0 20%,var(--swatch-2) 20% 40%,var(--swatch-3) 40% 60%,var(--swatch-4) 60% 80%,var(--swatch-5) 80% 100%)}
+.topbar-in{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,3vw,44px);min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:6px 20px;flex-wrap:wrap}
+.brand{font-family:var(--font-title);font-weight:var(--title-weight);font-size:23px;letter-spacing:var(--title-track);text-decoration:none;color:var(--shell-ink);line-height:1.2}
+/* "habibi" gets a stroke of the field color, like a highlighter */
+.brand b{font-weight:inherit;padding:0 4px 0 1px;background:linear-gradient(transparent 54%,var(--field) 54% 92%,transparent 92%)}
+.topnav{display:flex;gap:2px}
+.topnav a{text-decoration:none;color:var(--shell-muted);font-weight:600;font-size:15px;padding:8px 13px;border-radius:99px;white-space:nowrap}
+.topnav a:hover{color:var(--shell-ink);background:var(--wash)}
+.topnav a[aria-current="page"]{color:var(--shell-ink);background:var(--field)}
 
-:focus-visible{outline:2px solid var(--shell-accent);outline-offset:2px}
+/* Page header band on the tool pages */
+.page-head{background:var(--wash);border-bottom:1px solid var(--shell-line)}
+.page-head h1{font-size:clamp(30px,3.6vw,46px);line-height:1.05}
+.lede{margin-top:10px;max-width:66ch;font-size:17px;line-height:1.55;color:var(--shell-muted)}
+
+:focus-visible{outline:2.5px solid var(--shell-ink);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--shell-ink);color:#fff;font-weight:500;font-size:14px;padding:11px 16px;border-radius:12px;box-shadow:0 14px 34px rgba(31,26,33,.22);transition:opacity .18s,transform .18s;z-index:90;max-width:calc(100vw - 32px)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--shell-ink);color:#fff;font-weight:500;font-size:14px;padding:11px 16px;border-radius:12px;box-shadow:0 14px 34px rgba(35,23,16,.22);transition:opacity .18s,transform .18s;z-index:90;max-width:calc(100vw - 32px)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* A kit drawn as a small website, in the kit's own fonts and colors.
+   Used by the library and by the home page. */
+.site{display:flex;flex-direction:column;min-height:262px}
+.site-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid}
+.site-logo{font-size:16px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-links{display:flex;gap:12px;font-size:11.5px;white-space:nowrap}
+.site-hero{padding:18px 18px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.site-h{font-size:25px;line-height:1.08;overflow-wrap:anywhere}
+.site-p{font-size:13.5px;line-height:1.55}
+.site-btns{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.site-btn{font-size:12px;font-weight:700;padding:8px 13px;border:1px solid transparent}
+.site-strip{margin:0 18px 16px;padding:9px 12px;border:1px solid;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;line-height:1.35}
+.site-a{font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+/* Phones: the bar is two rows (name, then places) and scrolls away with the page */
+@media(max-width:700px){
+  .topbar{position:static}
+  .topbar-in{padding-top:8px;padding-bottom:8px}
+  .topnav{width:calc(100% + 16px);margin:0 -8px;overflow-x:auto;scrollbar-width:none}
+  .topnav::-webkit-scrollbar{display:none}
+  .topnav a{padding:7px 10px;font-size:14.5px}
+  .lede{font-size:16px}
+}

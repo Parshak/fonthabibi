@@ -3,73 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FontHabibi · Font and color kits for what you're building</title>
+<title>Font and color kits · FontHabibi</title>
 <meta name="description" content="Ready-made font and color kits for restaurants, shops, studios, apps and more, each shown as a real website. Copy one into Claude, Cursor or your CSS, or browse every Google font, font pairing and color set.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFC72C'/%3E%3Ctext x='32' y='45' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='34' text-anchor='middle' fill='%23231710'%3EAa%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005c">
-<link rel="stylesheet" href="/assets/library.css?v=20261005c">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tool.css?v=20261005d">
+<link rel="stylesheet" href="/assets/library.css?v=20261005d">
+<script src="/assets/look.js?v=20261005d"></script>
 </head>
 <body>
 <a class="skip" href="#results">Skip to results</a>
 
 <header class="topbar">
   <div class="topbar-in">
-    <a class="brand" href="/">font<i>habibi</i></a>
+    <a class="brand" href="/">font<b>habibi</b></a>
     <nav class="topnav" aria-label="Main">
-      <a href="/library/" aria-current="page">Library</a>
-      <a href="/type-ground-mixer-pro">Mixer</a>
+      <a href="/library/" data-nav="kits">Kits</a>
+      <a href="/library/?tab=voices" data-nav="voices">Font pairings</a>
+      <a href="/library/?tab=grounds" data-nav="grounds">Colors</a>
+      <a href="/library/?tab=fonts" data-nav="fonts">Fonts</a>
+      <a href="/type-ground-mixer-pro" data-nav="mixer">Mixer</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="lib-head">
-    <h1>Fonts and colors that already go together</h1>
-    <p class="lede" id="lede">Pick what you're building and get a ready-made kit of fonts and colors, shown as a real website. Copy it into Claude, Cursor or your own CSS in one click.</p>
-    <div class="tabs" role="tablist" aria-label="Library sections">
-      <button class="tab" role="tab" id="tab-kits" aria-controls="results" data-tab="kits">Kits <span class="n" data-count="kits"></span></button>
-      <button class="tab" role="tab" id="tab-voices" aria-controls="results" data-tab="voices">Font pairings <span class="n" data-count="voices"></span></button>
-      <button class="tab" role="tab" id="tab-grounds" aria-controls="results" data-tab="grounds">Colors <span class="n" data-count="grounds"></span></button>
-      <button class="tab" role="tab" id="tab-fonts" aria-controls="results" data-tab="fonts">Fonts <span class="n" data-count="fonts"></span></button>
+<main>
+  <div class="page-head">
+    <div class="wrap">
+      <section class="lib-head">
+        <h1 id="page-title">Font and color kits</h1>
+        <p class="lede" id="lede">Pick what you're building and get a ready-made kit of fonts and colors, shown as a real website. Copy it into Claude, Cursor or your own CSS in one click.</p>
+      </section>
+      <section class="building" id="building" aria-label="What are you building?" hidden></section>
     </div>
-  </section>
+  </div>
 
-  <section class="building" id="building" aria-label="What are you building?" hidden></section>
+  <div class="wrap">
+    <div class="lib wide" id="lib">
+      <!-- The four library pages share this file. Their titles and opening lines
+           live here, and this runs before first paint so the right page shows
+           straight away: its title, its place in the top bar, and the filter
+           column for every page except Kits. -->
+      <script>
+        window.FH_PAGES = {
+          kits: { title: "Font and color kits", lede: "Pick what you're building and get a ready-made kit of fonts and colors, shown as a real website. Copy it into Claude, Cursor or your own CSS in one click." },
+          voices: { title: "Font pairings", lede: "Fonts for headings, text and labels that work well together. Filter by industry or mood, then add colors in the mixer." },
+          grounds: { title: "Color sets", lede: "Background, text and accent colors, every set checked for readable contrast. Filter by mood or accent color, then add fonts in the mixer." },
+          fonts: { title: "Fonts", lede: "Every Google font, free for commercial use. Type your own text, filter by style or mood, then see what each font pairs well with." }
+        };
+        (function () {
+          var m = /[?&]tab=(voices|grounds|fonts)\b/.exec(location.search), tab = m ? m[1] : "kits", page = window.FH_PAGES[tab];
+          if (tab !== "kits") document.getElementById("lib").classList.remove("wide");
+          document.querySelector('.topnav a[data-nav="' + tab + '"]').setAttribute("aria-current", "page");
+          document.getElementById("page-title").textContent = page.title;
+          document.getElementById("lede").textContent = page.lede;
+          document.title = page.title + " · FontHabibi";
+        })();
+      </script>
+      <aside class="filters" id="filters" aria-label="Filters">
+        <label class="search">
+          <span class="sr">Search</span>
+          <input id="q" type="search" placeholder="Search" autocomplete="off" spellcheck="false">
+        </label>
+        <details class="filter-drawer" id="drawer" open>
+          <summary>Filters <span id="active-count"></span></summary>
+          <div id="facets"></div>
+          <button class="text-btn" id="clear" type="button" hidden>Clear filters</button>
+        </details>
+      </aside>
 
-  <div class="lib wide" id="lib">
-    <!-- Before first paint: mark the tab from the address, and show the filter
-         column for every tab except Kits (the default), so nothing jumps. -->
-    <script>
-      (function () {
-        var m = /[?&]tab=(voices|grounds|fonts)\b/.exec(location.search), tab = m ? m[1] : "kits";
-        if (tab !== "kits") document.getElementById("lib").classList.remove("wide");
-        document.getElementById("tab-" + tab).setAttribute("aria-selected", "true");
-      })();
-    </script>
-    <aside class="filters" id="filters" aria-label="Filters">
-      <label class="search">
-        <span class="sr">Search</span>
-        <input id="q" type="search" placeholder="Search" autocomplete="off" spellcheck="false">
-      </label>
-      <details class="filter-drawer" id="drawer" open>
-        <summary>Filters <span id="active-count"></span></summary>
-        <div id="facets"></div>
-        <button class="text-btn" id="clear" type="button" hidden>Clear filters</button>
-      </details>
-    </aside>
-
-    <section class="results-wrap" aria-label="Results">
-      <div class="toolbar">
-        <p class="result-line" id="result-line" aria-live="polite"></p>
-        <div class="bar" id="bar"></div>
-        <div class="tools" id="tools"></div>
-      </div>
-      <div class="results" id="results" role="tabpanel"><p class="loading">Loading the library…</p></div>
-      <div class="more" id="more" aria-hidden="true"></div>
-      <div class="empty" id="empty" hidden></div>
-    </section>
+      <section class="results-wrap" aria-label="Results">
+        <div class="toolbar">
+          <p class="result-line" id="result-line" aria-live="polite"></p>
+          <div class="bar" id="bar"></div>
+          <div class="tools" id="tools"></div>
+        </div>
+        <div class="results" id="results"><p class="loading">Loading the library…</p></div>
+        <div class="more" id="more" aria-hidden="true"></div>
+        <div class="empty" id="empty" hidden></div>
+      </section>
+    </div>
   </div>
 </main>
 
@@ -79,6 +94,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="/assets/library.js?v=20261005c"></script>
+<script type="module" src="/assets/library.js?v=20261005d"></script>
 </body>
 </html>

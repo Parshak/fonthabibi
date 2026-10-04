@@ -9,7 +9,7 @@
 // The version string makes browsers that cached an older copy fetch the new
 // files. Cloudflare revalidates on every visit anyway, so it only needs a bump
 // if a long cache header is ever added again.
-const DATA_VERSION = "20261005c";
+const DATA_VERSION = "20261005d";
 const cache = {};
 export function loadData(name) {
   if (!cache[name]) {
@@ -127,6 +127,10 @@ export const sampleFor = (f) => SAMPLES[scriptOf(f)] || SAMPLES.latin;
 export const isRTL = (script) => script === "arabic" || script === "hebrew";
 
 /* ---------- CSS exports ---------- */
+// A plain background is stored as a one-color gradient (so every background
+// has the same shape). In copied output it is written as the color itself.
+const plainBg = (t) => t.bg.replace(/\s/g, "").toLowerCase() === `linear-gradient(0deg,${t.bgHex},${t.bgHex})`.toLowerCase();
+const bgValue = (t) => (plainBg(t) ? t.bgHex : t.bg);
 export function voiceFonts(v, idx) {
   return { D: idx.get(v.d), B: idx.get(v.b), U: idx.get(v.u) };
 }
@@ -163,7 +167,7 @@ export function groundCSS(g) {
   const t = g.tokens;
   return `/* ${g.id} · ${g.name}: ${g.vibe} (FontHabibi) */
 :root{
-  --bg: ${t.bg};
+  --bg: ${bgValue(t)};
   --bg-solid: ${t.bgHex};
   --surface: ${t.surface};
   --ink: ${t.ink};
@@ -189,7 +193,7 @@ export function comboCSS(v, g, mediumLabel, idx) {
   --font-ui:      ${cssStack(U, v.u)};
 
   /* colors: ${g.name}, ${g.vibe} */
-  --bg: ${t.bg};
+  --bg: ${bgValue(t)};
   --bg-solid: ${t.bgHex};
   --surface: ${t.surface};
   --ink: ${t.ink};
@@ -234,7 +238,7 @@ Load them in <head>:
 <link href="${voiceImportURL(v, idx)}" rel="stylesheet">
 
 COLORS
-- Page background: ${t.bgHex}${t.bg.includes("gradient") ? ` (full background: ${t.bg})` : ""}
+- Page background: ${t.bgHex}${plainBg(t) ? "" : ` (full background: ${t.bg})`}
 - Cards and panels: ${t.surface}
 - Main text: ${t.ink}
 - Secondary text: ${t.muted}
@@ -251,7 +255,7 @@ CSS VARIABLES
   --font-display-weight: ${v.dw || 700};
   --font-body: ${cssStack(B, v.b)};
   --font-ui: ${cssStack(U, v.u)};
-  --bg: ${t.bg};
+  --bg: ${bgValue(t)};
   --bg-solid: ${t.bgHex};
   --surface: ${t.surface};
   --ink: ${t.ink};

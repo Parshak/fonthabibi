@@ -1,11 +1,13 @@
 /* ============================================================
-   Library page logic
-   - four tabs: kits (the default), font pairings, colors, fonts
+   Library logic
+   - four pages in one file: Kits (the default), Font pairings,
+     Colors and Fonts. The links in the top bar switch between them
+     without reloading (?tab=voices, ?tab=grounds, ?tab=fonts)
    - a kit is one font pairing on one color set, picked for a kind
      of business and shown as a small website
-   - the Kits tab is a full-width gallery: one question on top
-     ("What are you building?") and two small filters in the toolbar
-   - the other tabs have a filter column; within a group the chips
+   - Kits is a full-width gallery: one question on top ("What are
+     you building?") and two small filters in the toolbar
+   - the other pages have a filter column; within a group the chips
      mean "any of", across groups "all of", and the counts show what
      each chip would give
    - everything lives in the URL, so any view can be shared
@@ -17,7 +19,7 @@
 import {
   loadData, esc, fmt, cssStack, useFont, nearestWeight, familyParam, gfURL,
   isRTL, SAMPLES, voiceCSS, groundCSS, comboCSS, kitPrompt, copyText, flash,
-} from "./fh-core.js?v=20261005c";
+} from "./fh-core.js?v=20261005d";
 
 const $ = (s, el = document) => el.querySelector(s);
 const TABS = ["kits", "voices", "grounds", "fonts"];
@@ -33,13 +35,9 @@ const LATIN_LIKE = new Set(["cyrillic", "greek", "vietnamese"]);
 const HUE_DOT = { red: "#D64545", orange: "#E8782A", yellow: "#E2B33C", green: "#3E9A5B", teal: "#1E9E94", blue: "#2F6FE4", violet: "#7A55D9", pink: "#D9479A", mono: "#2B2B2E" };
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-// The line under the page title, per tab.
-const LEDE = {
-  kits: "Pick what you're building and get a ready-made kit of fonts and colors, shown as a real website. Copy it into Claude, Cursor or your own CSS in one click.",
-  voices: "Fonts for headings, text and labels that work well together. Filter by industry or mood, then add colors in the mixer.",
-  grounds: "Background, text and accent colors, every set checked for readable contrast. Filter by mood or accent color, then add fonts in the mixer.",
-  fonts: "Every Google font, free for commercial use. Type your own text, filter by style or mood, then see what each font pairs well with.",
-};
+// Each page's title and opening line are written in library/index.html (FH_PAGES),
+// where they are also needed before this script has loaded.
+const PAGES = window.FH_PAGES || {};
 
 // What a font card says until the visitor types their own text.
 const SPECIMEN = {
@@ -607,13 +605,14 @@ function renderResults() {
 }
 
 function renderTabs() {
-  for (const b of document.querySelectorAll(".tab")) {
-    const on = b.dataset.tab === state.tab;
-    b.setAttribute("aria-selected", on);
-    b.tabIndex = on ? 0 : -1;
+  for (const a of document.querySelectorAll(".topnav a[data-nav]")) {
+    if (a.dataset.nav === state.tab) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
   }
-  $("#results").setAttribute("aria-labelledby", "tab-" + state.tab);
-  $("#lede").textContent = LEDE[state.tab];
+  const page = PAGES[state.tab] || {};
+  $("#page-title").textContent = page.title || "";
+  $("#lede").textContent = page.lede || "";
+  document.title = `${page.title || "Library"} · FontHabibi`;
   $(".lib").classList.toggle("wide", !!D[state.tab].wide);
   $("#q").placeholder = { kits: "Search kits", voices: "Search font pairings", grounds: "Search colors", fonts: "Search fonts" }[state.tab];
 }
@@ -642,6 +641,7 @@ function clearAll() {
   render();
 }
 function switchTab(tab, extra = {}) {
+  history.pushState(null, "", location.href); // so Back returns to the page being left
   state.tab = tab;
   state.sel = {};
   state.tog = {};
@@ -651,9 +651,8 @@ function switchTab(tab, extra = {}) {
   Object.assign(state, extra);
   $("#q").value = state.q;
   render();
-  // Coming from far down a list (a font card's "See pairings"), go back up to the tabs.
-  const top = $(".tabs").getBoundingClientRect().top + window.scrollY - 76;
-  if (window.scrollY > top) window.scrollTo({ top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  // Coming from far down a list (a font card's "See pairings"), go back to the top of the page.
+  if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 }
 function onChip(e) {
   const chip = e.target.closest("[data-facet][data-val]");
@@ -671,16 +670,16 @@ function onChip(e) {
 }
 
 function bind() {
-  $(".tabs").addEventListener("click", (e) => {
-    const b = e.target.closest(".tab");
-    if (b && b.dataset.tab !== state.tab) switchTab(b.dataset.tab);
+  // The top bar's library links switch pages here without a reload. A plain
+  // click only: new-tab clicks and the Mixer link behave like normal links.
+  $(".topnav").addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-nav]");
+    if (!a || !TABS.includes(a.dataset.nav) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    e.preventDefault();
+    if (a.dataset.nav !== state.tab) switchTab(a.dataset.nav);
   });
-  $(".tabs").addEventListener("keydown", (e) => {
-    if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
-    const i = (TABS.indexOf(state.tab) + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length;
-    switchTab(TABS[i]);
-    $(`.tab[data-tab="${TABS[i]}"]`).focus();
-  });
+  // Back and forward buttons move between pages too.
+  window.addEventListener("popstate", () => { readURL(); $("#q").value = state.q; render(); });
 
   let qTimer;
   $("#q").addEventListener("input", (e) => {
@@ -783,10 +782,6 @@ async function start() {
   IND = Object.fromEntries(META.industries.map((i) => [i.id, i.label]));
   LANG = META.languages.filter((l) => l.id !== "latin" && l.id !== "latin-ext");
   D = defs();
-
-  const c = META.counts;
-  const counts = { kits: KITS.length, voices: c.voices, grounds: c.grounds, fonts: c.fonts };
-  for (const [tab, n] of Object.entries(counts)) $(`[data-count="${tab}"]`).textContent = fmt(n);
 
   if (window.matchMedia("(max-width: 900px)").matches) $("#drawer").open = false;
   readURL();

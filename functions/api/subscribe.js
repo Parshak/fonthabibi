@@ -15,7 +15,7 @@ export async function onRequestPost({ request, env }) {
   const type = request.headers.get("content-type") || "";
   const isJSON = type.includes("application/json");
   const reply = (ok, message, status) =>
-    isJSON ? json({ ok, message }, status) : Response.redirect(new URL(`/?signup=${ok ? "ok" : "error"}#support`, request.url).toString(), 303);
+    isJSON ? json({ ok, message }, status) : Response.redirect(new URL(`/?signup=${ok ? "ok" : "error"}#updates`, request.url).toString(), 303);
 
   let body;
   try {

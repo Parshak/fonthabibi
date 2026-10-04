@@ -3,74 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FontHabibi · The mixer</title>
+<title>The mixer · FontHabibi</title>
 <meta name="description" content="Try any font pairing on any color set and see it as a real website, app, dashboard, article or docs page. Copy the result for your AI builder or your stylesheet.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFC72C'/%3E%3Ctext x='32' y='45' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='34' text-anchor='middle' fill='%23231710'%3EAa%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Habibi&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005c">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tool.css?v=20261005d">
+<script src="/assets/look.js?v=20261005d"></script>
 <style>
   /* The mixer's own layout. Colors and fonts for the frame come from tool.css. */
-  .mixer{padding-top:30px;padding-bottom:70px}
+  .mx-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;padding-top:30px;padding-bottom:22px}
+  .ghost-btn{display:inline-block;font-size:14px;font-weight:600;padding:9px 15px;border:1px solid var(--shell-ink);border-radius:99px;color:var(--shell-ink);background:var(--shell-panel);text-decoration:none}
+  .ghost-btn:hover{background:var(--field)}
+  .mx-pick{width:100%}
 
-  .mx-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px;margin-bottom:24px}
-  .mx-head h1{font-family:var(--font-title);font-weight:700;font-size:clamp(29px,3.5vw,46px);line-height:1.05;letter-spacing:-.02em}
-  .lede{margin-top:10px;max-width:60ch;font-size:16.5px;line-height:1.55;color:var(--shell-muted)}
-  .ghost-btn{display:inline-block;font-size:14px;font-weight:500;padding:9px 15px;border:1px solid var(--shell-line-2);border-radius:99px;color:var(--shell-ink);background:var(--shell-panel);text-decoration:none;transition:border-color .15s}
-  .ghost-btn:hover{border-color:var(--shell-accent)}
-
-  .tabs{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--shell-panel-2);border-radius:14px;width:max-content;max-width:100%;margin-bottom:12px}
-  .tab{padding:9px 16px;border-radius:10px;color:var(--shell-muted);font-weight:500;font-size:15px;transition:background .15s,color .15s}
+  /* What kind of page to preview */
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--shell-panel);border:1px solid var(--shell-line-2);border-radius:14px;width:max-content;max-width:100%}
+  .tab{padding:8px 16px;border-radius:10px;color:var(--shell-muted);font-weight:600;font-size:15px}
   .tab:hover{color:var(--shell-ink)}
-  .tab.on{background:var(--shell-panel);color:var(--shell-ink);font-weight:600;box-shadow:0 1px 2px rgba(31,26,33,.08),0 0 0 1px var(--shell-line)}
-  .cat-note{font-size:14.5px;color:var(--shell-muted);margin:0 0 20px;max-width:70ch;line-height:1.55}
+  .tab.on{background:var(--field);color:var(--shell-ink);font-weight:700}
+  .cat-note{font-size:14.5px;color:var(--shell-muted);margin-top:10px;max-width:70ch;line-height:1.55}
 
+  .mixer{padding-top:24px;padding-bottom:70px}
   /* Preview on the left stays in view while you pick on the right */
   .layout{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:22px;align-items:start}
-  .stage{display:flex;flex-direction:column;gap:12px;position:sticky;top:74px}
+  .stage{display:flex;flex-direction:column;gap:12px;position:sticky;top:82px}
   .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
   .stage-bar{display:flex;justify-content:space-between;align-items:center;gap:10px 14px;flex-wrap:wrap}
-  .combo .nm{font-weight:600;font-size:19px;line-height:1.25}
+  .combo .nm{font-weight:700;font-size:19px;letter-spacing:-.01em;line-height:1.25}
   .actions{display:flex;gap:6px;flex-wrap:wrap}
-  .a-btn{font-size:13.5px;font-weight:500;padding:8px 13px;border-radius:99px;border:1px solid var(--shell-line-2);background:var(--shell-panel);color:var(--shell-ink);transition:border-color .15s,background .15s}
-  .a-btn:hover{border-color:var(--shell-accent)}
-  .a-btn.primary{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent);font-weight:600}
-  .a-btn.primary:hover{filter:brightness(1.12)}
+  .a-btn{font-size:13.5px;font-weight:600;padding:8px 13px;border-radius:99px;border:1px solid var(--shell-line-2);background:var(--shell-panel);color:var(--shell-ink)}
+  .a-btn:hover{border-color:var(--shell-ink)}
+  .a-btn.primary{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
+  .a-btn.primary:hover{background:var(--field);color:var(--shell-ink)}
   .a-btn.ok,.a-btn.primary.ok{background:var(--shell-ok);color:#fff;border-color:var(--shell-ok)}
 
-  .preview-shell{border:1px solid var(--shell-line-2);border-radius:16px;overflow:hidden;background:var(--shell-panel);box-shadow:0 1px 2px rgba(31,26,33,.05)}
+  .preview-shell{border:1px solid var(--shell-line-2);border-radius:16px;overflow:hidden;background:var(--shell-panel)}
   .preview{min-height:520px;transition:opacity .16s}
   .preview.fade{opacity:0}
 
   .tokens{display:flex;flex-wrap:wrap;gap:8px}
   .tk{display:flex;align-items:center;gap:7px;padding:6px 11px 6px 7px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:99px;font-size:13px;color:var(--shell-muted)}
-  .tk i{width:16px;height:16px;border-radius:99px;border:1px solid rgba(31,26,33,.14);flex:none}
-  .tk b{color:var(--shell-ink);font-weight:500}
+  .tk i{width:16px;height:16px;border-radius:99px;border:1px solid rgba(35,23,16,.16);flex:none}
+  .tk b{color:var(--shell-ink);font-weight:600}
   .fonts-line{font-size:14px;color:var(--shell-muted);line-height:1.7}
-  .fonts-line b{color:var(--shell-ink);font-weight:600}
+  .fonts-line b{color:var(--shell-ink);font-weight:700}
 
   /* Pickers: compact rows in a side column, always next to the preview */
-  .panel{background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+  .panel{background:var(--shell-panel);border:1px solid var(--shell-line-2);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
   .panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .panel-head h2{font-size:16px;font-weight:600}
+  .panel-head h2{font-size:17px;font-weight:700;letter-spacing:-.01em}
   .panel-head .count{font-size:13px;color:var(--shell-faint)}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
   .chips:empty{display:none}
-  .chip{font-size:13px;padding:5px 12px;border:1px solid var(--shell-line);border-radius:99px;color:var(--shell-ink)}
-  .chip:hover{border-color:var(--shell-line-2)}
-  .chip.on{background:var(--shell-accent);color:var(--shell-accent-ink);border-color:var(--shell-accent)}
+  .chip{font-size:13px;font-weight:500;padding:5px 12px;border:1px solid var(--shell-line-2);border-radius:99px;color:var(--shell-ink)}
+  .chip:hover{border-color:var(--shell-ink)}
+  .chip.on{background:var(--field);border-color:var(--shell-ink);font-weight:700}
   .grid{display:flex;flex-direction:column;gap:6px;max-height:min(37vh,380px);overflow:auto;padding:2px;scrollbar-width:thin;overscroll-behavior:contain}
 
-  .card{text-align:left;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:12px;transition:border-color .12s;display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:11px;padding:7px 11px 7px 7px}
+  .card{text-align:left;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:12px;display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:11px;padding:7px 11px 7px 7px}
   .card:hover{border-color:var(--shell-line-2)}
-  .card.on{border-color:var(--shell-accent);box-shadow:0 0 0 1px var(--shell-accent);background:var(--shell-accent-soft)}
+  .card.on{border-color:var(--shell-ink);box-shadow:0 0 0 1px var(--shell-ink);background:var(--wash)}
   .card .body{display:flex;flex-direction:column;gap:1px;min-width:0}
-  .card .nm{font-weight:600;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .nm{font-weight:700;font-size:14px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .card .sub{font-size:12.5px;color:var(--shell-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .card .from{font-size:12px;color:var(--shell-accent);font-weight:500}
-  .t-ag{width:46px;height:46px;border-radius:9px;background:var(--shell-panel-2);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--shell-ink)}
+  .card .from{font-size:12px;color:var(--shell-link);font-weight:600}
+  .t-ag{width:46px;height:46px;border-radius:9px;background:var(--shell-neutral);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--shell-ink)}
   .card.on .t-ag{background:var(--shell-panel)}
-  .g-sw{width:46px;height:46px;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(31,26,33,.14)}
+  .g-sw{width:46px;height:46px;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(35,23,16,.16)}
   .g-sw .aa{font-size:15px;font-weight:700}
   .g-sw .dot{width:9px;height:9px;border-radius:99px}
 
@@ -78,14 +79,14 @@
   .tray{margin-top:26px;border:1px dashed var(--shell-line-2);border-radius:16px;padding:16px;display:none;flex-direction:column;gap:12px;background:var(--shell-panel)}
   .tray.show{display:flex}
   .tray-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-  .tray-head h2{font-size:16px;font-weight:600}
+  .tray-head h2{font-size:17px;font-weight:700;letter-spacing:-.01em}
   .tray-head h2 span{color:var(--shell-faint);font-weight:400}
   .saved{display:flex;flex-wrap:wrap;gap:8px}
-  .saved-chip{display:flex;align-items:center;gap:10px;background:var(--shell-panel);border:1px solid var(--shell-line);border-radius:12px;padding:7px 8px 7px 7px;font-size:13.5px;line-height:1.3}
-  .saved-chip .sw{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none;border:1px solid rgba(31,26,33,.12)}
+  .saved-chip{display:flex;align-items:center;gap:10px;background:var(--shell-panel);border:1px solid var(--shell-line-2);border-radius:12px;padding:7px 8px 7px 7px;font-size:13.5px;line-height:1.3}
+  .saved-chip .sw{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none;border:1px solid rgba(35,23,16,.14)}
   .saved-chip .cid{font-size:12px;color:var(--shell-faint)}
-  .saved-chip .load,.saved-chip .x{font-size:13px;padding:4px 8px;border-radius:99px;color:var(--shell-muted)}
-  .saved-chip .load:hover{color:var(--shell-accent);background:var(--shell-accent-soft)}
+  .saved-chip .load,.saved-chip .x{font-size:13px;font-weight:600;padding:4px 8px;border-radius:99px;color:var(--shell-muted)}
+  .saved-chip .load:hover{color:var(--shell-ink);background:var(--wash)}
   .saved-chip .x:hover{color:#B42318;background:#FDECEA}
 
   .mx-foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--shell-line);display:flex;justify-content:space-between;align-items:baseline;gap:10px 24px;flex-wrap:wrap;font-size:13.5px;line-height:1.5;color:var(--shell-faint)}
@@ -97,6 +98,7 @@
   @media(max-width:940px){
     /* On a phone the preview sticks to the top instead of the site bar */
     .topbar{position:static}
+    .mx-head{padding-top:22px;padding-bottom:16px}
     .layout{grid-template-columns:1fr}
     .stage{top:0;z-index:30;background:var(--shell-bg);padding:8px 0 10px;border-bottom:1px solid var(--shell-line)}
     .preview{max-height:44vh;overflow:auto}
@@ -110,80 +112,88 @@
 <a class="skip" href="#preview">Skip to the preview</a>
 <header class="topbar">
   <div class="topbar-in">
-    <a class="brand" href="/">font<i>habibi</i></a>
+    <a class="brand" href="/">font<b>habibi</b></a>
     <nav class="topnav" aria-label="Main">
-      <a href="/library/">Library</a>
+      <a href="/library/">Kits</a>
+      <a href="/library/?tab=voices">Font pairings</a>
+      <a href="/library/?tab=grounds">Colors</a>
+      <a href="/library/?tab=fonts">Fonts</a>
       <a href="/type-ground-mixer-pro" aria-current="page">Mixer</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap mixer">
-  <header class="mx-head">
-    <div>
-      <h1>The mixer</h1>
-      <p class="lede">Try any font pairing on any color set and see it as a real page. When it looks right, copy it for your AI builder or your stylesheet.</p>
+<main>
+  <div class="page-head">
+    <div class="wrap mx-head">
+      <div>
+        <h1>The mixer</h1>
+        <p class="lede">Try any font pairing on any color set and see it as a real page. When it looks right, copy it for your AI builder or your stylesheet.</p>
+      </div>
+      <a class="ghost-btn" href="/library/">Browse ready-made kits</a>
+      <div class="mx-pick">
+        <nav class="tabs" id="tabs" aria-label="What are you making?"></nav>
+        <p class="cat-note" id="cat-note"></p>
+      </div>
     </div>
-    <a class="ghost-btn" href="/library/">Browse ready-made kits</a>
-  </header>
+  </div>
 
-  <nav class="tabs" id="tabs" aria-label="What are you making?"></nav>
-  <p class="cat-note" id="cat-note"></p>
+  <div class="wrap mixer">
+    <div class="layout">
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="combo"><span class="nm" id="c-name"></span></div>
+          <div class="actions">
+            <button class="a-btn primary" id="btn-ai" type="button">Copy for AI</button>
+            <button class="a-btn" id="btn-copy" type="button">Copy CSS</button>
+            <button class="a-btn" id="btn-save" type="button">Save</button>
+            <button class="a-btn" id="btn-shuffle" type="button">Shuffle</button>
+            <button class="a-btn" id="btn-dl" type="button">Download CSS</button>
+            <button class="a-btn" id="btn-starter" type="button">Download page</button>
+          </div>
+        </div>
+        <div class="preview-shell"><div class="preview" id="preview" tabindex="-1"></div></div>
+        <div class="tokens" id="token-row"></div>
+        <p class="fonts-line" id="fonts-line"></p>
+      </div>
 
-  <div class="layout">
-    <div class="stage">
-      <div class="stage-bar">
-        <div class="combo"><span class="nm" id="c-name"></span></div>
+      <div class="rail">
+        <section class="panel" aria-labelledby="t-title">
+          <div class="panel-head">
+            <h2 id="t-title">Fonts</h2><span class="count" id="t-count"></span>
+          </div>
+          <div class="chips" id="t-chips"></div>
+          <div class="grid" id="t-grid"></div>
+        </section>
+        <section class="panel" aria-labelledby="g-title">
+          <div class="panel-head">
+            <h2 id="g-title">Colors</h2><span class="count" id="g-count"></span>
+          </div>
+          <div class="chips" id="g-chips"></div>
+          <div class="grid" id="g-grid"></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="tray" id="tray">
+      <div class="tray-head">
+        <h2>Saved <span id="tray-count"></span></h2>
         <div class="actions">
-          <button class="a-btn primary" id="btn-ai" type="button">Copy for AI</button>
-          <button class="a-btn" id="btn-copy" type="button">Copy CSS</button>
-          <button class="a-btn" id="btn-save" type="button">Save</button>
-          <button class="a-btn" id="btn-shuffle" type="button">Shuffle</button>
-          <button class="a-btn" id="btn-dl" type="button">Download CSS</button>
-          <button class="a-btn" id="btn-starter" type="button">Download page</button>
+          <button class="a-btn" id="btn-copy-all" type="button">Copy all as CSS</button>
+          <button class="a-btn" id="btn-dl-all" type="button">Download all as CSS</button>
         </div>
       </div>
-      <div class="preview-shell"><div class="preview" id="preview" tabindex="-1"></div></div>
-      <div class="tokens" id="token-row"></div>
-      <p class="fonts-line" id="fonts-line"></p>
+      <div class="saved" id="saved"></div>
     </div>
 
-    <div class="rail">
-      <section class="panel" aria-labelledby="t-title">
-        <div class="panel-head">
-          <h2 id="t-title">Fonts</h2><span class="count" id="t-count"></span>
-        </div>
-        <div class="chips" id="t-chips"></div>
-        <div class="grid" id="t-grid"></div>
-      </section>
-      <section class="panel" aria-labelledby="g-title">
-        <div class="panel-head">
-          <h2 id="g-title">Colors</h2><span class="count" id="g-count"></span>
-        </div>
-        <div class="chips" id="g-chips"></div>
-        <div class="grid" id="g-grid"></div>
-      </section>
-    </div>
+    <footer class="mx-foot">
+      <span id="foot-counts"></span>
+      <button id="btn-json" type="button">Copy this hand-picked list as JSON</button>
+    </footer>
   </div>
-
-  <div class="tray" id="tray">
-    <div class="tray-head">
-      <h2>Saved <span id="tray-count"></span></h2>
-      <div class="actions">
-        <button class="a-btn" id="btn-copy-all" type="button">Copy all as CSS</button>
-        <button class="a-btn" id="btn-dl-all" type="button">Download all as CSS</button>
-      </div>
-    </div>
-    <div class="saved" id="saved"></div>
-  </div>
-
-  <footer class="mx-foot">
-    <span id="foot-counts"></span>
-    <button id="btn-json" type="button">Copy this hand-picked list as JSON</button>
-  </footer>
 </main>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="/assets/mixer.js?v=20261005c"></script>
+<script type="module" src="/assets/mixer.js?v=20261005d"></script>
 </body>
 </html>

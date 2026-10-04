@@ -1,10 +1,10 @@
 # FontHabibi
 
-**Pick a voice, pick a ground.** Free font and color systems for websites, apps, tools, articles, and docs.
+**Fonts and colors that already go together.**
 
 🔗 **Live site:** https://fonthabibi.pages.dev
 
-Every AI-generated build comes out wearing the same cream page and the same serif. FontHabibi fixes that: pick a type set (a "voice") and a color system (a "ground") independently, preview the combination inside the medium it will actually live in (a phone frame, a dashboard, an article), then copy the whole thing as ready CSS tokens or JSON you can paste straight into Claude, Cursor, or v0.
+FontHabibi is a free library of ready-made font and color kits. Pick what you're building, see each kit as a real website, and copy it into Claude, Cursor, v0 or your own CSS.
 
 ## What's inside
 
@@ -27,6 +27,7 @@ Every AI-generated build comes out wearing the same cream page and the same seri
 index.html                  home page
 type-ground-mixer-pro.html  the mixer (logic in assets/mixer.js)
 library/index.html          the library (logic in assets/library.js)
+assets/tool.css             the look shared by every page (colors, fonts, top bar)
 assets/fh-core.js           shared: data loading, font loading, CSS export
 data/                       generated data the pages read
   fonts.json                every Google font with style, mood, language and quality data
