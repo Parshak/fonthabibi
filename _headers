@@ -1,10 +1,8 @@
-# Data files: cache for an hour, allow other sites and tools to read them.
+# Data files can be read by other sites and tools (open data).
+# Caching is left to Cloudflare's default (always revalidate), so updates
+# show up straight away.
 /data/*
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Access-Control-Allow-Origin: *
-
-/assets/*
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /*
   X-Content-Type-Options: nosniff

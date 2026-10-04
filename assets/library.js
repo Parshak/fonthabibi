@@ -306,8 +306,11 @@ function voiceCard(v) {
   const g = GIDX.get(state.on) || GROUNDS[0];
   const t = g.tokens;
   const script = v.lang.find((l) => SAMPLES[l] && !["cyrillic", "greek", "vietnamese"].includes(l));
-  const [head, body] = script ? [SAMPLES[script], SAMPLES[script] + " " + SAMPLES[script]] : COPY[v.ind[0]] || COPY._;
-  const kicker = script ? (LANG.find((l) => l.id === script) || {}).label || script : (IND[v.ind[0]] || "FontHabibi");
+  // When an industry filter is on, preview the pairing with that industry's copy.
+  const picked = [...(state.sel.ind || [])].find((i) => v.ind.includes(i));
+  const ind = picked || v.ind[0];
+  const [head, body] = script ? [SAMPLES[script], SAMPLES[script] + " " + SAMPLES[script]] : COPY[ind] || COPY._;
+  const kicker = script ? (LANG.find((l) => l.id === script) || {}).label || script : (IND[ind] || "FontHabibi");
   const media = v.media.map((m) => (MEDIA[m] || m)).join(", ");
   const el = document.createElement("article");
   el.className = "card voice-card";

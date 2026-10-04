@@ -180,12 +180,12 @@ function mediaFor(D, B) {
 }
 
 const IND = {
-  restaurant: (D, m, k) => (m.vintage + m.happy + m.sincere) / 150 + (["Casual script", "Handwritten", "Humanist slab", "Clarendon slab", "Old style serif", "Fat face"].includes(D.st) ? 0.4 : 0),
+  restaurant: (D, m, k) => (Math.max(m.vintage, m.happy) < 45 && !["Casual script", "Humanist slab", "Clarendon slab", "Fat face"].includes(D.st) ? -1 : 0) + (m.vintage + m.happy + m.sincere) / 150 + (["Casual script", "Handwritten", "Humanist slab", "Clarendon slab", "Old style serif", "Fat face"].includes(D.st) ? 0.4 : 0),
   bakery: (D, m, k) => (m.cute + m.happy + m.childlike + m.playful) / 160 + (["Casual script", "Handwritten", "Rounded sans", "Upright script"].includes(D.st) ? 0.35 : 0),
-  barber: (D, m, k) => (m.vintage + m.rugged) / 120 + (["Clarendon slab", "Fat face"].includes(D.st) || condensed(D) || (D.th || []).some((t) => ["blackletter", "woodtype", "tuscan"].includes(t)) ? 0.4 : 0),
+  barber: (D, m, k) => (m.rugged < 45 && m.vintage < 55 ? -1 : 0) + (m.vintage + m.rugged) / 120 + (["Clarendon slab", "Fat face"].includes(D.st) || condensed(D) || (D.th || []).some((t) => ["blackletter", "woodtype", "tuscan"].includes(t)) ? 0.4 : 0),
   beauty: (D, m, k) => (m.sophisticated + m.fancy + m.calm) / 150 + (["Didone", "Modern serif", "Formal script"].includes(D.st) ? 0.45 : 0),
   fitness: (D, m, k) => (m.energetic + m.loud + m.excited + m.rugged) / 180 + (condensed(D) ? 0.45 : 0) + ((D.th || []).includes("techno") ? 0.2 : 0),
-  medical: (D, m, k) => (m.calm + m.competent + m.sincere) / 160 + (["Humanist sans", "Rounded sans", "Geometric sans"].includes(D.st) ? 0.25 : 0) - (k === "script" ? 1 : 0),
+  medical: (D, m, k) => (m.calm < 55 ? -1 : 0) + (m.calm + m.competent + m.sincere) / 160 + (["Humanist sans", "Rounded sans", "Geometric sans"].includes(D.st) ? 0.25 : 0) - (k !== "sans" ? 0.5 : 0),
   finance: (D, m, k) => (m.business < 50 && m.structured < 50 ? -1 : 0) + (m.business + m.competent + m.structured) / 160 + (["Transitional serif", "Scotch serif", "Modern serif", "Neo-grotesque", "Grotesque"].includes(D.st) ? 0.3 : 0) - (k === "script" ? 1 : 0) - (Math.max(m.artistic, m.quirky, m.playful) >= 50 ? 0.4 : 0),
   realestate: (D, m, k) => (m.sophisticated + m.business + m.calm) / 160 + (["Didone", "Transitional serif", "Modern serif", "Geometric sans"].includes(D.st) ? 0.3 : 0),
   trades: (D, m, k) => (m.rugged + m.structured + m.loud) / 160 + (k === "slab" || condensed(D) || D.st === "Grotesque" || (D.th || []).includes("stencil") ? 0.4 : 0),
@@ -201,7 +201,7 @@ const IND = {
   grocery: (D, m, k) => (m.happy + m.sincere + m.vintage) / 160 + (["Humanist slab", "Clarendon slab", "Rounded sans", "Casual script"].includes(D.st) ? 0.35 : 0),
   automotive: (D, m, k) => (m.energetic + m.futuristic + m.loud) / 160 + (condensed(D) || (D.th || []).includes("techno") || D.st === "Glyphic sans" ? 0.4 : 0),
   agency: (D, m, k) => (m.innovative + m.artistic + m.competent) / 160 + (["Grotesque", "Neo-grotesque", "Geometric sans"].includes(D.st) || k === "display" ? 0.2 : 0),
-  publishing: (D, m, k) => (m.competent + m.business + m.vintage) / 160 + (["Transitional serif", "Old style serif", "Scotch serif", "Modern serif", "Venetian serif"].includes(D.st) ? 0.35 : 0) + (condensed(D) ? 0.15 : 0),
+  publishing: (D, m, k) => (k !== "serif" && !condensed(D) ? -0.4 : 0) + (m.competent + m.business + m.vintage) / 160 + (["Transitional serif", "Old style serif", "Scotch serif", "Modern serif", "Venetian serif"].includes(D.st) ? 0.35 : 0) + (condensed(D) ? 0.15 : 0),
   gaming: (D, m, k) => (m.futuristic + m.loud + m.quirky + m.excited) / 180 + ((D.th || []).some((t) => ["pixel", "techno", "wacky"].includes(t)) ? 0.5 : 0),
   portfolio: (D, m, k) => (m.innovative + m.artistic + m.sincere + m.competent) / 200 + (k !== "script" && (D.q || 0) >= 75 ? 0.2 : 0),
 };
@@ -210,7 +210,7 @@ function industries(D) {
   const m = Object.fromEntries(MOODS.map((k) => [k, mood(D, k)]));
   const k = kind(D);
   const scored = Object.entries(IND).map(([id, fn]) => [id, fn(D, m, k)]).sort((a, b) => b[1] - a[1]);
-  const picked = scored.filter(([, s]) => s >= 0.55).slice(0, 5).map(([id]) => id);
+  const picked = scored.filter(([, s]) => s >= 0.62).slice(0, 3).map(([id]) => id);
   return picked.length ? picked : scored.filter(([, s]) => s >= 0.3).slice(0, 2).map(([id]) => id);
 }
 const LANG_TAGS = ["cyrillic", "greek", "vietnamese"];

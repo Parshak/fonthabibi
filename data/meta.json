@@ -40,145 +40,145 @@
   {
    "id": "restaurant",
    "label": "Restaurant & café",
-   "voices": 403,
+   "voices": 254,
    "grounds": 66
   },
   {
    "id": "bakery",
    "label": "Bakery & sweets",
-   "voices": 130,
+   "voices": 101,
    "grounds": 49
   },
   {
    "id": "grocery",
    "label": "Grocery & market",
-   "voices": 286,
+   "voices": 168,
    "grounds": 44
   },
   {
    "id": "barber",
    "label": "Barber & salon",
-   "voices": 406,
+   "voices": 310,
    "grounds": 90
   },
   {
    "id": "beauty",
    "label": "Beauty & spa",
-   "voices": 95,
+   "voices": 74,
    "grounds": 40
   },
   {
    "id": "fitness",
    "label": "Fitness & sport",
-   "voices": 151,
+   "voices": 102,
    "grounds": 61
   },
   {
    "id": "medical",
    "label": "Medical & dental",
-   "voices": 430,
+   "voices": 213,
    "grounds": 35
   },
   {
    "id": "finance",
    "label": "Law & finance",
-   "voices": 366,
+   "voices": 337,
    "grounds": 41
   },
   {
    "id": "realestate",
    "label": "Real estate",
-   "voices": 396,
+   "voices": 295,
    "grounds": 47
   },
   {
    "id": "trades",
    "label": "Construction & trades",
-   "voices": 248,
+   "voices": 198,
    "grounds": 95
   },
   {
    "id": "automotive",
    "label": "Automotive",
-   "voices": 68,
+   "voices": 18,
    "grounds": 35
   },
   {
    "id": "tech",
    "label": "Tech & SaaS",
-   "voices": 199,
+   "voices": 112,
    "grounds": 77
   },
   {
    "id": "education",
    "label": "Education & tutoring",
-   "voices": 114,
+   "voices": 52,
    "grounds": 66
   },
   {
    "id": "kids",
    "label": "Kids & family",
-   "voices": 118,
+   "voices": 78,
    "grounds": 17
   },
   {
    "id": "wedding",
    "label": "Wedding & events",
-   "voices": 96,
+   "voices": 81,
    "grounds": 20
   },
   {
    "id": "fashion",
    "label": "Fashion & boutique",
-   "voices": 97,
+   "voices": 82,
    "grounds": 65
   },
   {
    "id": "art",
    "label": "Art & photography",
-   "voices": 215,
+   "voices": 147,
    "grounds": 66
   },
   {
    "id": "nightlife",
    "label": "Music & nightlife",
-   "voices": 127,
+   "voices": 86,
    "grounds": 28
   },
   {
    "id": "travel",
    "label": "Travel & hospitality",
-   "voices": 208,
+   "voices": 40,
    "grounds": 58
   },
   {
    "id": "community",
    "label": "Nonprofit & community",
-   "voices": 194,
+   "voices": 112,
    "grounds": 76
   },
   {
    "id": "agency",
    "label": "Agency & studio",
-   "voices": 124,
+   "voices": 59,
    "grounds": 134
   },
   {
    "id": "publishing",
    "label": "Publishing & news",
-   "voices": 524,
+   "voices": 245,
    "grounds": 51
   },
   {
    "id": "gaming",
    "label": "Gaming",
-   "voices": 115,
+   "voices": 78,
    "grounds": 53
   },
   {
    "id": "portfolio",
    "label": "Personal portfolio",
-   "voices": 207,
+   "voices": 99,
    "grounds": 67
   }
  ],
