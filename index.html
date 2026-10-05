@@ -21,9 +21,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&family=Karla:wght@400&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@700&family=Inter:wght@400&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@600&family=Work+Sans:wght@400&family=Abril+Fatface&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005g">
-<script src="/assets/look.js?v=20261005g"></script>
-<script src="/assets/support.js?v=20261005g"></script>
+<link rel="stylesheet" href="/assets/tool.css?v=20261005h">
+<script src="/assets/look.js?v=20261005h"></script>
+<script src="/assets/support.js?v=20261005h"></script>
 
 <style>
 :root{--wrap:1180px}
@@ -423,7 +423,7 @@ Use only these fonts and colors for everything you build.
    The numbers on the page are read from /data/meta.json, so they
    stay right as the library grows.
    ============================================================ */
-fetch("/data/meta.json?v=20261005g").then(r => r.ok ? r.json() : null).then(meta => {
+fetch("/data/meta.json?v=20261005h").then(r => r.ok ? r.json() : null).then(meta => {
   if (!meta) return;
   for (const el of document.querySelectorAll("[data-count]")) {
     const n = meta.counts[el.dataset.count];

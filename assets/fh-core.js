@@ -9,7 +9,7 @@
 // The version string makes browsers that cached an older copy fetch the new
 // files. Cloudflare revalidates on every visit anyway, so it only needs a bump
 // if a long cache header is ever added again.
-const DATA_VERSION = "20261005g";
+const DATA_VERSION = "20261005h";
 const cache = {};
 export function loadData(name) {
   if (!cache[name]) {

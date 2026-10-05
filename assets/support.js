@@ -15,7 +15,7 @@
    Loaded in <head>, so each page is drawn once, with or without them.
    ============================================================ */
 (function () {
-  var SUPPORT_URL = ""; // for example "https://ko-fi.com/fonthabibi"
+  var SUPPORT_URL = "https://ko-fi.com/parshakdahal"; // set to "" to switch the Support spots off
 
   var host = location.hostname;
   var preview = /\.fonthabibi\.pages\.dev$/.test(host) || host === "localhost" || host === "127.0.0.1";
