@@ -28,6 +28,8 @@ index.html                  home page
 type-ground-mixer-pro.html  the mixer (logic in assets/mixer.js)
 library/index.html          the library (logic in assets/library.js)
 assets/tool.css             the look shared by every page (colors, fonts, top bar)
+assets/look.js              "Change the look": the visitor's choice of color and font
+assets/support.js           the tip page link; the Support spots stay hidden until it is set
 assets/fh-core.js           shared: data loading, font loading, CSS export
 data/                       generated data the pages read
   fonts.json                every Google font with style, mood, language and quality data
@@ -35,7 +37,7 @@ data/                       generated data the pages read
   grounds.json              color sets ("grounds") with contrast scores, hand-picked + generated
   kits.json                 ready-made kits: one pairing on one color set, per kind of business
   meta.json                 counts and filter labels
-functions/api/subscribe.js  "Follow the drops" email sign-up (Cloudflare Pages Function)
+functions/api/subscribe.js  "New kits by email" sign-up (Cloudflare Pages Function)
 tools/                      scripts that build /data (not part of the site)
 wrangler.toml               Cloudflare settings: output folder and the sign-up database
 ```

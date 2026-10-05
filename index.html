@@ -21,8 +21,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&family=Karla:wght@400&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@700&family=Inter:wght@400&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@600&family=Work+Sans:wght@400&family=Abril+Fatface&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/tool.css?v=20261005f">
-<script src="/assets/look.js?v=20261005f"></script>
+<link rel="stylesheet" href="/assets/tool.css?v=20261005g">
+<script src="/assets/look.js?v=20261005g"></script>
+<script src="/assets/support.js?v=20261005g"></script>
 
 <style>
 :root{--wrap:1180px}
@@ -124,6 +125,16 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
 .signup input[type="email"]::placeholder{color:var(--shell-faint)}
 .hp{position:absolute;left:-9999px}
 #signup-msg{min-height:1.5em;margin-top:10px;font-size:15px;color:var(--shell-ink)}
+/* Right-hand column: the sign-up, then the tip card. The tip card stays hidden
+   until a tip page is set in /assets/support.js. */
+.side{display:grid;gap:18px}
+.support-card{display:none;background:#E3F7EA;border:1.5px solid var(--shell-ink);border-radius:20px;padding:22px 26px 24px;scroll-margin-top:100px}
+:root[data-support] .support-card{display:block}
+.support-card h2{font-size:23px}
+.support-card p{margin-top:6px;font-size:16px;line-height:1.55;color:var(--shell-muted)}
+.support-row{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-top:14px}
+.support-row .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.support-note{flex:1;min-width:180px;font-size:14px;line-height:1.45;color:var(--shell-muted)}
 
 .home-foot{border-top:1px solid var(--shell-line);padding:28px 0 96px;font-size:14.5px;color:var(--shell-muted)}
 .home-foot .wrap{display:flex;justify-content:space-between;gap:14px 28px;flex-wrap:wrap;align-items:baseline}
@@ -168,6 +179,9 @@ h2{font-size:clamp(27px,3.1vw,40px);line-height:1.06}
       <a href="/library/?tab=fonts">Fonts</a>
       <a href="/type-ground-mixer-pro">Mixer</a>
     </nav>
+    <a class="support-link" data-support-link>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Support
+    </a>
   </div>
 </header>
 
@@ -361,17 +375,30 @@ Use only these fonts and colors for everything you build.
           <details><summary>What do AA and AAA contrast mean?</summary><p>They are the accessibility levels for readable text. AA means every text color has a contrast of at least 4.5 to 1 against its background. AAA means the main text reaches 7 to 1.</p></details>
         </div>
       </div>
-      <div class="updates" id="updates">
-        <h2>New kits by email</h2>
-        <p>One short email when new kits are added. Nothing else.</p>
-        <form class="signup" id="signup" action="/api/subscribe" method="post" novalidate>
-          <label class="sr" for="signup-email">Email address</label>
-          <input id="signup-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
-          <!-- honeypot: people never see this field, bots fill it in -->
-          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="btn solid" type="submit">Notify me</button>
-        </form>
-        <p id="signup-msg" role="status" aria-live="polite"></p>
+      <div class="side">
+        <div class="updates" id="updates">
+          <h2>New kits by email</h2>
+          <p>One short email when new kits are added. Nothing else.</p>
+          <form class="signup" id="signup" action="/api/subscribe" method="post" novalidate>
+            <label class="sr" for="signup-email">Email address</label>
+            <input id="signup-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+            <!-- honeypot: people never see this field, bots fill it in -->
+            <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn solid" type="submit">Notify me</button>
+          </form>
+          <p id="signup-msg" role="status" aria-live="polite"></p>
+        </div>
+        <!-- Tips. Hidden until a tip page is set in /assets/support.js, which also
+             fills in the button's link and the line next to it. It is a tip for a
+             free tool, so the wording says "tip" and "support", never "donation". -->
+        <div class="support-card" id="support">
+          <h2>Support FontHabibi</h2>
+          <p>FontHabibi is free to use. If it saved you time, you can leave a small tip.</p>
+          <div class="support-row">
+            <a class="btn solid" data-support-link>Leave a tip</a>
+            <span class="support-note" data-support-note></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -396,7 +423,7 @@ Use only these fonts and colors for everything you build.
    The numbers on the page are read from /data/meta.json, so they
    stay right as the library grows.
    ============================================================ */
-fetch("/data/meta.json?v=20261005f").then(r => r.ok ? r.json() : null).then(meta => {
+fetch("/data/meta.json?v=20261005g").then(r => r.ok ? r.json() : null).then(meta => {
   if (!meta) return;
   for (const el of document.querySelectorAll("[data-count]")) {
     const n = meta.counts[el.dataset.count];

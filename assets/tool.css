@@ -53,10 +53,16 @@ h1,h2,h3{font-family:var(--font-title);font-weight:var(--title-weight);letter-sp
 .brand{font-family:var(--font-title);font-weight:var(--title-weight);font-size:23px;letter-spacing:var(--title-track);text-decoration:none;color:var(--shell-ink);line-height:1.2}
 /* "habibi" gets a stroke of the field color, like a highlighter */
 .brand b{font-weight:inherit;padding:0 4px 0 1px;background:linear-gradient(transparent 54%,var(--field) 54% 92%,transparent 92%)}
-.topnav{display:flex;gap:2px}
+.topnav{display:flex;gap:2px;margin-left:auto}
 .topnav a{text-decoration:none;color:var(--shell-muted);font-weight:600;font-size:15px;padding:8px 13px;border-radius:99px;white-space:nowrap}
 .topnav a:hover{color:var(--shell-ink);background:var(--wash)}
 .topnav a[aria-current="page"]{color:var(--shell-ink);background:var(--field)}
+/* "Support": a quiet link after the five places. It opens the tip page.
+   Hidden until assets/support.js switches it on (see that file). */
+.support-link{display:none;align-items:center;gap:6px;font-weight:600;font-size:14.5px;line-height:1.2;padding:6px 13px 6px 10px;border:1px solid var(--shell-line-2);border-radius:99px;color:var(--shell-ink);text-decoration:none;white-space:nowrap}
+:root[data-support] .support-link{display:inline-flex}
+.support-link:hover{border-color:var(--shell-ink);background:var(--wash)}
+.support-link svg{width:15px;height:15px;flex:none;fill:var(--c-pink);stroke:var(--shell-ink);stroke-width:2;stroke-linejoin:round}
 
 /* Page header band on the tool pages */
 .page-head{background:var(--wash);border-bottom:1px solid var(--shell-line)}
@@ -99,11 +105,13 @@ h1,h2,h3{font-family:var(--font-title);font-weight:var(--title-weight);letter-sp
 .site-strip{margin:0 18px 16px;padding:9px 12px;border:1px solid;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;line-height:1.35}
 .site-a{font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 
-/* Phones: the bar is two rows (name, then places) and scrolls away with the page */
+/* Phones: the bar is two rows (name and Support, then places) and scrolls
+   away with the page */
 @media(max-width:700px){
   .topbar{position:static}
   .topbar-in{padding-top:8px;padding-bottom:8px}
-  .topnav{width:calc(100% + 16px);margin:0 -8px;overflow-x:auto;scrollbar-width:none}
+  .support-link{order:2}
+  .topnav{order:3;width:calc(100% + 16px);margin:0 -8px;overflow-x:auto;scrollbar-width:none}
   .topnav::-webkit-scrollbar{display:none}
   .topnav a{padding:7px 10px;font-size:14.5px}
   .lede{font-size:16px}

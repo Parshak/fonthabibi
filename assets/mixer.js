@@ -9,7 +9,7 @@
    In the code a font pairing is a "voice" and a color set is a
    "ground"; those are the names used in the data files.
    ============================================================ */
-import { loadData, esc, fmt, cssStack, useFont, comboCSS, kitPrompt, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005f";
+import { loadData, esc, fmt, cssStack, useFont, comboCSS, kitPrompt, copyText, download, flash, store, slug } from "./fh-core.js?v=20261005g";
 
 const $ = (id) => document.getElementById(id);
 const px = (n) => n + "px";
